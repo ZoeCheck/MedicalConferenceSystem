@@ -2,54 +2,93 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="MedicalConferenceSystem.UI.MainWindow"
-        Title="MainWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
-    	<StackPanel Margin="0">
-    		<Expander Header="Expander" Style="{DynamicResource ExpanderStyleMain}">
-    			<Grid Background="#FFE5E5E5">
-    				<StackPanel Orientation="Horizontal">
-    					<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    					<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    					<Button Content="Button" Height="100" Width="200"/>
-    				</StackPanel>
-    			</Grid>
-    		</Expander>
-    		<Expander Header="Expander" Style="{DynamicResource ExpanderStyleMain}">
-    			<Grid Background="#FFE5E5E5">
-    				<StackPanel Orientation="Horizontal">
-    					<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    					<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    					<Button Content="Button" Height="100" Width="200"/>
-    				</StackPanel>
-    			</Grid>
-    		</Expander>
-    		<Expander Header="Expander" Style="{DynamicResource ExpanderStyleMain}">
-    			<Grid Background="#FFE5E5E5">
-    				<StackPanel Orientation="Horizontal">
-    					<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    					<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    					<Button Content="Button" Height="100" Width="200"/>
-    				</StackPanel>
-    			</Grid>
-    		</Expander>
-    		<Expander Header="Expander" Style="{DynamicResource ExpanderStyleMain}">
-    			<Grid Background="#FFE5E5E5">
-    				<StackPanel Orientation="Horizontal">
-    					<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    					<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    					<Button Content="Button" Height="100" Width="200"/>
-    				</StackPanel>
-    			</Grid>
-    		</Expander>
-    		<Expander Header="Expander" Style="{DynamicResource ExpanderStyleMain}">
-    			<Grid Background="#FFE5E5E5">
-    				<StackPanel Orientation="Horizontal">
-    					<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    					<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    					<Button Content="Button" Height="100" Width="200"/>
-    				</StackPanel>
-    			</Grid>
-    		</Expander>
+        Title="MedicalConferenceSystemDemo" Height="600" Width="800" WindowStartupLocation="CenterScreen" Background="{x:Null}">
+    <Grid x:Name="GridRoot">
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="0.204*"/>
+    		<RowDefinition Height="0.796*"/>
+    		<RowDefinition Height="100"/>
+    	</Grid.RowDefinitions>
+    	<Border x:Name="BorderTop" BorderBrush="#FF5A5865" BorderThickness="0" Margin="0">
+    		<Image Margin="0" Source="/MedicalConferenceSystem.UI;component/Images/Top.jpg" Stretch="Fill" Opacity="0.6"/>
+    	</Border>
+    	<Border x:Name="BorderList" Margin="0" Grid.Row="1">
+    		<Border.Background>
+    			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    				<GradientStop Color="#FF474747" Offset="0"/>
+    				<GradientStop Color="#FF7B7777" Offset="1"/>
+    			</LinearGradientBrush>
+    		</Border.Background>
+        
+    		<StackPanel x:Name="StackPanelList">
+    			<Expander Header="Expander" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
+    				<Grid Background="#FFE5E5E5">
+    					<StackPanel Orientation="Horizontal">
+    						<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
+    						<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
+    						<Button Content="Button" Height="100" Width="200"/>
+    					</StackPanel>
+    				</Grid>
+    			</Expander>
+    			<Expander Header="Expander" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
+    				<Grid Background="#FFE5E5E5">
+    					<StackPanel Orientation="Horizontal">
+    						<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
+    						<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
+    						<Button Content="Button" Height="100" Width="200"/>
+    					</StackPanel>
+    				</Grid>
+    			</Expander>
+    			<Expander Header="Expander" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
+    				<Grid Background="#FFE5E5E5">
+    					<StackPanel Orientation="Horizontal">
+    						<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
+    						<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
+    						<Button Content="Button" Height="100" Width="200"/>
+    					</StackPanel>
+    				</Grid>
+    			</Expander>
+    			<Expander Header="Expander" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
+    				<Grid Background="#FFE5E5E5">
+    					<StackPanel Orientation="Horizontal">
+    						<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
+    						<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
+    						<Button Content="Button" Height="100" Width="200"/>
+    					</StackPanel>
+    				</Grid>
+    			</Expander>
+    			<Expander Header="Expander" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
+    				<Grid Background="#FFE5E5E5">
+    					<StackPanel Orientation="Horizontal">
+    						<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
+    						<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
+    						<Button Content="Button" Height="100" Width="200"/>
+    					</StackPanel>
+    				</Grid>
+    			</Expander>
+    		</StackPanel>
+    	</Border>
+    	<StackPanel x:Name="StackPanelBottom" Grid.Row="2" d:LayoutOverrides="Width">
+    		<StackPanel.Background>
+    			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+    				<GradientStop Color="#CC1D1E1E" Offset="0"/>
+    				<GradientStop Color="#CC303330" Offset="0.697"/>
+    				<GradientStop Color="#CC505050" Offset="1"/>
+    			</LinearGradientBrush>
+    		</StackPanel.Background>
+    		<Grid x:Name="GridSearch" Margin="0,10,0,0" Height="38" VerticalAlignment="Top">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="0.923*"/>
+    				<ColumnDefinition Width="0.077*"/>
+    			</Grid.ColumnDefinitions>
+    			<TextBox Margin="0" Text="请输入(作者/医院/壁报标题)中的任意关键字搜索" VerticalContentAlignment="Center" Foreground="#FF363735"/>
+    			<Button Content="Button" Grid.Column="1" Margin="0"/>
+    		</Grid>
+    		<Grid Height="40" Margin="0,2,0,0">
+    			<Button Content="列表" Margin="0,0,42,0" Width="40" HorizontalAlignment="Right"/>
+    			<Button Content="平铺" HorizontalAlignment="Right" Margin="0" Width="40"/>
+    		</Grid>
+        
     	</StackPanel>
         
     </Grid>
