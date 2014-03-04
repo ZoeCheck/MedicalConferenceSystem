@@ -23,5 +23,11 @@ namespace MedicalConferenceSystem.UI
 		{
 			InitializeComponent();
 		}
+
+		private void Expander_Expanded(object sender, RoutedEventArgs e)
+		{
+			WindowImageList windowIm = new WindowImageList();
+			windowIm.ShowDialog();
+		}
 	}
 }

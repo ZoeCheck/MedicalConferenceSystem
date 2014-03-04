@@ -23,7 +23,8 @@
     		<ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
         
     			<StackPanel x:Name="StackPanelList">
-    				<Expander Header="糖尿病预防与流行病学" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
+    				<Expander Header="糖尿病预防与流行病学" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735"
+							  Expanded="Expander_Expanded">
     					<Grid Background="#FFE5E5E5">
     						<StackPanel>
     							<local:UCListDetail Height="100"/>
@@ -79,7 +80,7 @@
     				<GradientStop Color="#CC505050" Offset="1"/>
     			</LinearGradientBrush>
     		</StackPanel.Background>
-    		<Grid x:Name="GridSearch" Margin="0,2,0,0" Height="38" VerticalAlignment="Top">
+    		<Grid x:Name="GridSearch" Margin="0,1,0,0" Height="38" VerticalAlignment="Top">
     			<Grid.ColumnDefinitions>
     				<ColumnDefinition/>
     				<ColumnDefinition Width="50"/>
