@@ -58,6 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControls\UCImageList.xaml.cs">
+      <DependentUpon>UCImageList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\WindowImageFullView.xaml.cs">
       <DependentUpon>WindowImageFullView.xaml</DependentUpon>
     </Compile>
@@ -79,6 +82,10 @@
     <Page Include="Styles\TextBoxSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UCImageList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\UCListDetail.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -1,0 +1,19 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="MedicalConferenceSystem.UI.UCImageList"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="480" Background="#FF9DD7E5">
+
+	<Grid x:Name="LayoutRoot">
+		<WrapPanel Margin="0">
+			<Image Height="128" Source="/MedicalConferenceSystem.UI;component/Images/0.png" Stretch="Fill" Width="128"/>
+			<Image Height="128" Source="/MedicalConferenceSystem.UI;component/Images/1.png" Stretch="Fill" Width="128"/>
+			<Image Height="128" Source="/MedicalConferenceSystem.UI;component/Images/2.png" Stretch="Fill" Width="128"/>
+			<Image Height="128" Source="/MedicalConferenceSystem.UI;component/Images/3.png" Stretch="Fill" Width="128"/>
+		</WrapPanel>
+	</Grid>
+</UserControl>

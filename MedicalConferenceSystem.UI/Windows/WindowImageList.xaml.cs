@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace MedicalConferenceSystem.UI
 {
@@ -28,6 +29,21 @@ namespace MedicalConferenceSystem.UI
 		{
 			WindowImageFullView windowFull = new WindowImageFullView();
 			windowFull.ShowDialog();
+		}
+
+		private void Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			DoubleAnimation da = new DoubleAnimation();
+			da.To = 0;
+			da.Duration = TimeSpan.FromSeconds(0.5);
+
+			Storyboard.SetTarget(da, UCIm1);
+			Storyboard.SetTargetProperty(da,new PropertyPath(WidthProperty));
+
+			Storyboard sbTurnPage = new Storyboard();
+			sbTurnPage.Children.Add(da);
+
+			sbTurnPage.Begin();
 		}
 	}
 }
