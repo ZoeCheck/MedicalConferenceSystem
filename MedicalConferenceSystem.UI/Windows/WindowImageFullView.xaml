@@ -1,0 +1,21 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="MedicalConferenceSystem.UI.WindowImageFullView"
+	x:Name="Window"
+	Title="WindowImageFullView"
+	Width="800" Height="600" WindowStartupLocation="CenterScreen">
+
+	<Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="33.72"/>
+		</Grid.RowDefinitions>
+		<Button Content="Button" HorizontalAlignment="Left" Margin="0,6,0,2" Grid.Row="1" Width="32"/>
+		<TextBlock HorizontalAlignment="Left" Margin="40,10.72,0,8" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock"/>
+		<TextBlock HorizontalAlignment="Left" Margin="99.147,10.942,0,4.778" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock"/>
+		<Button Content="Button" HorizontalAlignment="Left" Margin="158.294,6,0,2" Grid.Row="1" Width="32"/>
+		<Button Content="Button" HorizontalAlignment="Right" Margin="0,3,33.5,5" Grid.Row="1" Width="32"/>
+		<Button Content="Button" HorizontalAlignment="Right" Margin="0,3.058,1.5,4.942" Grid.Row="1" Width="32"/>
+	</Grid>
+</Window>

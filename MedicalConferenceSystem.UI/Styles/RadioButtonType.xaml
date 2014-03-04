@@ -1,0 +1,92 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+	<SolidColorBrush x:Key="CheckBoxStroke" Color="#8E8F8F"/>
+	<Style x:Key="CheckRadioFocusVisual">
+		<Setter Property="Control.Template">
+			<Setter.Value>
+				<ControlTemplate>
+					<Rectangle Margin="14,0,0,0" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+    
+	<Style x:Key="RadioButtonStyleView" TargetType="{x:Type RadioButton}">
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+		<Setter Property="Background" Value="#F4F4F4"/>
+		<Setter Property="BorderBrush" Value="{StaticResource CheckBoxStroke}"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type RadioButton}">
+					<Border x:Name="border" BorderBrush="#FFD4D4D4" BorderThickness="2" CornerRadius="2" Background="#00000000">
+						<Grid>
+							<Rectangle x:Name="rectangle" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="10" Margin="5,5,0,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="10" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
+							<Rectangle x:Name="rectangle1" Fill="#FFD4D4D4" HorizontalAlignment="Right" Height="10" Margin="0,5,4,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="10" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
+							<Rectangle x:Name="rectangle2" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="10" Margin="5,0,0,4" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" Width="10" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
+							<Rectangle x:Name="rectangle3" Fill="#FFD4D4D4" HorizontalAlignment="Right" Height="10" Margin="0,0,4,4" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" Width="10" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
+						</Grid>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="True">
+							<Setter Property="Background" TargetName="border" Value="#FFD4D4D4"/>
+							<Setter Property="Fill" TargetName="rectangle" Value="#FF3B3B3B"/>
+							<Setter Property="Fill" TargetName="rectangle1" Value="#FF3B3B3B"/>
+							<Setter Property="Fill" TargetName="rectangle2" Value="#FF3B3B3B"/>
+							<Setter Property="Fill" TargetName="rectangle3" Value="#FF3B3B3B"/>
+						</Trigger>
+						<Trigger Property="HasContent" Value="true">
+							<Setter Property="FocusVisualStyle" Value="{StaticResource CheckRadioFocusVisual}"/>
+							<Setter Property="Padding" Value="4,0,0,0"/>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="RadioButtonStyleList" TargetType="{x:Type RadioButton}">
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+		<Setter Property="Background" Value="#F4F4F4"/>
+		<Setter Property="BorderBrush" Value="{StaticResource CheckBoxStroke}"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type RadioButton}">
+					<Border x:Name="border" BorderBrush="#FFD4D4D4" BorderThickness="2" CornerRadius="2" Background="#00000000">
+						<Grid>
+							<Rectangle x:Name="rectangle" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="6" Margin="4,4,0,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="6" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" StrokeThickness="0"/>
+							<Path x:Name="path" Data="M13.375,8 L31,8.25" Fill="#FFD4D4D4" Height="2" Margin="12,6,2.375,0" Stretch="Fill" Stroke="#FFD4D4D4" VerticalAlignment="Top" StrokeThickness="2"/>
+							<Rectangle x:Name="rectangle_Copy" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="6" Margin="4,13,0,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="6" d:LayoutOverrides="HorizontalAlignment" StrokeThickness="0"/>
+							<Path x:Name="path1" Data="M13.375,8 L31,8.25" Fill="#FFD4D4D4" Height="2" Margin="12,0,2.375,13.75" Stretch="Fill" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" StrokeThickness="2"/>
+							<Rectangle x:Name="rectangle_Copy1" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="6" Margin="4,21.75,0,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="6" d:LayoutOverrides="HorizontalAlignment" StrokeThickness="0"/>
+							<Path x:Name="path2" Data="M13.375,8 L31,8.25" Fill="#FFD4D4D4" Height="2" Margin="12,0,2.375,5.125" Stretch="Fill" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" StrokeThickness="2"/>
+						</Grid>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="True">
+							<Setter Property="Background" TargetName="border" Value="#FFD4D4D4"/>
+							<Setter Property="Fill" TargetName="rectangle" Value="#FF3B3B3B"/>
+							<Setter Property="Fill" TargetName="path" Value="#FF3B3B3B"/>
+							<Setter Property="Fill" TargetName="rectangle_Copy" Value="#FF3B3B3B"/>
+							<Setter Property="Stroke" TargetName="path" Value="#FF3B3B3B"/>
+							<Setter Property="Stroke" TargetName="path1" Value="#FF3B3B3B"/>
+							<Setter Property="Fill" TargetName="rectangle_Copy1" Value="#FF3B3B3B"/>
+							<Setter Property="Stroke" TargetName="path2" Value="#FF3B3B3B"/>
+						</Trigger>
+						<Trigger Property="HasContent" Value="true">
+							<Setter Property="FocusVisualStyle" Value="{StaticResource CheckRadioFocusVisual}"/>
+							<Setter Property="Padding" Value="4,0,0,0"/>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+    
+</ResourceDictionary>

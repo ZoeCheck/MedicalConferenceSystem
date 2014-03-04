@@ -264,25 +264,25 @@
                         <Grid Background="Transparent"
                               SnapsToDevicePixels="False">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="19" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="40"/>
                             </Grid.ColumnDefinitions>
                             <Ellipse x:Name="circle"
                                      HorizontalAlignment="Center"
                                      Height="19"
                                      Stroke="DarkGray"
                                      VerticalAlignment="Center"
-                                     Width="19" />
+                                     Width="19" Grid.Column="1" Visibility="Hidden" />
                             <Path x:Name="arrow"
                                   Data="M 1,1.5 L 4.5,5 L 8,1.5"
                                   HorizontalAlignment="Center"
                                   SnapsToDevicePixels="false"
                                   Stroke="#666"
                                   StrokeThickness="2"
-                                  VerticalAlignment="Center" />
-                            <ContentPresenter Grid.Column="1"
+                                  VerticalAlignment="Center" Grid.Column="1" />
+                            <ContentPresenter Grid.Column="0"
                                               HorizontalAlignment="Left"
-                                              Margin="4,0,0,0"
+                                              Margin="15,0,0,0"
                                               RecognizesAccessKey="True"
                                               SnapsToDevicePixels="True"
                                               VerticalAlignment="Center" />
@@ -387,7 +387,7 @@
                                           FontFamily="{TemplateBinding FontFamily}"
                                           HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                          Margin="1"
+                                          Margin="0"
                                           MinWidth="0"
                                           MinHeight="0"
                                           Padding="{TemplateBinding Padding}"

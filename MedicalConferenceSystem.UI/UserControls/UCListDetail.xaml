@@ -1,0 +1,23 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="MedicalConferenceSystem.UI.UCListDetail"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="112" Height="112" Background="#FFC0BDBD">
+	<Border BorderThickness="1,0,1,0.5" BorderBrush="#FF5A5865">
+		<StackPanel>
+			<TextBlock HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" Text="P0-061" FontSize="14"/>
+			<TextBlock HorizontalAlignment="Left" Margin="0,5,0,0" TextWrapping="Wrap" Text="2型糖尿病患者血清肪细胞脂肪酸结合蛋白与阻塞性睡眠呼吸暂停综合征的相关研究" FontSize="14"/>
+			<TextBlock HorizontalAlignment="Left" Margin="0,5,0,0" TextWrapping="Wrap" Text="郑静" FontSize="14"/>
+			<Grid Margin="0,5,0,0">
+				<Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Right" Width="90.167" Margin="0" Background="#FF161616">
+					<TextBlock Margin="5,5.57,7,7" TextWrapping="Wrap" Text="5号机 第一页" Foreground="White"/>
+				</Border>
+				<Rectangle Fill="#FF161616" HorizontalAlignment="Right" Margin="0,0,90.812,0" Stroke="Black" Width="22.79" StrokeThickness="0"/>
+			</Grid>
+		</StackPanel>
+	</Border>
+</UserControl>
