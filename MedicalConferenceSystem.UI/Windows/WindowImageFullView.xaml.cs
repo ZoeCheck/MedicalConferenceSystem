@@ -23,5 +23,10 @@ namespace MedicalConferenceSystem.UI
 			
 			// 在此点之下插入创建对象所需的代码。
 		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+		}
 	}
 }

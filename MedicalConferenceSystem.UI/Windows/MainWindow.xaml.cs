@@ -29,5 +29,21 @@ namespace MedicalConferenceSystem.UI
 			WindowImageList windowIm = new WindowImageList();
 			windowIm.ShowDialog();
 		}
+
+		private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			this.DragMove();
+		}
+
+		private void Expander_Collapsed(object sender, RoutedEventArgs e)
+		{
+			WindowImageList windowIm = new WindowImageList();
+			windowIm.ShowDialog();
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+		}
 	}
 }

@@ -10,6 +10,7 @@
     			<ResourceDictionary Source="Styles/TextBoxSearch.xaml"/>
     			<ResourceDictionary Source="Styles/ButtonSearchxaml.xaml"/>
     			<ResourceDictionary Source="Styles/RadioButtonType.xaml"/>
+    			<ResourceDictionary Source="Styles/BrushSystem.xaml"/>
     		</ResourceDictionary.MergedDictionaries>
     	</ResourceDictionary>
          

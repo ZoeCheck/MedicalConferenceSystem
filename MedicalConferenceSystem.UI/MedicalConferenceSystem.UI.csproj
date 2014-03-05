@@ -67,6 +67,10 @@
     <Compile Include="Windows\WindowImageList.xaml.cs">
       <DependentUpon>WindowImageList.xaml</DependentUpon>
     </Compile>
+    <Page Include="Styles\BrushSystem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\ButtonSearchxaml.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,11 +137,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Images\p1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="需求.doc" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fonts\" />
@@ -167,8 +175,16 @@
     <Resource Include="Images\8.png" />
     <Resource Include="Images\9.png" />
     <Resource Include="Images\list.png" />
+    <Resource Include="Images\p2.jpg" />
+    <Resource Include="Images\p3.jpg" />
+    <Resource Include="Images\p4.jpg" />
+    <Resource Include="Images\phoine32.png" />
+    <Resource Include="Images\phone.png" />
+    <Resource Include="Images\record.png" />
     <Resource Include="Images\search.png" />
     <Resource Include="Images\Top.jpg" />
+    <Resource Include="Images\video.png" />
+    <Resource Include="Images\video1.png" />
     <Resource Include="Images\view.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

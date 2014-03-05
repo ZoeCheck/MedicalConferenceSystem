@@ -13,10 +13,11 @@
 			<TextBlock HorizontalAlignment="Left" Margin="0,5,0,0" TextWrapping="Wrap" Text="2型糖尿病患者血清肪细胞脂肪酸结合蛋白与阻塞性睡眠呼吸暂停综合征的相关研究" FontSize="14"/>
 			<TextBlock HorizontalAlignment="Left" Margin="0,5,0,0" TextWrapping="Wrap" Text="郑静" FontSize="14"/>
 			<Grid Margin="0,5,0,0">
-				<Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Right" Width="90.167" Margin="0" Background="#FF161616">
+				<Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Right" Width="90.167" Margin="0" Background="#99161616">
 					<TextBlock Margin="5,5.57,7,7" TextWrapping="Wrap" Text="5号机 第一页" Foreground="White"/>
 				</Border>
-				<Rectangle Fill="#FF161616" HorizontalAlignment="Right" Margin="0,0,90.812,0" Stroke="Black" Width="22.79" StrokeThickness="0"/>
+				<Rectangle HorizontalAlignment="Right" Margin="0,0,90.812,0" Stroke="Black" Width="22.79" StrokeThickness="0" Fill="#99161616"/>
+				<Image HorizontalAlignment="Right" Height="32" Margin="0,1.57,85.75,0" Source="/MedicalConferenceSystem.UI;component/Images/phoine32.png" Stretch="Fill" VerticalAlignment="Top" Width="32"/>
 			</Grid>
 		</StackPanel>
 	</Border>

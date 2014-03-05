@@ -2,15 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:MedicalConferenceSystem.UI" mc:Ignorable="d" x:Class="MedicalConferenceSystem.UI.MainWindow"
-        Title="MedicalConferenceSystemDemo" Height="600" Width="800" WindowStartupLocation="CenterScreen" Background="{x:Null}">
+        Title="MedicalConferenceSystemDemo" Height="600" Width="800" WindowStartupLocation="CenterScreen" Background="{x:Null}" ResizeMode="NoResize" WindowState="Maximized">
     <Grid x:Name="GridRoot">
     	<Grid.RowDefinitions>
-    		<RowDefinition Height="0.204*"/>
-    		<RowDefinition Height="0.796*"/>
+    		<RowDefinition Height="120"/>
+    		<RowDefinition/>
     		<RowDefinition Height="84"/>
     	</Grid.RowDefinitions>
     	<Border x:Name="BorderTop" BorderBrush="#FF5A5865" BorderThickness="0" Margin="0">
-    		<Image Margin="0" Source="/MedicalConferenceSystem.UI;component/Images/Top.jpg" Stretch="Fill" Opacity="0.9"/>
+    		<Image Margin="0" Source="/MedicalConferenceSystem.UI;component/Images/Top.jpg" Stretch="Fill"/>
     	</Border>
     	<Border x:Name="BorderList" Margin="0" Grid.Row="1">
     		<Border.Background>
@@ -24,13 +24,10 @@
         
     			<StackPanel x:Name="StackPanelList">
     				<Expander Header="糖尿病预防与流行病学" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735"
-							  Expanded="Expander_Expanded">
+							  Expanded="Expander_Expanded"
+                              Collapsed="Expander_Collapsed">
     					<Grid Background="#FFE5E5E5">
-    						<StackPanel>
-    							<local:UCListDetail Height="100"/>
-    							<local:UCListDetail Height="100"/>
-    							<local:UCListDetail Height="100"/>
-    						</StackPanel>
+    						<StackPanel/>
     					</Grid>
     				</Expander>
     				<Expander Header="糖尿病基础研究" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
@@ -89,6 +86,7 @@
     			<Button Content="Button" Grid.Column="1" Margin="0" Style="{DynamicResource ButtonStyleSearch}"/>
     		</Grid>
     		<Grid Height="40" Margin="0,2,0,0">
+        
     			<RadioButton Content="RadioButton" HorizontalAlignment="Right" Margin="0,0,41,0" Width="35" Height="35" Style="{DynamicResource RadioButtonStyleView}" VerticalAlignment="Center"/>
     			<RadioButton Content="RadioButton" HorizontalAlignment="Right" Margin="0,0,5,0" Width="35" Height="35" Style="{DynamicResource RadioButtonStyleList}" VerticalAlignment="Center" IsChecked="True"/>
     		</Grid>
