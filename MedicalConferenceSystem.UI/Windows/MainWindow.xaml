@@ -41,28 +41,28 @@
     				</Expander>
     				<Expander Header="糖尿病与传统医学" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
     					<Grid Background="#FFE5E5E5">
-    						<StackPanel Orientation="Horizontal">
-    							<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    							<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    							<Button Content="Button" Height="100" Width="200"/>
+    						<StackPanel>
+    							<local:UCListDetail Height="Auto"/>
+    							<local:UCListDetail Height="Auto" Margin="0"/>
+    							<local:UCListDetail Height="Auto" Margin="0"/>
     						</StackPanel>
     					</Grid>
     				</Expander>
     				<Expander Header="糖尿病卫生经济学" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
     					<Grid Background="#FFE5E5E5">
-    						<StackPanel Orientation="Horizontal">
-    							<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    							<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    							<Button Content="Button" Height="100" Width="200"/>
+    						<StackPanel>
+    							<local:UCListDetail Height="Auto" Margin="0"/>
+    							<local:UCListDetail Height="Auto" Margin="0"/>
+    							<local:UCListDetail Height="Auto" Margin="0"/>
     						</StackPanel>
     					</Grid>
     				</Expander>
     				<Expander Header="糖尿病与肥胖" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
     					<Grid Background="#FFE5E5E5">
-    						<StackPanel Orientation="Horizontal">
-    							<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    							<Button Content="Button" Height="100" d:LayoutOverrides="Height" Width="200"/>
-    							<Button Content="Button" Height="100" Width="200"/>
+    						<StackPanel>
+    							<local:UCListDetail Height="Auto" Margin="0"/>
+    							<local:UCListDetail Height="Auto" Margin="0"/>
+    							<local:UCListDetail Height="Auto" Margin="0"/>
     						</StackPanel>
     					</Grid>
     				</Expander>
@@ -82,7 +82,10 @@
     				<ColumnDefinition/>
     				<ColumnDefinition Width="50"/>
     			</Grid.ColumnDefinitions>
-    			<TextBox Margin="0" Text="请输入(作者/医院/壁报标题)中的任意关键字搜索" VerticalContentAlignment="Center" Foreground="#FF363735" Style="{DynamicResource TextBoxStyleSearch}"/>
+    			<TextBox Margin="0" Text="请输入(作者/医院/壁报标题)中的任意关键字搜索" VerticalContentAlignment="Center" Foreground="#FF363735" Style="{DynamicResource TextBoxStyleSearch}"
+                         Name="tbSearch"
+                         GotFocus="tbSearch_GotFocus"
+                         LostFocus="tbSearch_LostFocus" />
     			<Button Content="Button" Grid.Column="1" Margin="0" Style="{DynamicResource ButtonStyleSearch}"/>
     		</Grid>
     		<Grid Height="40" Margin="0,2,0,0">

@@ -45,5 +45,21 @@ namespace MedicalConferenceSystem.UI
 		{
 			this.Close();
 		}
+
+		private void tbSearch_GotFocus(object sender, RoutedEventArgs e)
+		{
+			if (tbSearch.Text == "请输入(作者/医院/壁报标题)中的任意关键字搜索")
+			{
+				tbSearch.Text = "";
+			}
+		}
+
+		private void tbSearch_LostFocus(object sender, RoutedEventArgs e)
+		{
+			if (tbSearch.Text == "")
+			{
+				tbSearch.Text = "请输入(作者/医院/壁报标题)中的任意关键字搜索";
+			}
+		}
 	}
 }

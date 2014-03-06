@@ -58,6 +58,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControls\UCFullImage.xaml.cs">
+      <DependentUpon>UCFullImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UCImageList.xaml.cs">
       <DependentUpon>UCImageList.xaml</DependentUpon>
     </Compile>
@@ -90,6 +93,10 @@
     <Page Include="Styles\TextBoxSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\UCFullImage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\UCImageList.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -141,9 +148,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Images\p1.jpg">
+    <Content Include="Images\p1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -179,9 +186,15 @@
     <Resource Include="Images\8.png" />
     <Resource Include="Images\9.png" />
     <Resource Include="Images\list.png" />
-    <Resource Include="Images\p2.jpg" />
-    <Resource Include="Images\p3.jpg" />
-    <Resource Include="Images\p4.jpg" />
+    <Content Include="Images\p2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\p3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\p4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\phoine32.png" />
     <Resource Include="Images\phone.png" />
     <Resource Include="Images\record.png" />
