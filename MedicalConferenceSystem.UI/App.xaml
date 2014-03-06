@@ -11,6 +11,7 @@
     			<ResourceDictionary Source="Styles/ButtonSearchxaml.xaml"/>
     			<ResourceDictionary Source="Styles/RadioButtonType.xaml"/>
     			<ResourceDictionary Source="Styles/BrushSystem.xaml"/>
+    			<ResourceDictionary Source="Styles/MineBlack.xaml"/>
     		</ResourceDictionary.MergedDictionaries>
     	</ResourceDictionary>
          
