@@ -1,0 +1,14 @@
+﻿<Window x:Class="MedicalConferenceSystem.UI.Windows.WindowMuiltTouchTest"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="WindowMuiltTouchTest"
+		Height="350"
+		Width="525">
+	<Grid>
+		<Canvas x:Name="touchPad"
+				Background="Gray"
+				TouchDown="touchPad_TouchDown"
+				TouchUp="touchPad_TouchUp"
+				TouchMove="touchPad_TouchMove"></Canvas>
+	</Grid>
+</Window>
