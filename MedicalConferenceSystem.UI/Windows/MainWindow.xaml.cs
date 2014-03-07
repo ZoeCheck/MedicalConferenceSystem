@@ -61,5 +61,10 @@ namespace MedicalConferenceSystem.UI
 				tbSearch.Text = "请输入(作者/医院/壁报标题)中的任意关键字搜索";
 			}
 		}
+
+		private void Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+		}
 	}
 }

@@ -11,8 +11,7 @@
         Loaded="Window_Loaded"
         Closing="Window_Closing"
         ResizeMode="NoResize"
-        WindowState="Maximized"
-        Background="{x:Null}" WindowStyle="None">
+        Background="{x:Null}" WindowStyle="None" Width="800" Height="600">
     <Window.RenderTransform>
         <ScaleTransform x:Name="STMainWindow" />
     </Window.RenderTransform>

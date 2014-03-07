@@ -759,7 +759,7 @@
 				<ControlTemplate TargetType="{x:Type Button}">
 					<Border x:Name="border" BorderBrush="{x:Null}" BorderThickness="1" CornerRadius="0" Background="#00000000" Margin="0">
 						<Grid>
-							<Rectangle x:Name="rectangle" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="9.001" Margin="7.5,3.284,0,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="9.002" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" RenderTransformOrigin="0.5,0.5">
+							<Rectangle x:Name="rectangle" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="9.001" Margin="8.247,3.284,0,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="9.002" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" RenderTransformOrigin="0.5,0.5">
 								<Rectangle.RenderTransform>
 									<TransformGroup>
 										<ScaleTransform/>
@@ -769,7 +769,7 @@
 									</TransformGroup>
 								</Rectangle.RenderTransform>
 							</Rectangle>
-							<Rectangle x:Name="rectangle1" Fill="#FFD4D4D4" HorizontalAlignment="Right" Height="9.001" Margin="0,3.284,7.004,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="9" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" RenderTransformOrigin="0.5,0.5">
+							<Rectangle x:Name="rectangle1" Fill="#FFD4D4D4" HorizontalAlignment="Right" Height="9.001" Margin="0,3.284,7.585,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="9" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" RenderTransformOrigin="0.5,0.5">
 								<Rectangle.RenderTransform>
 									<TransformGroup>
 										<ScaleTransform/>
@@ -779,7 +779,7 @@
 									</TransformGroup>
 								</Rectangle.RenderTransform>
 							</Rectangle>
-							<Rectangle x:Name="rectangle2" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="9" Margin="7.5,0,0,2.618" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" Width="9.002" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" RenderTransformOrigin="0.5,0.5">
+							<Rectangle x:Name="rectangle2" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="9" Margin="8.247,0,0,2.618" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" Width="9.002" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" RenderTransformOrigin="0.5,0.5">
 								<Rectangle.RenderTransform>
 									<TransformGroup>
 										<ScaleTransform/>
@@ -789,7 +789,7 @@
 									</TransformGroup>
 								</Rectangle.RenderTransform>
 							</Rectangle>
-							<Rectangle x:Name="rectangle3" Fill="#FFD4D4D4" HorizontalAlignment="Right" Height="9" Margin="0,0,7.004,2.618" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" Width="9" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" RenderTransformOrigin="0.5,0.5">
+							<Rectangle x:Name="rectangle3" Fill="#FFD4D4D4" HorizontalAlignment="Right" Height="9" Margin="0,0,7.585,2.618" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" Width="9" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" RenderTransformOrigin="0.5,0.5">
 								<Rectangle.RenderTransform>
 									<TransformGroup>
 										<ScaleTransform/>
