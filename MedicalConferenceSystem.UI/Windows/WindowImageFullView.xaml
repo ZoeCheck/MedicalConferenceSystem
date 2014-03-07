@@ -46,7 +46,7 @@
         </Border>
         <Grid x:Name="GridBottom"
               Grid.Row="2">
-            <Border BorderThickness="1"
+            <Border BorderThickness="0"
                     Background="#FF494949"
                     Opacity="0.8" />
             <StackPanel HorizontalAlignment="Right"

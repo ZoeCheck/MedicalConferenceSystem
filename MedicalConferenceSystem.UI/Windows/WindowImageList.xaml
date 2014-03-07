@@ -27,7 +27,7 @@
         		<ColumnDefinition/>
         		<ColumnDefinition Width="72"/>
         	</Grid.ColumnDefinitions>
-            <Border BorderThickness="1"
+            <Border BorderThickness="0"
                     Background="#FF494949"
                     Opacity="0.8" Grid.ColumnSpan="3" />
             <Image Margin="4.5,1.5,7.5,-3.5" Source="/MedicalConferenceSystem.UI;component/Images/video.png" Stretch="Fill" Height="32" d:LayoutOverrides="VerticalAlignment"/>
@@ -41,7 +41,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="4,8,0,6" TextWrapping="Wrap" Text="1970-1-1" Width="80" Grid.Column="1" Foreground="{DynamicResource BrushImageBorder}"/>
         </Grid>
         <Grid x:Name="GridBottom" Grid.Row="2">
-            <Border BorderThickness="1"
+            <Border BorderThickness="0"
                     Background="#FF494949"
                     Opacity="0.8" />
             <TextBlock HorizontalAlignment="Right"
@@ -71,10 +71,8 @@
                 <local:UCImageList Margin="0"
                                    x:Name="UCIm1"
                                    Loaded="UCIm1_Loaded" />
-                <local:UCImageList Margin="0"
-                                   Width="784" />
-                <local:UCImageList Margin="0"
-                                   Width="784" />
+                <local:UCImageList Margin="0" />
+                <local:UCImageList Margin="0" />
             </StackPanel>
         </Border>
         <Button x:Name="btnPreviewPage" Content="&lt;"

@@ -10,7 +10,7 @@
     		<RowDefinition/>
     		<RowDefinition Height="84"/>
     	</Grid.RowDefinitions>
-    	<Border x:Name="BorderTop" BorderThickness="1"
+    	<Border x:Name="BorderTop" BorderThickness="0"
     		Background="#FF494949"
     		Opacity="0.8" >
     		<TextBlock HorizontalAlignment="Left" Margin="9.324,0,0,0" TextWrapping="Wrap" Text="主界面" Foreground="#FFD2D2D2" VerticalAlignment="Center"/>
