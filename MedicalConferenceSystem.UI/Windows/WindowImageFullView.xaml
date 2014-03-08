@@ -41,8 +41,13 @@
                 BorderThickness="0"
                 Margin="0"
                 Grid.Row="1">
-            <StackPanel x:Name="StackPanelCenter"
-                        Orientation="Horizontal" />
+            <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          PanningMode="HorizontalOnly">
+                <StackPanel x:Name="StackPanelCenter"
+                            Orientation="Horizontal"
+                            Background="#00000000" />
+            </ScrollViewer>
         </Border>
         <Grid x:Name="GridBottom"
               Grid.Row="2">

@@ -66,5 +66,27 @@ namespace MedicalConferenceSystem.UI
 		{
 			this.Close();
 		}
+
+		private void Window_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+		{
+			this.DragMove();
+		}
+
+		private void tbSearch_TouchDown(object sender, TouchEventArgs e)
+		{
+			if (tbSearch.Text == "请输入(作者/医院/壁报标题)中的任意关键字搜索")
+			{
+				tbSearch.Text = "";
+			}
+
+			try
+			{
+				System.Diagnostics.Process.Start(@"C:\Program Files\Common Files\Microsoft Shared\Ink\TabTip.exe");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
+		}
 	}
 }

@@ -36,6 +36,7 @@ namespace MedicalConferenceSystem.UI.Windows
 		/// <param name="e"></param>
 		private void touchPad_TouchDown(object sender, TouchEventArgs e)
 		{
+			Console.WriteLine("down");
 			Ellipse ellipse = new Ellipse();
 			ellipse.Width = 30;
 			ellipse.Height = 30;
@@ -57,8 +58,9 @@ namespace MedicalConferenceSystem.UI.Windows
 		/// <param name="e"></param>
 		private void touchPad_TouchUp(object sender, TouchEventArgs e)
 		{
-			movingEllipses.Remove(e.TouchDevice.Id);
+			Console.WriteLine("up");
 			Ellipse ellipse = movingEllipses[e.TouchDevice.Id];
+			movingEllipses.Remove(e.TouchDevice.Id);
 			touchPad.Children.Remove(ellipse);
 		}
 
