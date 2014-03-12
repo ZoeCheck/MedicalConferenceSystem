@@ -7,14 +7,14 @@
              x:Name="UserControl"
              d:DesignWidth="640"
              d:DesignHeight="480"
-             Background="#00000000"
-             IsManipulationEnabled="True">
+             Background="#FF2A1E58"
+             RenderTransform="0.5 0 0 0.5 100 100"
+             TouchDown="UserControl_TouchDown"
+             TouchUp="UserControl_TouchUp">
     <Grid x:Name="LayoutRoot">
         <Image x:Name="ImageMain"
                Margin="0"
                HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               IsManipulationEnabled="True"
-               RenderTransform="0.5 0 0 0.5 300 300" />
+               VerticalAlignment="Center" />
     </Grid>
 </UserControl>

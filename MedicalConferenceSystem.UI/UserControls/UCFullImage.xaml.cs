@@ -18,11 +18,27 @@ namespace MedicalConferenceSystem.UI
 	/// </summary>
 	public partial class UCFullImage : UserControl
 	{
+		#region 变量
+		List<int> listDeviceID = new List<int>();
+		bool isMuiltTouch = false;
+		#endregion
+
+		#region 委托事件
+
+		#endregion
+
+		#region 属性
+
+		#endregion
+
+		#region 构造函数
 		public UCFullImage()
 		{
 			this.InitializeComponent();
 		}
+		#endregion
 
+		#region 业务
 		public void SetBackImage(string imgPath)
 		{
 			this.ImageMain.Source = new BitmapImage(new Uri(imgPath, UriKind.Absolute));
@@ -30,34 +46,68 @@ namespace MedicalConferenceSystem.UI
 
 		protected override void OnManipulationStarting(ManipulationStartingEventArgs args)
 		{
-			args.ManipulationContainer = this;
+			if (isMuiltTouch)
+			{
+				args.ManipulationContainer = this;
 
-			// Adjust Z-order
-			FrameworkElement element = args.Source as FrameworkElement;
-			Panel pnl = element.Parent as Panel;
+				// Adjust Z-order
+				FrameworkElement element = args.Source as FrameworkElement;
+				Panel pnl = element.Parent as Panel;
 
-			for (int i = 0; i < pnl.Children.Count; i++)
-				Panel.SetZIndex(pnl.Children[i],
-					pnl.Children[i] == element ? pnl.Children.Count : i);
+				for (int i = 0; i < pnl.Children.Count; i++)
+					Panel.SetZIndex(pnl.Children[i],
+						pnl.Children[i] == element ? pnl.Children.Count : i);
 
-			args.Handled = true;
+				args.Handled = true;
+			}
+
 			base.OnManipulationStarting(args);
 		}
 
 		protected override void OnManipulationDelta(ManipulationDeltaEventArgs args)
 		{
-			UIElement element = args.Source as UIElement;
-			MatrixTransform xform = element.RenderTransform as MatrixTransform;
-			Matrix matrix = xform.Matrix;
-			ManipulationDelta delta = args.DeltaManipulation;
-			Point center = args.ManipulationOrigin;
-			matrix.ScaleAt(delta.Scale.X, delta.Scale.Y, center.X, center.Y);
-			//matrix.RotateAt(delta.Rotation, center.X, center.Y);
-			//matrix.Translate(delta.Translation.X, delta.Translation.Y);
-			xform.Matrix = matrix;
+			if (isMuiltTouch)
+			{
+				UIElement element = args.Source as UIElement;
+				MatrixTransform xform = element.RenderTransform as MatrixTransform;
+				Matrix matrix = xform.Matrix;
+				ManipulationDelta delta = args.DeltaManipulation;
+				Point center = args.ManipulationOrigin;
+				matrix.ScaleAt(delta.Scale.X, delta.Scale.Y, center.X, center.Y);
+				//matrix.RotateAt(delta.Rotation, center.X, center.Y);
+				//matrix.Translate(delta.Translation.X, delta.Translation.Y);
+				xform.Matrix = matrix;
 
-			args.Handled = true;
+				//args.Handled = true;
+			}
+
 			base.OnManipulationDelta(args);
 		}
+
+		private void UserControl_TouchDown(object sender, TouchEventArgs e)
+		{
+			Console.WriteLine("Down");
+			if (!listDeviceID.Contains(e.TouchDevice.Id))
+			{
+				listDeviceID.Add(e.TouchDevice.Id);
+			}
+
+			if (listDeviceID.Count >= 2)
+			{
+				isMuiltTouch = true;
+			}
+		}
+
+		private void UserControl_TouchUp(object sender, TouchEventArgs e)
+		{
+			Console.WriteLine("Up");
+			listDeviceID.Remove(e.TouchDevice.Id);
+
+			if (listDeviceID.Count < 2)
+			{
+				isMuiltTouch = false;
+			}
+		}
+		#endregion
 	}
 }
