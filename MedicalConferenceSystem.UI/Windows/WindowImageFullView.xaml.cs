@@ -57,7 +57,7 @@ namespace MedicalConferenceSystem.UI
 		{
 			//listStoryHide = new List<Storyboard>();
 			//listStoryShow = new List<Storyboard>();
-
+			int num = 0;
 			ucWidth = this.StackPanelCenter.ActualWidth;
 			ucHeight = this.StackPanelCenter.ActualHeight;
 
@@ -72,11 +72,33 @@ namespace MedicalConferenceSystem.UI
 				pageCount++;
 
 				ucFull.IsManipulationEnabled = true;
+				ucFull.ImageControlEvent += ucFull_ImageControlEvent;
+				ucFull.numUC = num++;
 			}
 
 			//InitAnimation();
 
 			//BeginLoadWindowAnimation();
+		}
+
+		void ucFull_ImageControlEvent(bool isImageControl,int numUC)
+		{
+			if (isImageControl)//图片缩放
+			{
+				try
+				{
+					this.ScrollViewrCenter.PanningMode = PanningMode.None;
+					Console.WriteLine(numUC + "缩放");
+				}
+				catch 
+				{
+				}
+			}
+			else//列表水平滚动
+			{
+				this.ScrollViewrCenter.PanningMode = PanningMode.HorizontalOnly;
+				Console.WriteLine(numUC + "平移");
+			}
 		}
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
