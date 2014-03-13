@@ -9,7 +9,7 @@
 			 x:Name="UserControl"
 			 d:DesignWidth="640"
 			 d:DesignHeight="480"
-			 Background="#FF2A1E58"
+			 Background="#002A1E58"
 			 Loaded="UserControl_Loaded">
 	<Grid x:Name="LayoutRoot">
 		<Image x:Name="ImageMain"

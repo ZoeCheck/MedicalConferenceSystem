@@ -1,0 +1,34 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+		xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+		x:Class="MedicalConferenceSystem.UI.Windows.WindowSignleImage"
+		Title="WindowSignleImage"
+		Height="600"
+		Width="800"
+		AllowsTransparency="True"
+		WindowStyle="None"
+		Background="{x:Null}"
+		Loaded="Window_Loaded"
+		Closing="Window_Closing"
+		WindowStartupLocation="CenterScreen"
+		TouchUp="Window_TouchUp"
+		TouchDown="Window_TouchDown">
+	<Window.RenderTransform>
+		<ScaleTransform x:Name="STMainWindow" />
+	</Window.RenderTransform>
+	<Grid>
+		<Border BorderBrush="Black"
+				BorderThickness="0"
+				Background="#B2000000" />
+		<Image x:Name="ImageMain"
+			   HorizontalAlignment="Center"
+			   VerticalAlignment="Center">
+			<i:Interaction.Behaviors>
+				<ei:TranslateZoomRotateBehavior ConstrainToParentBounds="True"
+												MinimumScale="0.5" />
+			</i:Interaction.Behaviors>
+		</Image>
+
+	</Grid>
+</Window>

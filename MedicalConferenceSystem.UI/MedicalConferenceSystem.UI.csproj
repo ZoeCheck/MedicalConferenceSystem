@@ -78,6 +78,9 @@
     <Compile Include="Windows\WindowMuiltTouchTest.xaml.cs">
       <DependentUpon>WindowMuiltTouchTest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\WindowSignleImage.xaml.cs">
+      <DependentUpon>WindowSignleImage.xaml</DependentUpon>
+    </Compile>
     <Page Include="Styles\BrushSystem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +145,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\WindowMuiltTouchTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WindowSignleImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

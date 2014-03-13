@@ -11,6 +11,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using System.Windows.Media.Animation;
+using System.Collections.ObjectModel;
+using MedicalConferenceSystem.UI.Windows;
 
 namespace MedicalConferenceSystem.UI
 {
@@ -28,6 +30,8 @@ namespace MedicalConferenceSystem.UI
 		bool isClosed = false;
 		List<Storyboard> listStoryHide;
 		List<Storyboard> listStoryShow;
+		ObservableCollection<UCFullImage> collectionUCImage = new ObservableCollection<UCFullImage>();
+		TouchPoint touchPointOld;
 		#endregion
 
 		#region 委托事件
@@ -55,11 +59,8 @@ namespace MedicalConferenceSystem.UI
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			//listStoryHide = new List<Storyboard>();
-			//listStoryShow = new List<Storyboard>();
-			int num = 0;
-			ucWidth = this.StackPanelCenter.ActualWidth;
-			ucHeight = this.StackPanelCenter.ActualHeight;
+			ucWidth = this.ScrollViewrCenter.ActualWidth;
+			ucHeight = this.ScrollViewrCenter.ActualHeight;
 
 			string filePath = AppDomain.CurrentDomain.BaseDirectory + @"Images";
 			foreach (string path in Directory.GetFileSystemEntries(filePath))
@@ -68,37 +69,15 @@ namespace MedicalConferenceSystem.UI
 				ucFull.Width = ucWidth;
 				ucFull.Height = ucHeight;
 				ucFull.SetBackImage(path);
-				StackPanelCenter.Children.Add(ucFull);
-				pageCount++;
+				collectionUCImage.Add(ucFull);
 
-				ucFull.IsManipulationEnabled = true;
-				ucFull.ImageControlEvent += ucFull_ImageControlEvent;
-				ucFull.numUC = num++;
+				//ucFull.IsManipulationEnabled = true;
 			}
 
+			ListBoxMain.ItemsSource = collectionUCImage;
 			//InitAnimation();
 
 			//BeginLoadWindowAnimation();
-		}
-		
-		void ucFull_ImageControlEvent(bool isImageControl,int numUC)
-		{
-			if (isImageControl)//图片缩放
-			{
-				try
-				{
-					this.ScrollViewrCenter.PanningMode = PanningMode.None;
-					Console.WriteLine(numUC + "缩放");
-				}
-				catch 
-				{
-				}
-			}
-			else//列表水平滚动
-			{
-				this.ScrollViewrCenter.PanningMode = PanningMode.HorizontalOnly;
-				Console.WriteLine(numUC + "平移");
-			}
 		}
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -167,11 +146,11 @@ namespace MedicalConferenceSystem.UI
 
 		private void InitAnimation()
 		{
-			foreach (UCFullImage item in StackPanelCenter.Children)
-			{
-				CreateHideAnimation(item);
-				CreateShowAnimation(item);
-			}
+			//foreach (UCFullImage item in StackPanelCenter.Children)
+			//{
+			//    CreateHideAnimation(item);
+			//    CreateShowAnimation(item);
+			//}
 		}
 
 		private void CreateHideAnimation(UCFullImage ucFullIma)
@@ -230,8 +209,22 @@ namespace MedicalConferenceSystem.UI
 				BeginHideAnimation(currentIndex++);
 			}
 		}
+
+		private void ListBoxMain_TouchDown(object sender, TouchEventArgs e)
+		{
+			touchPointOld = e.GetTouchPoint(ListBoxMain);
+		}
+
+		private void ListBoxMain_TouchUp(object sender, TouchEventArgs e)
+		{
+			TouchPoint touchPointNew = e.GetTouchPoint(ListBoxMain);
+			if (touchPointOld.Bounds.Left == touchPointNew.Bounds.Left && touchPointOld.Bounds.Top == touchPointNew.Bounds.Top)
+			{
+				WindowSignleImage winImage = new WindowSignleImage();
+				winImage.SetBackImage(((System.Windows.Controls.Image)((e.TouchDevice).DirectlyOver)).Source);
+				winImage.ShowDialog();
+			}
+		}
 		#endregion
-
-
 	}
 }

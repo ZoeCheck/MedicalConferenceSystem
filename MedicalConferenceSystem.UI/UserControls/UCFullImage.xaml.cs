@@ -24,6 +24,7 @@ namespace MedicalConferenceSystem.UI
 		bool isMuiltTouch = false;
 		bool isAttached = false;
 		public int numUC;
+		public string imagePath;
 		TranslateZoomRotateBehavior translateZoomRotateBehavior;
 		#endregion
 
@@ -52,7 +53,8 @@ namespace MedicalConferenceSystem.UI
 		#region 业务
 		public void SetBackImage(string imgPath)
 		{
-			this.ImageMain.Source = new BitmapImage(new Uri(imgPath, UriKind.Absolute));
+			imagePath = imgPath;
+			this.ImageMain.Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
 		}
 
 		#region overrid
