@@ -10,13 +10,15 @@
 			 d:DesignWidth="640"
 			 d:DesignHeight="480"
 			 Background="#FF2A1E58"
-			 TouchDown="UserControl_TouchDown"
-			 TouchUp="UserControl_TouchUp"
 			 Loaded="UserControl_Loaded">
 	<Grid x:Name="LayoutRoot">
 		<Image x:Name="ImageMain"
 			   Margin="0"
 			   HorizontalAlignment="Center"
-			   VerticalAlignment="Center" />
+			   VerticalAlignment="Center"
+               ManipulationStarting="ImageMain_ManipulationStarting"
+               ManipulationDelta="ImageMain_ManipulationDelta"
+               TouchDown="ImageMain_TouchDown"
+               TouchUp="ImageMain_TouchUp" />
 	</Grid>
 </UserControl>

@@ -22,6 +22,7 @@ namespace MedicalConferenceSystem.UI
 		#region 变量
 		List<int> listDeviceID = new List<int>();
 		bool isMuiltTouch = false;
+		bool isAttached = false;
 		public int numUC;
 		TranslateZoomRotateBehavior translateZoomRotateBehavior;
 		#endregion
@@ -54,11 +55,13 @@ namespace MedicalConferenceSystem.UI
 			this.ImageMain.Source = new BitmapImage(new Uri(imgPath, UriKind.Absolute));
 		}
 
+		#region overrid
 		//protected override void OnManipulationStarting(ManipulationStartingEventArgs args)
 		//{
 		//    if (isMuiltTouch)
 		//    {
 		//        args.ManipulationContainer = this;
+		//        args.Mode = ManipulationModes.Scale;
 
 		//        // Adjust Z-order
 		//        FrameworkElement element = args.Source as FrameworkElement;
@@ -84,65 +87,25 @@ namespace MedicalConferenceSystem.UI
 		//        Matrix matrix = xform.Matrix;
 		//        ManipulationDelta delta = args.DeltaManipulation;
 		//        Point center = args.ManipulationOrigin;
-		//        matrix.ScaleAt(delta.Scale.X, delta.Scale.Y, center.X, center.Y);
-		//        matrix.RotateAt(delta.Rotation, center.X, center.Y);
+		//        matrix.Translate(-center.X, -center.Y);
+		//        matrix.Scale(delta.Scale.X, delta.Scale.Y);
+		//        matrix.Rotate(delta.Rotation);
+		//        matrix.Translate(center.X, center.Y);
 		//        matrix.Translate(delta.Translation.X, delta.Translation.Y);
 		//        xform.Matrix = matrix;
 
 		//        args.Handled = true;
-		//        OnImageControlEvent(true, numUC);
+		//        base.OnManipulationDelta(args);
+		//        //        OnImageControlEvent(true, numUC);
 		//    }
-		//    else
-		//    {
-		//        OnImageControlEvent(false, numUC);
-		//    }
+		//    //    else
+		//    //    {
+		//    //        OnImageControlEvent(false, numUC);
+		//    //    }
 
-		//    base.OnManipulationDelta(args);
+		//    //    base.OnManipulationDelta(args);
 
-		//}
-
-		private void UserControl_TouchDown(object sender, TouchEventArgs e)
-		{
-			Console.WriteLine("Down");
-			if (!listDeviceID.Contains(e.TouchDevice.Id))
-			{
-				listDeviceID.Add(e.TouchDevice.Id);
-			}
-
-			if (listDeviceID.Count >= 2)//多点缩放
-			{
-				isMuiltTouch = true;
-				OnImageControlEvent(true, numUC);
-				TranslateZoomRotateBehavior tc = new TranslateZoomRotateBehavior();
-				tc.SupportedGestures = ManipulationModes.Scale;
-				tc.MaximumScale = 10;
-				tc.MinimumScale = 0.5;
-				tc.Attach(this);
-				translateZoomRotateBehavior = tc;
-			}
-			else//单点平移
-			{
-				try
-				{
-					//OnImageControlEvent(false, numUC);
-					translateZoomRotateBehavior.Detach();
-				}
-				catch
-				{
-				}
-			}
-		}
-
-		private void UserControl_TouchUp(object sender, TouchEventArgs e)
-		{
-			Console.WriteLine("Up");
-			listDeviceID.Remove(e.TouchDevice.Id);
-
-			if (listDeviceID.Count < 2)
-			{
-				isMuiltTouch = false;
-			}
-		}
+		//} 
 		#endregion
 
 		private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -153,6 +116,81 @@ namespace MedicalConferenceSystem.UI
 			//tc.MaximumScale = 10;
 			//tc.MinimumScale = 0.5;
 			//tc.Attach(this);
+
+			ImageMain.IsManipulationEnabled = true;
+			ImageMain.RenderTransform = new MatrixTransform();
 		}
+
+		private void ImageMain_TouchDown(object sender, TouchEventArgs e)
+		{
+			////Console.WriteLine("Down");
+			//if (!listDeviceID.Contains(e.TouchDevice.Id))
+			//{
+			//    listDeviceID.Add(e.TouchDevice.Id);
+			//}
+
+			//if (listDeviceID.Count >= 2)//多点缩放
+			//{
+			//    isMuiltTouch = true;
+			//    OnImageControlEvent(true, numUC);
+
+			//    if (!isAttached)
+			//    {
+			//        //TranslateZoomRotateBehavior tc = new TranslateZoomRotateBehavior();
+			//        //tc.SupportedGestures = ManipulationModes.Scale;
+			//        //tc.MaximumScale = 10;
+			//        //tc.MinimumScale = 0.5;
+			//        //tc.Attach(this);
+			//        ////translateZoomRotateBehavior = tc;
+			//        ////tc.ConstrainToParentBounds = true;
+			//        //isAttached = true;
+			//    }
+			//}
+			//else//单点平移
+			//{
+			//    OnImageControlEvent(false, numUC);
+
+			//    //if (isAttached)
+			//    //{
+			//    //    translateZoomRotateBehavior.Detach();
+			//    //    isAttached = false;
+			//    //}
+
+			//}
+		}
+
+		private void ImageMain_TouchUp(object sender, TouchEventArgs e)
+		{
+			//Console.WriteLine("Up");
+			//listDeviceID.Remove(e.TouchDevice.Id);
+
+			//if (listDeviceID.Count < 2)
+			//{
+			//    isMuiltTouch = false;
+			//}
+		}
+
+		private void ImageMain_ManipulationStarting(object sender, ManipulationStartingEventArgs e)
+		{
+			//e.Mode = ManipulationModes.Scale;
+			//e.ManipulationContainer = LayoutRoot;
+		}
+
+		private void ImageMain_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+		{
+			//if (isMuiltTouch)
+			//{
+			//    FrameworkElement element = (FrameworkElement)e.Source;
+			//    Matrix matrix = ((MatrixTransform)element.RenderTransform).Matrix;
+			//    ManipulationDelta deltaManipulation = e.DeltaManipulation;
+			//    Point center = new Point(element.ActualWidth / 2, element.ActualHeight / 2);
+			//    center = matrix.Transform(center);
+			//    matrix.ScaleAt(deltaManipulation.Scale.X, deltaManipulation.Scale.Y, center.X, center.Y);
+			//    matrix.RotateAt(e.DeltaManipulation.Rotation, center.X, center.Y);
+			//    matrix.Translate(e.DeltaManipulation.Translation.X, e.DeltaManipulation.Translation.Y);
+			//    ((MatrixTransform)element.RenderTransform).Matrix = matrix;
+			//}
+		}
+		#endregion
 	}
 }

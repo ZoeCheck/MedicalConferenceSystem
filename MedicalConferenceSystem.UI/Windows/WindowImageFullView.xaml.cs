@@ -80,7 +80,7 @@ namespace MedicalConferenceSystem.UI
 
 			//BeginLoadWindowAnimation();
 		}
-
+		
 		void ucFull_ImageControlEvent(bool isImageControl,int numUC)
 		{
 			if (isImageControl)//图片缩放
