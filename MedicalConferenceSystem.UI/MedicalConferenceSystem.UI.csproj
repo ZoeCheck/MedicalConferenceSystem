@@ -171,6 +171,72 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Images\1e2a05c87fed9e21271abdaa71295dc6.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\2614a7a9353cba45421a6b2b3f23131b.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\2f3c2d6eaba84b054204e81041cbf394.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\310b8f999ee06c32d467478d45eb5770.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\42f8beb669f9aa90a1b642e1b04008a7.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\4ba9979b57e1993c1540ecfb2b827524.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\60bd5160129cd6ad0deb73bdf3196c56.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\663ffb5ef221489f855068eefc36d32a.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\6cd33ca1256cb396e7b8aa53e86972f3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\767979e0fa45de65931de7723467a216.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\84a3d8c1e17b5103bcf83d53bd31f0a7.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\8acf6978cfab01dbc3e051f3ff3be2cc.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\8ad1cbf64dd57da61048fb96114443f4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\8c4a09bc1cda3fe1d2c16edbca13e69e.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\983b8f4e703bbba33775652ca3205ad1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\9f4d7614c54aac93145a512df656901d.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\a04db6a441ea16333c2ad3bf6ac21ba8.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\a1cf238c8798b1b5090d6f91d330017d.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\c576d5df688636193d7460bccd638b4a.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\d0d510d0b009bc4b6a92d26a6009b0e0.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\f82abed1a7e9758b9f4079d091b7933c.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\fc135b886f29345027e609044e9b0cbf.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\p1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -185,29 +251,29 @@
     <Folder Include="Fonts\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\0.png" />
-    <Resource Include="Images\1.png" />
-    <Resource Include="Images\10.png" />
-    <Resource Include="Images\11.png" />
-    <Resource Include="Images\12.png" />
-    <Resource Include="Images\13.png" />
-    <Resource Include="Images\14.png" />
-    <Resource Include="Images\15.png" />
-    <Resource Include="Images\16.png" />
-    <Resource Include="Images\17.png" />
-    <Resource Include="Images\18.png" />
-    <Resource Include="Images\19.png" />
-    <Resource Include="Images\2.png" />
-    <Resource Include="Images\20.png" />
-    <Resource Include="Images\21.png" />
-    <Resource Include="Images\22.png" />
-    <Resource Include="Images\3.png" />
-    <Resource Include="Images\4.png" />
-    <Resource Include="Images\5.png" />
-    <Resource Include="Images\6.png" />
-    <Resource Include="Images\7.png" />
-    <Resource Include="Images\8.png" />
-    <Resource Include="Images\9.png" />
+    <Content Include="Images\0.png" />
+    <Content Include="Images\1.png" />
+    <Content Include="Images\10.png" />
+    <Content Include="Images\11.png" />
+    <Content Include="Images\12.png" />
+    <Content Include="Images\13.png" />
+    <Content Include="Images\14.png" />
+    <Content Include="Images\15.png" />
+    <Content Include="Images\16.png" />
+    <Content Include="Images\17.png" />
+    <Content Include="Images\18.png" />
+    <Content Include="Images\19.png" />
+    <Content Include="Images\2.png" />
+    <Content Include="Images\20.png" />
+    <Content Include="Images\21.png" />
+    <Content Include="Images\22.png" />
+    <Content Include="Images\3.png" />
+    <Content Include="Images\4.png" />
+    <Content Include="Images\5.png" />
+    <Content Include="Images\6.png" />
+    <Content Include="Images\7.png" />
+    <Content Include="Images\8.png" />
+    <Content Include="Images\9.png" />
     <Resource Include="Images\list.png" />
     <Content Include="Images\p2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -13,7 +13,7 @@
 		Closing="Window_Closing"
 		WindowStartupLocation="CenterScreen"
 		TouchUp="Window_TouchUp"
-		TouchDown="Window_TouchDown">
+		TouchDown="Window_TouchDown" WindowState="Maximized">
 	<Window.RenderTransform>
 		<ScaleTransform x:Name="STMainWindow" />
 	</Window.RenderTransform>

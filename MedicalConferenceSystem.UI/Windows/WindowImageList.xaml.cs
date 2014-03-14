@@ -19,6 +19,7 @@ namespace MedicalConferenceSystem.UI
 	public partial class WindowImageList : Window
 	{
 		double ucWidth;
+		double ucHeight;
 		bool isClosed = false;
 		double aniTime = 0.3;
 
@@ -37,52 +38,45 @@ namespace MedicalConferenceSystem.UI
 
 		private void Button_Click_1(object sender, RoutedEventArgs e)
 		{
-			DoubleAnimation da = new DoubleAnimation();
-			da.To = 0;
-			da.Duration = TimeSpan.FromSeconds(0.3);
+			//DoubleAnimation da = new DoubleAnimation();
+			//da.To = 0;
+			//da.Duration = TimeSpan.FromSeconds(0.3);
 
-			Storyboard.SetTarget(da, UCIm1);
-			Storyboard.SetTargetProperty(da,new PropertyPath(WidthProperty));
+			//Storyboard.SetTarget(da, UCIm1);
+			//Storyboard.SetTargetProperty(da,new PropertyPath(WidthProperty));
 
-			Storyboard sbTurnPage = new Storyboard();
-			sbTurnPage.Children.Add(da);
+			//Storyboard sbTurnPage = new Storyboard();
+			//sbTurnPage.Children.Add(da);
 
-			sbTurnPage.Begin();
-		}
-
-		private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			this.DragMove();
+			//sbTurnPage.Begin();
 		}
 
 		private void Button_Click_2(object sender, RoutedEventArgs e)
 		{
-			DoubleAnimation da = new DoubleAnimation();
-			da.To = ucWidth;
-			da.Duration = TimeSpan.FromSeconds(0.3);
+			//DoubleAnimation da = new DoubleAnimation();
+			//da.To = ucWidth;
+			//da.Duration = TimeSpan.FromSeconds(0.3);
 
-			Storyboard.SetTarget(da, UCIm1);
-			Storyboard.SetTargetProperty(da, new PropertyPath(WidthProperty));
+			//Storyboard.SetTarget(da, UCIm1);
+			//Storyboard.SetTargetProperty(da, new PropertyPath(WidthProperty));
 
-			Storyboard sbTurnPage = new Storyboard();
-			sbTurnPage.Children.Add(da);
+			//Storyboard sbTurnPage = new Storyboard();
+			//sbTurnPage.Children.Add(da);
 
-			sbTurnPage.Begin();
-		}
-
-		private void UCIm1_Loaded(object sender, RoutedEventArgs e)
-		{
-			ucWidth = this.ActualWidth;
-
-			foreach (UCImageList item in StackPanelUC.Children)
-			{
-				item.Width = ucWidth;
-			}
-
+			//sbTurnPage.Begin();
 		}
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
+			ucWidth = this.ScrollViewerCenter.ActualWidth;
+			ucHeight = this.ScrollViewerCenter.ActualHeight;
+
+			foreach (UCImageList item in StackPanelUC.Children)
+			{
+				item.Width = ucWidth;
+				item.Height = ucHeight;
+			}
+
 			this.Opacity = 0;
 
 			STMainWindow.CenterX = this.ActualWidth / 2;

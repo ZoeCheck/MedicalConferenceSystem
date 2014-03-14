@@ -43,8 +43,6 @@
     					<Grid Background="#FFE5E5E5">
     						<StackPanel>
     							<local:UCListDetail Height="100"/>
-    							<local:UCListDetail Height="100"/>
-    							<local:UCListDetail Height="100"/>
     						</StackPanel>
     					</Grid>
     				</Expander>
@@ -52,8 +50,6 @@
     					<Grid Background="#FFE5E5E5">
     						<StackPanel>
     							<local:UCListDetail Height="Auto"/>
-    							<local:UCListDetail Height="Auto" Margin="0"/>
-    							<local:UCListDetail Height="Auto" Margin="0"/>
     						</StackPanel>
     					</Grid>
     				</Expander>
@@ -61,16 +57,12 @@
     					<Grid Background="#FFE5E5E5">
     						<StackPanel>
     							<local:UCListDetail Height="Auto" Margin="0"/>
-    							<local:UCListDetail Height="Auto" Margin="0"/>
-    							<local:UCListDetail Height="Auto" Margin="0"/>
     						</StackPanel>
     					</Grid>
     				</Expander>
     				<Expander Header="糖尿病与肥胖" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
     					<Grid Background="#FFE5E5E5">
     						<StackPanel>
-    							<local:UCListDetail Height="Auto" Margin="0"/>
-    							<local:UCListDetail Height="Auto" Margin="0"/>
     							<local:UCListDetail Height="Auto" Margin="0"/>
     						</StackPanel>
     					</Grid>

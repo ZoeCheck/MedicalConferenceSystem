@@ -77,17 +77,17 @@ namespace MedicalConferenceSystem.UI
 			ListBoxMain.ItemsSource = collectionUCImage;
 			//InitAnimation();
 
-			//BeginLoadWindowAnimation();
+			BeginLoadWindowAnimation();
 		}
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
-			//if (!isClosed)
-			//{
-			//    e.Cancel = true;
-			//    BeginClodeWindowAnimation();
-			//    isClosed = true;
-			//}
+			if (!isClosed)
+			{
+				e.Cancel = true;
+				BeginClodeWindowAnimation();
+				isClosed = true;
+			}
 		}
 
 		/// <summary>
@@ -144,6 +144,7 @@ namespace MedicalConferenceSystem.UI
 			sB.Begin(this);
 		}
 
+		#region OldAniamtion
 		private void InitAnimation()
 		{
 			//foreach (UCFullImage item in StackPanelCenter.Children)
@@ -196,19 +197,20 @@ namespace MedicalConferenceSystem.UI
 
 		private void btnPreview_Click(object sender, RoutedEventArgs e)
 		{
-			if (currentIndex > 0)
-			{
-				BeginShowAnimation(--currentIndex);
-			}
+			//if (currentIndex > 0)
+			//{
+			//    BeginShowAnimation(--currentIndex);
+			//}
 		}
 
 		private void btnNext_Click(object sender, RoutedEventArgs e)
 		{
-			if (currentIndex < pageCount - 1)
-			{
-				BeginHideAnimation(currentIndex++);
-			}
-		}
+			//if (currentIndex < pageCount - 1)
+			//{
+			//    BeginHideAnimation(currentIndex++);
+			//}
+		} 
+		#endregion
 
 		private void ListBoxMain_TouchDown(object sender, TouchEventArgs e)
 		{

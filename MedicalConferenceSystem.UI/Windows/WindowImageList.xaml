@@ -11,7 +11,10 @@
         Loaded="Window_Loaded"
         Closing="Window_Closing"
         ResizeMode="NoResize"
-        Background="{x:Null}" WindowStyle="None" Width="800" Height="600">
+        Background="{x:Null}"
+        WindowStyle="None"
+        Width="800"
+        Height="600" WindowState="Maximized">
     <Window.RenderTransform>
         <ScaleTransform x:Name="STMainWindow" />
     </Window.RenderTransform>
@@ -22,25 +25,42 @@
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <Grid x:Name="GridTop">
-        	<Grid.ColumnDefinitions>
-        		<ColumnDefinition Width="43.776"/>
-        		<ColumnDefinition/>
-        		<ColumnDefinition Width="72"/>
-        	</Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="43.776" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="72" />
+            </Grid.ColumnDefinitions>
             <Border BorderThickness="0"
                     Background="#FF494949"
-                    Opacity="0.8" Grid.ColumnSpan="3" />
-            <Image Margin="4.5,1.5,7.5,-3.5" Source="/MedicalConferenceSystem.UI;component/Images/video.png" Stretch="Fill" Height="32" d:LayoutOverrides="VerticalAlignment"/>
-            <StackPanel Orientation="Horizontal" Grid.Column="2" Margin="0" d:LayoutOverrides="Width">
+                    Opacity="0.8"
+                    Grid.ColumnSpan="3" />
+            <Image Margin="4.5,1.5,7.5,-3.5"
+                   Source="/MedicalConferenceSystem.UI;component/Images/video.png"
+                   Stretch="Fill"
+                   Height="32"
+                   d:LayoutOverrides="VerticalAlignment" />
+            <StackPanel Orientation="Horizontal"
+                        Grid.Column="2"
+                        Margin="0"
+                        d:LayoutOverrides="Width">
                 <Button Content="Button"
                         Width="35"
-                        Click="Button_Click" Style="{DynamicResource ButtonStylePlay}" />
+                        Click="Button_Click"
+                        Style="{DynamicResource ButtonStylePlay}" />
                 <Button Content="Button"
-                        Width="35" Style="{DynamicResource ButtonStyleSquares}" />
+                        Width="35"
+                        Style="{DynamicResource ButtonStyleSquares}" />
             </StackPanel>
-            <TextBlock HorizontalAlignment="Left" Margin="4,8,0,6" TextWrapping="Wrap" Text="1970-1-1" Width="80" Grid.Column="1" Foreground="{DynamicResource BrushImageBorder}"/>
+            <TextBlock HorizontalAlignment="Left"
+                       Margin="4,8,0,6"
+                       TextWrapping="Wrap"
+                       Text="1970-1-1"
+                       Width="80"
+                       Grid.Column="1"
+                       Foreground="{DynamicResource BrushImageBorder}" />
         </Grid>
-        <Grid x:Name="GridBottom" Grid.Row="2">
+        <Grid x:Name="GridBottom"
+              Grid.Row="2">
             <Border BorderThickness="0"
                     Background="#FF494949"
                     Opacity="0.8" />
@@ -49,49 +69,40 @@
                        Grid.Row="2"
                        TextWrapping="Wrap"
                        Text="23:25"
-                       VerticalAlignment="Center" FontSize="16" Foreground="{DynamicResource BrushImageBorder}" />
+                       VerticalAlignment="Center"
+                       FontSize="16"
+                       Foreground="{DynamicResource BrushImageBorder}" />
             <StackPanel Orientation="Horizontal"
                         d:LayoutOverrides="Width">
                 <Button Content="Button"
                         Width="40"
-                        Click="Button_Click_3" Style="{DynamicResource ButtonStyleReturn}" />
+                        Click="Button_Click_3"
+                        Style="{DynamicResource ButtonStyleReturn}" />
                 <Button Content="Button"
-                        Width="40" Style="{DynamicResource ButtonStylePage}" />
+                        Width="40"
+                        Style="{DynamicResource ButtonStylePage}" />
                 <Button Content="Button"
-                        Width="40" Style="{DynamicResource ButtonStyleCopy}" />
+                        Width="40"
+                        Style="{DynamicResource ButtonStyleCopy}" />
             </StackPanel>
         </Grid>
-        <Border x:Name="BorderCenter" BorderBrush="Black"
+        <Border x:Name="BorderCenter"
+                BorderBrush="Black"
                 BorderThickness="0"
                 Margin="0"
                 Grid.Row="1">
-            <StackPanel x:Name="StackPanelUC"
-                        Margin="0"
-                        Orientation="Horizontal">
-                <local:UCImageList Margin="0"
-                                   x:Name="UCIm1"
-                                   Loaded="UCIm1_Loaded" />
-                <local:UCImageList Margin="0" />
-                <local:UCImageList Margin="0" />
-            </StackPanel>
+            <ScrollViewer x:Name="ScrollViewerCenter"
+                          Margin="0"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          PanningMode="HorizontalOnly"
+                          CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                <StackPanel x:Name="StackPanelUC"
+                            Orientation="Horizontal">
+                    <local:UCImageList Margin="0" />
+                    <local:UCImageList Margin="0" />
+                    <local:UCImageList Margin="0" />
+                </StackPanel>
+            </ScrollViewer>
         </Border>
-        <Button x:Name="btnPreviewPage" Content="&lt;"
-                Width="40"
-                HorizontalAlignment="Left"
-                Margin="0"
-                Grid.Row="1"
-                Height="60"
-                VerticalAlignment="Center"
-                Click="Button_Click_1"
-                Style="{DynamicResource ButtonStyleLeft}" />
-        <Button x:Name="btnNextPage" Content="&gt;"
-                Width="40"
-                HorizontalAlignment="Right"
-                Margin="0"
-                Grid.Row="1"
-                Height="60"
-                VerticalAlignment="Center"
-                Click="Button_Click_2"
-                Style="{DynamicResource ButtonStyleRight}" />
     </Grid>
 </Window>

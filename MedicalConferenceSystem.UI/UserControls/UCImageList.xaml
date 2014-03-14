@@ -6,7 +6,7 @@
 	mc:Ignorable="d"
 	x:Class="MedicalConferenceSystem.UI.UCImageList"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="480" Background="{DynamicResource BrushBackgroundMain}">
+	d:DesignWidth="640" d:DesignHeight="480" Background="{DynamicResource BrushBackgroundMain}" IsManipulationEnabled="True">
 
 	<Border x:Name="BorderRoot" Margin="0" BorderThickness="1" BorderBrush="{DynamicResource BrushImageBorder}">
 
@@ -21,19 +21,19 @@
 				<RowDefinition/>
 				<RowDefinition/>
 			</Grid.RowDefinitions>
-			<Image Margin="0" Source="/MedicalConferenceSystem.UI;component/Images/0.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Width="128" Height="128"/>
-			<Image Grid.Column="1" Margin="0" Source="/MedicalConferenceSystem.UI;component/Images/1.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Width="128" Height="128"/>
-			<Image Grid.Column="2" Margin="0" Source="/MedicalConferenceSystem.UI;component/Images/3.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Width="128" Height="128"/>
-			<Image Margin="0" Grid.Row="1" Source="/MedicalConferenceSystem.UI;component/Images/4.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Width="128" Height="128"/>
-			<Image Grid.Column="1" Margin="0" Grid.Row="1" Source="/MedicalConferenceSystem.UI;component/Images/5.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Width="128" Height="128"/>
-			<Image Grid.Column="2" HorizontalAlignment="Center" Margin="0" Grid.Row="1" Source="/MedicalConferenceSystem.UI;component/Images/6.png" Stretch="Fill" Width="128" VerticalAlignment="Center" Height="128"/>
-			<Image Margin="0" Grid.Row="2" Source="/MedicalConferenceSystem.UI;component/Images/7.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Width="128" Height="128"/>
-			<Image Grid.Column="1" Margin="0" Grid.Row="2" Source="/MedicalConferenceSystem.UI;component/Images/8.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Width="128" Height="128"/>
-			<Image Grid.Column="2" Margin="0" Grid.Row="2" Source="/MedicalConferenceSystem.UI;component/Images/9.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center" Width="128" Height="128"/>
 			<Path Data="M15,151.33333 L135,151.33333" Fill="#FFF4F4F5" Height="1" Margin="0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" VerticalAlignment="Bottom" Grid.ColumnSpan="3"/>
 			<Path Data="M15,151.33333 L135,151.33333" Fill="#FFF4F4F5" Height="1" Margin="0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" VerticalAlignment="Bottom" Grid.ColumnSpan="3" Grid.Row="1"/>
 			<Path Data="M204.66667,47 L204.66667,143.66667" Fill="#FFF4F4F5" HorizontalAlignment="Right" Margin="0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" Width="1" Grid.RowSpan="3"/>
 			<Path Data="M204.66667,47 L204.66667,143.66667" Fill="#FFF4F4F5" HorizontalAlignment="Right" Margin="0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" Width="1" Grid.RowSpan="3" Grid.Column="1"/>
+			<Image Margin="0" Source="../Images/1e2a05c87fed9e21271abdaa71295dc6.jpg" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			<Image Grid.Column="1" Margin="0" Source="../Images/2614a7a9353cba45421a6b2b3f23131b.jpg" Stretch="Fill"/>
+			<Image Grid.Column="2" Margin="0" Source="../Images/2f3c2d6eaba84b054204e81041cbf394.jpg" Stretch="Fill"/>
+			<Image Margin="0" Grid.Row="1" Source="../Images/310b8f999ee06c32d467478d45eb5770.jpg" Stretch="Fill"/>
+			<Image Grid.Column="2" Margin="0" Grid.Row="1" Source="../Images/4ba9979b57e1993c1540ecfb2b827524.jpg" Stretch="Fill"/>
+			<Image Margin="0" Grid.Row="2" Source="../Images/60bd5160129cd6ad0deb73bdf3196c56.jpg" Stretch="Fill"/>
+			<Image Grid.Column="1" Margin="0" Grid.Row="2" Source="../Images/663ffb5ef221489f855068eefc36d32a.jpg" Stretch="Fill"/>
+			<Image Grid.Column="2" Margin="0" Grid.Row="2" Source="../Images/6cd33ca1256cb396e7b8aa53e86972f3.jpg" Stretch="Fill"/>
+			<Image Grid.Column="1" Margin="0" Grid.Row="1" Source="../Images/fc135b886f29345027e609044e9b0cbf.jpg" Stretch="Fill"/>
 		</Grid>
 	</Border>
 </UserControl>
