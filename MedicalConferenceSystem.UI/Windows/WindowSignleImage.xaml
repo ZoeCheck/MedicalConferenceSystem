@@ -26,7 +26,7 @@
 			   VerticalAlignment="Center">
 			<i:Interaction.Behaviors>
 				<ei:TranslateZoomRotateBehavior ConstrainToParentBounds="True"
-												MinimumScale="0.5" />
+												MinimumScale="0.5" SupportedGestures="Scale" MaximumScale="5" />
 			</i:Interaction.Behaviors>
 		</Image>
 

@@ -65,7 +65,7 @@
 						  PanningMode="HorizontalOnly"
 						  CanContentScroll="False"
                           TouchDown="ScrollViewrCenter_TouchDown"
-                          TouchUp="ScrollViewrCenter_TouchUp">
+                          TouchUp="ScrollViewrCenter_TouchUp" PanningDeceleration="0.01">
 				<StackPanel x:Name="StackPanelCenter" Orientation="Horizontal"/>
 			</ScrollViewer>
 		</Border>
