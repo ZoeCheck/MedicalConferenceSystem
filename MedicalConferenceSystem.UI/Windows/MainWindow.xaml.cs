@@ -85,7 +85,8 @@ namespace MedicalConferenceSystem.UI
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message, "提示", MessageBoxButton.OK, MessageBoxImage.Information);
+				System.Diagnostics.Process.Start(AppDomain.CurrentDomain.BaseDirectory + "TabTip.exe");
+				//MessageBox.Show(ex.Message, "提示", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
 		}
 	}

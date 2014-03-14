@@ -69,12 +69,9 @@ namespace MedicalConferenceSystem.UI
 				ucFull.Width = ucWidth;
 				ucFull.Height = ucHeight;
 				ucFull.SetBackImage(path);
-				collectionUCImage.Add(ucFull);
-
-				//ucFull.IsManipulationEnabled = true;
+				StackPanelCenter.Children.Add(ucFull);
 			}
 
-			ListBoxMain.ItemsSource = collectionUCImage;
 			//InitAnimation();
 
 			BeginLoadWindowAnimation();
@@ -144,6 +141,22 @@ namespace MedicalConferenceSystem.UI
 			sB.Begin(this);
 		}
 
+		private void ScrollViewrCenter_TouchDown(object sender, TouchEventArgs e)
+		{
+			touchPointOld = e.GetTouchPoint(ScrollViewrCenter);
+		}
+
+		private void ScrollViewrCenter_TouchUp(object sender, TouchEventArgs e)
+		{
+			TouchPoint touchPointNew = e.GetTouchPoint(ScrollViewrCenter);
+			if (touchPointOld.Bounds.Left == touchPointNew.Bounds.Left && touchPointOld.Bounds.Top == touchPointNew.Bounds.Top)
+			{
+				WindowSignleImage winImage = new WindowSignleImage();
+				winImage.SetBackImage(((System.Windows.Controls.Image)((e.TouchDevice).DirectlyOver)).Source);
+				winImage.ShowDialog();
+			}
+		}
+
 		#region OldAniamtion
 		private void InitAnimation()
 		{
@@ -211,22 +224,6 @@ namespace MedicalConferenceSystem.UI
 			//}
 		} 
 		#endregion
-
-		private void ListBoxMain_TouchDown(object sender, TouchEventArgs e)
-		{
-			touchPointOld = e.GetTouchPoint(ListBoxMain);
-		}
-
-		private void ListBoxMain_TouchUp(object sender, TouchEventArgs e)
-		{
-			TouchPoint touchPointNew = e.GetTouchPoint(ListBoxMain);
-			if (touchPointOld.Bounds.Left == touchPointNew.Bounds.Left && touchPointOld.Bounds.Top == touchPointNew.Bounds.Top)
-			{
-				WindowSignleImage winImage = new WindowSignleImage();
-				winImage.SetBackImage(((System.Windows.Controls.Image)((e.TouchDevice).DirectlyOver)).Source);
-				winImage.ShowDialog();
-			}
-		}
 		#endregion
 	}
 }

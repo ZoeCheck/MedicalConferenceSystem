@@ -63,29 +63,10 @@
 						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
 						  ScrollViewer.VerticalScrollBarVisibility="Disabled"
 						  PanningMode="HorizontalOnly"
-						  CanContentScroll="False">
-				<ListBox IsSynchronizedWithCurrentItem="True"
-						 Name="ListBoxMain"
-						 Style="{StaticResource PhotoListBoxStyle}"
-						 SelectedIndex="-1"
-						 TouchDown="ListBoxMain_TouchDown"
-						 TouchUp="ListBoxMain_TouchUp">
-					<!--修改其列表项的背景色-->
-					<ListBox.Resources>
-						<Style TargetType="ListBoxItem">
-							<Style.Resources>
-								<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
-												 Color="Black" />
-								<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"
-												 Color="Black" />
-								<SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
-												 Color="Black" />
-								<SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}"
-												 Color="Black" />
-							</Style.Resources>
-						</Style>
-					</ListBox.Resources>
-				</ListBox>
+						  CanContentScroll="False"
+                          TouchDown="ScrollViewrCenter_TouchDown"
+                          TouchUp="ScrollViewrCenter_TouchUp">
+				<StackPanel x:Name="StackPanelCenter" Orientation="Horizontal"/>
 			</ScrollViewer>
 		</Border>
 		<Grid x:Name="GridBottom"
