@@ -66,6 +66,7 @@
     <Compile Include="UserControls\UCImageList.xaml.cs">
       <DependentUpon>UCImageList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Slider.cs" />
     <Compile Include="Windows\WindowImageFullView.xaml.cs">
       <DependentUpon>WindowImageFullView.xaml</DependentUpon>
     </Compile>
@@ -77,6 +78,9 @@
     </Compile>
     <Compile Include="Windows\WindowMuiltTouchTest.xaml.cs">
       <DependentUpon>WindowMuiltTouchTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WindowNewImage.xaml.cs">
+      <DependentUpon>WindowNewImage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\WindowSignleImage.xaml.cs">
       <DependentUpon>WindowSignleImage.xaml</DependentUpon>
@@ -145,6 +149,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\WindowMuiltTouchTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WindowNewImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -249,6 +257,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fonts\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\0.png" />
