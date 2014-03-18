@@ -29,28 +29,28 @@ namespace MedicalConferenceSystem.UI.Windows
 	{
 		public Group()
 		{
-			for (int i = 0; i < 1000; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				this.Add(new User { Name = "User" + i.ToString() });
 			}
-			this.Add(new User { Name = "User1" });
-			this.Add(new User { Name = "User2" });
-			this.Add(new User { Name = "User3" });
-			this.Add(new User { Name = "User4" });
-			this.Add(new User { Name = "User5" });
-			this.Add(new User { Name = "User6" });
-			this.Add(new User { Name = "User7" });
-			this.Add(new User { Name = "User8" });
-			this.Add(new User { Name = "User9" });
-			this.Add(new User { Name = "User10" });
-			this.Add(new User { Name = "User11" });
-			this.Add(new User { Name = "User12" });
-			this.Add(new User { Name = "User13" });
-			this.Add(new User { Name = "User14" });
-			this.Add(new User { Name = "User15" });
-			this.Add(new User { Name = "User16" });
-			this.Add(new User { Name = "User17" });
-			this.Add(new User { Name = "User18" });
+			//this.Add(new User { Name = "User1" });
+			//this.Add(new User { Name = "User2" });
+			//this.Add(new User { Name = "User3" });
+			//this.Add(new User { Name = "User4" });
+			//this.Add(new User { Name = "User5" });
+			//this.Add(new User { Name = "User6" });
+			//this.Add(new User { Name = "User7" });
+			//this.Add(new User { Name = "User8" });
+			//this.Add(new User { Name = "User9" });
+			//this.Add(new User { Name = "User10" });
+			//this.Add(new User { Name = "User11" });
+			//this.Add(new User { Name = "User12" });
+			//this.Add(new User { Name = "User13" });
+			//this.Add(new User { Name = "User14" });
+			//this.Add(new User { Name = "User15" });
+			//this.Add(new User { Name = "User16" });
+			//this.Add(new User { Name = "User17" });
+			//this.Add(new User { Name = "User18" });
 		}
 	}
 	public class User

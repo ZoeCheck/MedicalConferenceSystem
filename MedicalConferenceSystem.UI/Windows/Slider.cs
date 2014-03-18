@@ -15,6 +15,7 @@ namespace MedicalConferenceSystem.UI.Windows
 		#region 变量
 		private Size extent = new Size();
 		private Size viewport = new Size();
+		private Size thisSize = new Size();
 		private TranslateTransform translate = new TranslateTransform();
 		private double x;
 		private TranslateTransform transform;
@@ -51,7 +52,8 @@ namespace MedicalConferenceSystem.UI.Windows
 				{
 					if (index > 0) { --index; }
 					Go();
-				} if (offsetX < -10)
+				}
+				if (offsetX < -10)
 				{
 					if (index < page - 1) { ++index; }
 					Go();
@@ -69,14 +71,15 @@ namespace MedicalConferenceSystem.UI.Windows
 
 		protected override Size MeasureOverride(Size constraint)
 		{
-			double dWidth = Math.Floor(constraint.Width / 200.00);
-			double dHeight = Math.Floor(constraint.Height / 200.00);
+			thisSize = constraint;
+			double dWidth = Math.Floor(constraint.Width / constraint.Width);
+			double dHeight = Math.Floor(constraint.Height / constraint.Height);
 			Size s = new Size(Math.Ceiling(InternalChildren.Count / (dWidth * dHeight)) * constraint.Width, constraint.Height);
 
 			Size extentTmp = new Size(s.Width * this.InternalChildren.Count, constraint.Height);
 			foreach (UIElement each in InternalChildren)
 			{
-				each.Measure(new Size(200, 200));
+				each.Measure(constraint);
 			}
 			if (extentTmp != extent)
 			{
@@ -91,31 +94,21 @@ namespace MedicalConferenceSystem.UI.Windows
 
 		protected override Size ArrangeOverride(Size arrangeSize)
 		{
-			int count = (int)Math.Floor(viewport.Width / 200.00);
-			page = (int)Math.Ceiling((decimal)InternalChildren.Count / (count * 2));
-			int temp = 0;
-			int n = 2;
-			int countView = 0;
+			int count = (int)Math.Floor(viewport.Width / thisSize.Width);
+			page = InternalChildren.Count;
+			double xLocation = 0;
+
 			try
 			{
 				for (int i = 0; i < InternalChildren.Count; i++)
 				{
-					this.InternalChildren[i].Arrange(new Rect((200 * (i - countView * 2 * count)) + (viewport.Width * countView) + ((viewport.Width - count * 200) / 2), 50, 200, 200));
-					temp++;
-					if (temp > count)
-					{
-						for (int j = i; j < n * count; j++)
-						{
-							this.InternalChildren[j].Arrange(new Rect(200 * (j - count - countView * 2 * count) + (viewport.Width * countView) + ((viewport.Width - count * 200) / 2), 250, 200, 200));
-							i = j;
-						}
-						countView++;
-						n += 2;
-						temp = 0;
-					}
+					this.InternalChildren[i].Arrange(new Rect(xLocation, 0, thisSize.Width, thisSize.Height));
+					xLocation += thisSize.Width;
 				}
 			}
-			catch (ArgumentOutOfRangeException) { }
+			catch
+			{ }
+
 			return arrangeSize;
 		}
 		#endregion
