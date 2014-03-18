@@ -16,9 +16,7 @@
 			   Margin="0"
 			   HorizontalAlignment="Center"
 			   VerticalAlignment="Center"
-               ManipulationStarting="ImageMain_ManipulationStarting"
-               ManipulationDelta="ImageMain_ManipulationDelta"
-               TouchDown="ImageMain_TouchDown"
-               TouchUp="ImageMain_TouchUp" />
+			   ManipulationStarting="ImageMain_ManipulationStarting"
+			   ManipulationDelta="ImageMain_ManipulationDelta" />
 	</Grid>
 </UserControl>

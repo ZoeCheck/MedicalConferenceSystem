@@ -1,0 +1,17 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:MedicalConferenceSystem_UI="clr-namespace:MedicalConferenceSystem.UI" x:Class="MedicalConferenceSystem.UI.Windows.WindowPhotoShow"
+        Title="WindowPhotoShow" Height="600" Width="800" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen">
+    <Grid>
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="0.893*"/>
+    		<RowDefinition Height="0.107*"/>
+    	</Grid.RowDefinitions>
+    	<StackPanel x:Name="StackPanelMain" Margin="0" Orientation="Horizontal">
+    		<MedicalConferenceSystem_UI:UCFullImage Width="100"/>
+    		<MedicalConferenceSystem_UI:UCFullImage Width="100"/>
+    	</StackPanel>
+        
+    </Grid>
+</Window>

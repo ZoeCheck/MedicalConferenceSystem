@@ -32,6 +32,10 @@ namespace MedicalConferenceSystem.UI
 		List<Storyboard> listStoryShow;
 		ObservableCollection<UCFullImage> collectionUCImage = new ObservableCollection<UCFullImage>();
 		TouchPoint touchPointOld;
+		private TranslateTransform transform = new TranslateTransform();
+		bool isMultipeTouch = false;
+		List<int> listDeviceID = new List<int>();
+		List<string> listImagePath = new List<string>();
 		#endregion
 
 		#region 委托事件
@@ -48,6 +52,7 @@ namespace MedicalConferenceSystem.UI
 			this.InitializeComponent();
 
 			// 在此点之下插入创建对象所需的代码。
+			this.CanvasMain.RenderTransform = transform;
 		}
 		#endregion
 
@@ -59,19 +64,30 @@ namespace MedicalConferenceSystem.UI
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			ucWidth = this.ScrollViewrCenter.ActualWidth;
-			ucHeight = this.ScrollViewrCenter.ActualHeight;
+			ucWidth = this.BorderCenter.ActualWidth;
+			ucHeight = this.BorderCenter.ActualHeight;
+
+			double xLocation = 0;
 
 			string filePath = AppDomain.CurrentDomain.BaseDirectory + @"Images";
 			foreach (string path in Directory.GetFileSystemEntries(filePath))
 			{
+				listImagePath.Add(path);
 				UCFullImage ucFull = new UCFullImage();
 				ucFull.Width = ucWidth;
 				ucFull.Height = ucHeight;
-				ucFull.SetBackImage(path);
-				StackPanelCenter.Children.Add(ucFull);
+				//ucFull.SetBackImage(path);
+				CanvasMain.Children.Add(ucFull);
+				Canvas.SetLeft(ucFull, xLocation);
+				Canvas.SetTop(ucFull, 0);
+				xLocation += ucWidth;
 			}
 
+			pageCount = CanvasMain.Children.Count;
+
+			CanvasMain.Width = ucWidth * pageCount;
+
+			LoadImage(currentIndex);
 			//InitAnimation();
 
 			BeginLoadWindowAnimation();
@@ -85,6 +101,16 @@ namespace MedicalConferenceSystem.UI
 				BeginClodeWindowAnimation();
 				isClosed = true;
 			}
+		}
+
+		private void LoadImage(int index)
+		{
+			((UCFullImage)CanvasMain.Children[index]).SetBackImage(listImagePath[index]);
+		}
+
+		private void RemoveImage(int index)
+		{
+			((UCFullImage)CanvasMain.Children[index]).ReleaseBackImage();
 		}
 
 		/// <summary>
@@ -143,19 +169,73 @@ namespace MedicalConferenceSystem.UI
 
 		private void ScrollViewrCenter_TouchDown(object sender, TouchEventArgs e)
 		{
-			touchPointOld = e.GetTouchPoint(ScrollViewrCenter);
+			touchPointOld = e.GetTouchPoint(BorderCenter);
+
+			if (!listDeviceID.Contains(e.TouchDevice.Id))
+			{
+				listDeviceID.Add(e.TouchDevice.Id);
+			}
+
+			if (listDeviceID.Count >= 2)//多点缩放
+			{
+				isMultipeTouch = true;
+			}
+			else
+			{
+				isMultipeTouch = false;
+			}
 		}
 
 		private void ScrollViewrCenter_TouchUp(object sender, TouchEventArgs e)
 		{
-			TouchPoint touchPointNew = e.GetTouchPoint(ScrollViewrCenter);
-			if (touchPointOld.Bounds.Left == touchPointNew.Bounds.Left && touchPointOld.Bounds.Top == touchPointNew.Bounds.Top)
+			if (!isMultipeTouch)//非多点触控时
 			{
-				WindowSignleImage winImage = new WindowSignleImage();
-				winImage.SetBackImage(((System.Windows.Controls.Image)((e.TouchDevice).DirectlyOver)).Source);
-				winImage.ShowDialog();
+				TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
+				double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
+
+				((UCFullImage)CanvasMain.Children[currentIndex]).ResetImage();//重置缩放
+
+				if (offsetX < -10)//左移
+				{
+					LoadImage(currentIndex + 1);
+					BeginMove(MoveType.Left);//左移动画
+					RemoveImage(currentIndex - 1);
+				}
+				else if (offsetX > 10)//右移
+				{
+					LoadImage(currentIndex - 1);
+					BeginMove(MoveType.Right);//右移动画
+					RemoveImage(currentIndex + 1);
+				}
 			}
+
+			listDeviceID.Remove(e.TouchDevice.Id);
+
+			//if (touchPointOld.Bounds.Left == touchPointNew.Bounds.Left)
+			//{
+			//    WindowSignleImage winImage = new WindowSignleImage();
+			//    winImage.SetBackImage(((System.Windows.Controls.Image)((e.TouchDevice).DirectlyOver)).Source);
+			//    winImage.ShowDialog();
+			//}
 		}
+
+		private void BeginMove(MoveType moveType)
+		{
+			if (moveType == MoveType.Left && currentIndex < pageCount - 1)
+			{
+				++currentIndex;
+			}
+			else if (moveType == MoveType.Right && currentIndex > 0)
+			{
+				--currentIndex;
+			}
+			//开始平移动画
+			DoubleAnimation a = new DoubleAnimation(-currentIndex * ucWidth, TimeSpan.FromMilliseconds(500));
+			a.AccelerationRatio = 0.3;
+			a.DecelerationRatio = 0.3;
+			transform.BeginAnimation(TranslateTransform.XProperty, a);
+		}
+
 
 		#region OldAniamtion
 		private void InitAnimation()
@@ -222,7 +302,7 @@ namespace MedicalConferenceSystem.UI
 			//{
 			//    BeginHideAnimation(currentIndex++);
 			//}
-		} 
+		}
 		#endregion
 		#endregion
 	}

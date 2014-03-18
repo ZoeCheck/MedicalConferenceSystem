@@ -59,15 +59,9 @@
 				BorderThickness="0"
 				Margin="0"
 				Grid.Row="1">
-			<ScrollViewer x:Name="ScrollViewrCenter"
-						  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-						  ScrollViewer.VerticalScrollBarVisibility="Disabled"
-						  PanningMode="HorizontalOnly"
-						  CanContentScroll="False"
-                          TouchDown="ScrollViewrCenter_TouchDown"
-                          TouchUp="ScrollViewrCenter_TouchUp" PanningDeceleration="0.01">
-				<StackPanel x:Name="StackPanelCenter" Orientation="Horizontal"/>
-			</ScrollViewer>
+			<Canvas x:Name="CanvasMain" RenderTransformOrigin="0.5,0.5"
+					TouchDown="ScrollViewrCenter_TouchDown"
+					TouchUp="ScrollViewrCenter_TouchUp" />
 		</Border>
 		<Grid x:Name="GridBottom"
 			  Grid.Row="2">

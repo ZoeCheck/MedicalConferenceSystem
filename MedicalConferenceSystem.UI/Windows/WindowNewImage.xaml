@@ -55,7 +55,7 @@
 								CornerRadius="5"
 								BorderBrush="#FF473F3F"
 								BorderThickness="1"
-								Margin="10">
+								Margin="10" Background="#FF6B38A1">
 							<Label Content="{Binding Name}"
 								   HorizontalAlignment="Center"
 								   VerticalAlignment="Center"

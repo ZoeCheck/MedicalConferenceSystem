@@ -82,6 +82,9 @@
     <Compile Include="Windows\WindowNewImage.xaml.cs">
       <DependentUpon>WindowNewImage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\WindowPhotoShow.xaml.cs">
+      <DependentUpon>WindowPhotoShow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\WindowSignleImage.xaml.cs">
       <DependentUpon>WindowSignleImage.xaml</DependentUpon>
     </Compile>
@@ -153,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\WindowNewImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WindowPhotoShow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
