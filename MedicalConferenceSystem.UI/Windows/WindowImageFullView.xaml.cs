@@ -32,10 +32,11 @@ namespace MedicalConferenceSystem.UI
 		List<Storyboard> listStoryShow;
 		ObservableCollection<UCFullImage> collectionUCImage = new ObservableCollection<UCFullImage>();
 		TouchPoint touchPointOld;
-		private TranslateTransform transform = new TranslateTransform();
 		bool isMultipeTouch = false;
 		List<int> listDeviceID = new List<int>();
 		List<string> listImagePath = new List<string>();
+		private Storyboard sbMove = new Storyboard();
+		bool isScaling = false;
 		#endregion
 
 		#region 委托事件
@@ -45,14 +46,23 @@ namespace MedicalConferenceSystem.UI
 		#region 属性
 
 		#endregion
-
+		private TranslateTransform CanvasMainTR
+		{
+			get
+			{
+				return this.CanvasMain.RenderTransform as TranslateTransform;
+			}
+			set
+			{
+				this.CanvasMain.RenderTransform = value;
+			}
+		}
 		#region 构造函数
 		public WindowImageFullView()
 		{
 			this.InitializeComponent();
 
 			// 在此点之下插入创建对象所需的代码。
-			this.CanvasMain.RenderTransform = transform;
 		}
 		#endregion
 
@@ -64,6 +74,8 @@ namespace MedicalConferenceSystem.UI
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
+			CanvasMainTR = new TranslateTransform();
+
 			ucWidth = this.BorderCenter.ActualWidth;
 			ucHeight = this.BorderCenter.ActualHeight;
 
@@ -76,6 +88,7 @@ namespace MedicalConferenceSystem.UI
 				UCFullImage ucFull = new UCFullImage();
 				ucFull.Width = ucWidth;
 				ucFull.Height = ucHeight;
+				ucFull.NotifyScaleStateEvent += new Action<bool>(ucFull_NotifyScaleStateEvent);
 				//ucFull.SetBackImage(path);
 				CanvasMain.Children.Add(ucFull);
 				Canvas.SetLeft(ucFull, xLocation);
@@ -88,9 +101,15 @@ namespace MedicalConferenceSystem.UI
 			CanvasMain.Width = ucWidth * pageCount;
 
 			LoadImage(currentIndex);
+			LoadImage(currentIndex + 1);
 			//InitAnimation();
 
 			BeginLoadWindowAnimation();
+		}
+
+		void ucFull_NotifyScaleStateEvent(bool obj)
+		{
+			isScaling = obj;
 		}
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -105,12 +124,18 @@ namespace MedicalConferenceSystem.UI
 
 		private void LoadImage(int index)
 		{
-			((UCFullImage)CanvasMain.Children[index]).SetBackImage(listImagePath[index]);
+			if (index > -1)
+			{
+				((UCFullImage)CanvasMain.Children[index]).SetBackImage(listImagePath[index]);
+			}
 		}
 
 		private void RemoveImage(int index)
 		{
-			((UCFullImage)CanvasMain.Children[index]).ReleaseBackImage();
+			if (index > -1)
+			{
+				((UCFullImage)CanvasMain.Children[index]).ReleaseBackImage();
+			}
 		}
 
 		/// <summary>
@@ -188,7 +213,7 @@ namespace MedicalConferenceSystem.UI
 
 		private void ScrollViewrCenter_TouchUp(object sender, TouchEventArgs e)
 		{
-			if (!isMultipeTouch)//非多点触控时
+			if (!isMultipeTouch && !isScaling)//非多点触控并且未进行缩放时
 			{
 				TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
 				double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
@@ -197,15 +222,11 @@ namespace MedicalConferenceSystem.UI
 
 				if (offsetX < -10)//左移
 				{
-					LoadImage(currentIndex + 1);
 					BeginMove(MoveType.Left);//左移动画
-					RemoveImage(currentIndex - 1);
 				}
 				else if (offsetX > 10)//右移
 				{
-					LoadImage(currentIndex - 1);
 					BeginMove(MoveType.Right);//右移动画
-					RemoveImage(currentIndex + 1);
 				}
 			}
 
@@ -229,13 +250,45 @@ namespace MedicalConferenceSystem.UI
 			{
 				--currentIndex;
 			}
-			//开始平移动画
-			DoubleAnimation a = new DoubleAnimation(-currentIndex * ucWidth, TimeSpan.FromMilliseconds(500));
-			a.AccelerationRatio = 0.3;
-			a.DecelerationRatio = 0.3;
-			transform.BeginAnimation(TranslateTransform.XProperty, a);
+
+			DoMoveAnimation(moveType);
 		}
 
+		private void DoMoveAnimation(MoveType moveType)
+		{
+			//开始平移动画
+			DoubleAnimation daMove = new DoubleAnimation(-currentIndex * ucWidth, TimeSpan.FromMilliseconds(500));
+			daMove.AccelerationRatio = 0.3;
+			daMove.DecelerationRatio = 0.3;
+			//CanvasMainTR.BeginAnimation(TranslateTransform.XProperty, daMove);
+
+			this.RegisterName("tr", CanvasMainTR);
+
+			Storyboard.SetTargetName(daMove, "tr");
+			Storyboard.SetTargetProperty(daMove, new PropertyPath(TranslateTransform.XProperty));
+
+			sbMove.Completed += (o, s) =>
+			{
+				if (currentIndex > 0 && currentIndex < pageCount - 1)
+				{
+					LoadImage(currentIndex + 1);
+					LoadImage(currentIndex - 1);
+				}
+
+				if (moveType == MoveType.Left)
+				{
+					//RemoveImage(currentIndex - 1);
+				}
+				else
+				{
+					//RemoveImage(currentIndex + 1);
+				}
+			};
+
+			sbMove.Children.Clear();
+			sbMove.Children.Add(daMove);
+			sbMove.Begin(this);
+		}
 
 		#region OldAniamtion
 		private void InitAnimation()

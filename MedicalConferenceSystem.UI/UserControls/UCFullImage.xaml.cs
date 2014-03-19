@@ -27,6 +27,8 @@ namespace MedicalConferenceSystem.UI
 		public string imagePath;
 		TranslateZoomRotateBehavior translateZoomRotateBehavior;
 		TouchPoint touchPointOld;
+		bool isMultipeTouch = false;
+		Matrix matrixInit;
 		#endregion
 
 		#region 委托事件
@@ -47,6 +49,15 @@ namespace MedicalConferenceSystem.UI
 				BeginMoveEvent(moveType);
 			}
 		}
+
+		public event Action<bool> NotifyScaleStateEvent;
+		public void OnNotifyScaleState(bool isScaling)
+		{
+			if (NotifyScaleStateEvent != null)
+			{
+				NotifyScaleStateEvent(isScaling);
+			}
+		}
 		#endregion
 
 		#region 属性
@@ -57,14 +68,21 @@ namespace MedicalConferenceSystem.UI
 		public UCFullImage()
 		{
 			this.InitializeComponent();
+			matrixInit = ((MatrixTransform)ImageMain.RenderTransform).Matrix;
 		}
 		#endregion
 
 		#region 业务
 		public void SetBackImage(string imgPath)
 		{
+			BitmapImage bitmapImage = new BitmapImage();
+			bitmapImage.BeginInit();
+			bitmapImage.UriSource = new Uri(imgPath);
+			bitmapImage.EndInit();
 			imagePath = imgPath;
-			this.ImageMain.Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
+			this.ImageMain.Source = bitmapImage;
+			Console.WriteLine(imgPath);
+			//this.ImageMain.Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
 		}
 
 		public void ReleaseBackImage()
@@ -85,21 +103,46 @@ namespace MedicalConferenceSystem.UI
 
 		private void ImageMain_ManipulationStarting(object sender, ManipulationStartingEventArgs e)
 		{
-			e.Mode = ManipulationModes.Scale;
+			e.Mode = ManipulationModes.All;
 			e.ManipulationContainer = LayoutRoot;
 		}
 
 		private void ImageMain_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
 		{
-			FrameworkElement element = (FrameworkElement)e.Source;
-			Matrix matrix = ((MatrixTransform)element.RenderTransform).Matrix;
-			ManipulationDelta deltaManipulation = e.DeltaManipulation;
-			Point center = new Point(element.ActualWidth / 2, element.ActualHeight / 2);
-			center = matrix.Transform(center);
-			matrix.ScaleAt(deltaManipulation.Scale.X, deltaManipulation.Scale.Y, center.X, center.Y);
-			matrix.RotateAt(e.DeltaManipulation.Rotation, center.X, center.Y);
-			matrix.Translate(e.DeltaManipulation.Translation.X, e.DeltaManipulation.Translation.Y);
-			((MatrixTransform)element.RenderTransform).Matrix = matrix;
+			if (isMultipeTouch)
+			{
+				FrameworkElement element = (FrameworkElement)e.Source;
+				Matrix matrix = ((MatrixTransform)element.RenderTransform).Matrix;
+				ManipulationDelta deltaManipulation = e.DeltaManipulation;
+				Point center = new Point(element.ActualWidth / 2, element.ActualHeight / 2);
+				center = matrix.Transform(center);
+				matrix.ScaleAt(deltaManipulation.Scale.X, deltaManipulation.Scale.Y, center.X, center.Y);
+				//matrix.RotateAt(e.DeltaManipulation.Rotation, center.X, center.Y);
+				matrix.Translate(e.DeltaManipulation.Translation.X, e.DeltaManipulation.Translation.Y);
+				((MatrixTransform)element.RenderTransform).Matrix = matrix;
+			}
+		}
+
+		private void ImageMain_TouchDown(object sender, TouchEventArgs e)
+		{
+			if (!listDeviceID.Contains(e.TouchDevice.Id))
+			{
+				listDeviceID.Add(e.TouchDevice.Id);
+			}
+
+			if (listDeviceID.Count >= 2)//多点缩放
+			{
+				isMultipeTouch = true;
+			}
+			else
+			{
+				isMultipeTouch = false;
+			}
+		}
+
+		private void ImageMain_TouchUp(object sender, TouchEventArgs e)
+		{
+			listDeviceID.Remove(e.TouchDevice.Id);
 		}
 		#endregion
 	}
