@@ -6,7 +6,7 @@
 	mc:Ignorable="d"
 	x:Class="MedicalConferenceSystem.UI.UCListDetail"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="112" Height="112" Background="#FFC0BDBD">
+	d:DesignWidth="640" d:DesignHeight="112" Height="112" Background="#FFE3EBF3">
 	<Border BorderThickness="1,0,1,0.5" BorderBrush="#FF5A5865">
 		<StackPanel>
 			<TextBlock HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" Text="P0-061" FontSize="14"/>

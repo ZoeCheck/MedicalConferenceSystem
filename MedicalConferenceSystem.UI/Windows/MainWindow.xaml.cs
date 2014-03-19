@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace MedicalConferenceSystem.UI
 {
@@ -19,11 +20,26 @@ namespace MedicalConferenceSystem.UI
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		#region 变量
+
+		#endregion
+
+		#region 委托事件
+
+		#endregion
+
+		#region 属性
+
+		#endregion
+
+		#region 构造函数
 		public MainWindow()
 		{
 			InitializeComponent();
 		}
+		#endregion
 
+		#region 业务
 		private void Expander_Expanded(object sender, RoutedEventArgs e)
 		{
 			WindowImageList windowIm = new WindowImageList();
@@ -88,6 +104,39 @@ namespace MedicalConferenceSystem.UI
 				System.Diagnostics.Process.Start(AppDomain.CurrentDomain.BaseDirectory + "TabTip.exe");
 				//MessageBox.Show(ex.Message, "提示", MessageBoxButton.OK, MessageBoxImage.Information);
 			}
+		}
+	
+		private void ShowListAni()
+		{
+			DoubleAnimation daMove = new DoubleAnimation(1, TimeSpan.FromMilliseconds(200));
+			daMove.AccelerationRatio = 0.3;
+			daMove.DecelerationRatio = 0.3;
+			scaleTS.BeginAnimation(ScaleTransform.ScaleYProperty, daMove);
+		}
+
+		private void HideListAni()
+		{
+			DoubleAnimation daMove = new DoubleAnimation(0, TimeSpan.FromMilliseconds(200));
+			daMove.AccelerationRatio = 0.3;
+			daMove.DecelerationRatio = 0.3;
+			scaleTS.BeginAnimation(ScaleTransform.ScaleYProperty, daMove);
+		}
+
+		private void btnSearch_Click(object sender, RoutedEventArgs e)
+		{
+			ShowListAni();
+		}
+		#endregion
+
+		private void Button_Click_2(object sender, RoutedEventArgs e)
+		{
+			HideListAni();
+		}
+
+		private void b4_Click(object sender, RoutedEventArgs e)
+		{
+			WindowImageList windowIm = new WindowImageList();
+			windowIm.ShowDialog();
 		}
 	}
 }

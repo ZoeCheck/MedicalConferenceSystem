@@ -1,104 +1,187 @@
-﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:MedicalConferenceSystem.UI" mc:Ignorable="d" x:Class="MedicalConferenceSystem.UI.MainWindow"
-        Title="MedicalConferenceSystemDemo" Height="600" Width="800" WindowStartupLocation="CenterScreen" Background="{x:Null}" ResizeMode="NoResize" WindowStyle="None"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown_1"
-        WindowState="Maximized">
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedicalConferenceSystem.UI"
+        mc:Ignorable="d"
+        x:Class="MedicalConferenceSystem.UI.MainWindow"
+        Title="MedicalConferenceSystemDemo"
+        Height="600"
+        Width="800"
+        WindowStartupLocation="CenterScreen"
+        Background="{x:Null}"
+        ResizeMode="NoResize"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown_1" Foreground="#FF363735" WindowStyle="None" WindowState="Maximized">
     <Grid x:Name="GridRoot">
-    	<Grid.RowDefinitions>
-    		<RowDefinition Height="30"/>
-    		<RowDefinition Height="88"/>
-    		<RowDefinition/>
-    		<RowDefinition Height="84"/>
-    	</Grid.RowDefinitions>
-    	<Border x:Name="BorderTop" BorderThickness="0"
-    		Background="#FF494949"
-    		Opacity="0.8" >
-    		<TextBlock HorizontalAlignment="Left" Margin="9.324,0,0,0" TextWrapping="Wrap" Text="主界面" Foreground="#FFD2D2D2" VerticalAlignment="Center"/>
-    	</Border>
-        
-    	<Border x:Name="BorderTopImage" BorderBrush="#FF5A5865" BorderThickness="0" Margin="0" Grid.Row="1" Background="Black">
-    		<Image Margin="0" Source="/MedicalConferenceSystem.UI;component/Images/Top.jpg" Stretch="Fill"/>
-    	</Border>
-    	<Border x:Name="BorderList" Margin="0" Grid.Row="2">
-    		<Border.Background>
-    			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-    				<GradientStop Color="#FF474747" Offset="0"/>
-    				<GradientStop Color="#FF7B7777" Offset="1"/>
-    			</LinearGradientBrush>
-    		</Border.Background>
-        
-    		<ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto" Style="{DynamicResource SimpleScrollViewer}">
-        
-    			<StackPanel x:Name="StackPanelList">
-    				<Expander Header="糖尿病预防与流行病学" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735"
-							  Expanded="Expander_Expanded"
-                              Collapsed="Expander_Collapsed">
-    					<Grid Background="#FFE5E5E5">
-    						<StackPanel/>
-    					</Grid>
-    				</Expander>
-    				<Expander Header="糖尿病基础研究" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
-    					<Grid Background="#FFE5E5E5">
-    						<StackPanel>
-    							<local:UCListDetail Height="100"/>
-    						</StackPanel>
-    					</Grid>
-    				</Expander>
-    				<Expander Header="糖尿病与传统医学" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
-    					<Grid Background="#FFE5E5E5">
-    						<StackPanel>
-    							<local:UCListDetail Height="Auto"/>
-    						</StackPanel>
-    					</Grid>
-    				</Expander>
-    				<Expander Header="糖尿病卫生经济学" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
-    					<Grid Background="#FFE5E5E5">
-    						<StackPanel>
-    							<local:UCListDetail Height="Auto" Margin="0"/>
-    						</StackPanel>
-    					</Grid>
-    				</Expander>
-    				<Expander Header="糖尿病与肥胖" Style="{DynamicResource ExpanderStyleMain}" Foreground="#FF363735">
-    					<Grid Background="#FFE5E5E5">
-    						<StackPanel>
-    							<local:UCListDetail Height="Auto" Margin="0"/>
-    						</StackPanel>
-    					</Grid>
-    				</Expander>
-    			</StackPanel>
-    		</ScrollViewer>
-    	</Border>
-    	<StackPanel x:Name="StackPanelBottom" Grid.Row="3" d:LayoutOverrides="Width">
-    		<StackPanel.Background>
-    			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-    				<GradientStop Color="#CC1D1E1E" Offset="0"/>
-    				<GradientStop Color="#CC303330" Offset="0.697"/>
-    				<GradientStop Color="#CC505050" Offset="1"/>
-    			</LinearGradientBrush>
-    		</StackPanel.Background>
-    		<Grid x:Name="GridSearch" Margin="0,1,0,0" Height="38" VerticalAlignment="Top">
-    			<Grid.ColumnDefinitions>
-    				<ColumnDefinition/>
-    				<ColumnDefinition Width="50"/>
-    			</Grid.ColumnDefinitions>
-    			<TextBox Margin="0" Text="请输入(作者/医院/壁报标题)中的任意关键字搜索" VerticalContentAlignment="Center" Foreground="#FF363735" Style="{DynamicResource TextBoxStyleSearch}"
-                         x:Name="tbSearch"
-                         GotFocus="tbSearch_GotFocus"
-                         LostFocus="tbSearch_LostFocus"
-                         TouchDown="tbSearch_TouchDown" />
-    			<Button Content="Button" Grid.Column="1" Margin="0" Style="{DynamicResource ButtonStyleSearch}"/>
-    		</Grid>
-    		<Grid Height="40" Margin="0,2,0,0">
-        
-    			<RadioButton Content="RadioButton" HorizontalAlignment="Right" Margin="0,0,41,0" Width="35" Height="35" Style="{DynamicResource RadioButtonStyleView}" VerticalAlignment="Center"/>
-    			<RadioButton Content="RadioButton" HorizontalAlignment="Right" Margin="0,0,5,0" Width="35" Height="35" Style="{DynamicResource RadioButtonStyleList}" VerticalAlignment="Center" IsChecked="True"/>
-    			<Button Content="Button" HorizontalAlignment="Left" Margin="5.994,0,0,0" Width="40" Height="30" VerticalAlignment="Center" Style="{DynamicResource ButtonStyleReturn}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0" />
+            <RowDefinition Height="88" />
+            <RowDefinition Height="40" />
+            <RowDefinition />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Border x:Name="BorderTop"
+                BorderThickness="0"
+                Background="#FF494949"
+                Opacity="0.8">
+            <TextBlock HorizontalAlignment="Left"
+                       Margin="9.324,0,0,0"
+                       TextWrapping="Wrap"
+                       Text="主界面"
+                       Foreground="#FFD2D2D2"
+                       VerticalAlignment="Center" />
+        </Border>
+
+        <Border x:Name="BorderTopImage"
+                BorderBrush="#FF5A5865"
+                BorderThickness="0"
+                Margin="0"
+                Grid.Row="1"
+                Background="Black">
+            <Image Margin="0"
+                   Source="/MedicalConferenceSystem.UI;component/Images/Top.jpg"
+                   Stretch="Fill" />
+        </Border>
+        <Grid x:Name="GridSearch"
+              Margin="0,1,0,0"
+              Height="38"
+              VerticalAlignment="Top"
+              d:LayoutOverrides="VerticalMargin"
+              Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+            <TextBox Margin="0"
+                     Text="请输入(作者/医院/壁报标题)中的任意关键字搜索"
+                     VerticalContentAlignment="Center"
+                     Foreground="#FF363735"
+                     Style="{DynamicResource TextBoxStyleSearch}"
+                     x:Name="tbSearch"
+                     GotFocus="tbSearch_GotFocus"
+                     LostFocus="tbSearch_LostFocus"
+                     TouchDown="tbSearch_TouchDown" />
+            <Button Content="Button"
+                    Grid.Column="1"
+                    Margin="0"
+                    Style="{DynamicResource ButtonStyleSearch}"
+                    Name="btnSearch"
+                    Click="btnSearch_Click" />
+        </Grid>
+        <DockPanel Margin="0"
+                   Grid.Row="3">
+            <ScrollViewer x:Name="ScrollViewerList"
+                          Height="110"
+                          VerticalAlignment="Top"
+                          DockPanel.Dock="Top"
+                          RenderTransformOrigin="0.5,0.5"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          Style="{DynamicResource SimpleScrollViewer}"
+                          PanningMode="VerticalOnly">
+                <ScrollViewer.LayoutTransform>
+                    <ScaleTransform ScaleY="0" x:Name="scaleTS"/>
+                </ScrollViewer.LayoutTransform>
+                <StackPanel>
+                    <local:UCListDetail d:LayoutOverrides="Height" />
+                    <local:UCListDetail d:LayoutOverrides="Height" />
+                </StackPanel>
+            </ScrollViewer>
+            <Border x:Name="BorderList"
+                    Margin="0"
+                    d:LayoutOverrides="Height">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1"
+                                         StartPoint="0.5,0">
+                        <GradientStop Color="#FFA8CFFB"
+                                      Offset="0" />
+                        <GradientStop Color="#FF6B92EF"
+                                      Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              Style="{DynamicResource SimpleScrollViewer}">
+                    <Border>
+                		<Grid x:Name="GridList" MinHeight="400">
+                			<Grid.ColumnDefinitions>
+                				<ColumnDefinition Width="0.5*"/>
+                				<ColumnDefinition Width="0.5*"/>
+                			</Grid.ColumnDefinitions>
+                			<Grid.RowDefinitions>
+                				<RowDefinition Height="0.3*"/>
+                				<RowDefinition Height="0.3*"/>
+                				<RowDefinition Height="0.3*"/>
+                			</Grid.RowDefinitions>
+                			<Button x:Name="b1" Content="收缩搜索结果"
+                				Margin="0,0,30,0"
+                				Click="Button_Click_2" HorizontalAlignment="Right" Width="152" Height="64" VerticalAlignment="Center" Foreground="#FF212121" />
+                			<Path Data="M136,98 L552,106" Fill="#FFF4F4F5" Height="1" Margin="200,0" Stretch="Fill" Stroke="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.ColumnSpan="2" StrokeDashArray="1 2"/>
+                			<Path Data="M136,98 L552,106" Fill="#FFF4F4F5" Height="1" Margin="200,0" Stretch="Fill" Stroke="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.ColumnSpan="2" StrokeDashArray="1 2" Grid.Row="1"/>
+                			<Path Data="M376,34 L376,322" Fill="#FFF4F4F5" HorizontalAlignment="Right" Margin="0,50" Grid.RowSpan="3" Stretch="Fill" Stroke="White" Width="1" d:LayoutOverrides="GridBox" StrokeDashArray="1 2"/>
+                			<Button x:Name="b4" Content="进入图片列表"
+                				Margin="30,0,0,0"
+                                    HorizontalAlignment="Left" Width="152" Height="64" Grid.Column="1" VerticalAlignment="Center" Foreground="#FF212121"
+                                    Click="b4_Click" />
+                			<Button x:Name="b2" Content="糖尿病与肥胖"
+                				Margin="0,0,30,0"
+                				Click="Button_Click_2" HorizontalAlignment="Right" Width="152" Height="64" Grid.Row="1" VerticalAlignment="Center" Foreground="#FF212121" />
+                			<Button x:Name="b5" Content="糖尿病与传统医学"
+                				Margin="30,0,0,0"
+                				Click="Button_Click_2" HorizontalAlignment="Left" Width="152" Height="64" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Foreground="#FF212121" />
+                			<Button x:Name="b3" Content="糖尿病基础研究"
+                				Margin="0,0,30,0"
+                				Click="Button_Click_2" HorizontalAlignment="Right" Width="152" Height="64" Grid.Row="2" VerticalAlignment="Center" Foreground="#FF212121" />
+                			<Button x:Name="b6" Content="糖尿病预防与流行病学"
+                				Margin="30,0,0,0"
+                				Click="Button_Click_2" HorizontalAlignment="Left" Width="152" Height="64" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Foreground="#FF212121" />
+                		</Grid>
+                	</Border>
+                </ScrollViewer>
+            </Border>
+        </DockPanel>
+        <StackPanel x:Name="StackPanelBottom"
+                    Grid.Row="4"
+                    d:LayoutOverrides="Width">
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1"
+                                     StartPoint="0.5,0">
+                    <GradientStop Color="#FF5780E4"
+                                  Offset="0" />
+                    <GradientStop Color="#FFB6C8F3"
+                                  Offset="0.08" />
+                    <GradientStop Color="#FF4471DE"
+                                  Offset="1" />
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <Grid Height="40"
+                  Margin="0">
+
+                <RadioButton Content="RadioButton"
+                             HorizontalAlignment="Right"
+                             Margin="0,0,41,0"
+                             Width="35"
+                             Height="35"
+                             Style="{DynamicResource RadioButtonStyleView}"
+                             VerticalAlignment="Center" />
+                <RadioButton Content="RadioButton"
+                             HorizontalAlignment="Right"
+                             Margin="0,0,5,0"
+                             Width="35"
+                             Height="35"
+                             Style="{DynamicResource RadioButtonStyleList}"
+                             VerticalAlignment="Center"
+                             IsChecked="True" />
+                <Button Content="Button"
+                        HorizontalAlignment="Left"
+                        Margin="5.994,0,0,0"
+                        Width="40"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource ButtonStyleReturn}"
                         Click="Button_Click_1" />
-    		</Grid>
-        
-    	</StackPanel>
-        
+            </Grid>
+
+        </StackPanel>
+
     </Grid>
 </Window>

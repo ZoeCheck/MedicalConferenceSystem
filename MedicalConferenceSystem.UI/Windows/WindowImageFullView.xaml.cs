@@ -290,6 +290,11 @@ namespace MedicalConferenceSystem.UI
 			sbMove.Begin(this);
 		}
 
+		private void DoButtonAni()
+		{ 
+			
+		}
+
 		#region OldAniamtion
 		private void InitAnimation()
 		{
