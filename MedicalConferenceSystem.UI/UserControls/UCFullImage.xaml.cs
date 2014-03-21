@@ -24,7 +24,7 @@ namespace MedicalConferenceSystem.UI
 		bool isMuiltTouch = false;
 		bool isAttached = false;
 		public int numUC;
-		public string imagePath;
+		public string m_ImagePath;
 		TranslateZoomRotateBehavior translateZoomRotateBehavior;
 		TouchPoint touchPointOld;
 		bool isMultipeTouch = false;
@@ -75,13 +75,28 @@ namespace MedicalConferenceSystem.UI
 		#region 业务
 		public void SetBackImage(string imgPath)
 		{
+			m_ImagePath = imgPath;
+			this.Dispatcher.BeginInvoke(new Action(() =>
+			{
+				SetBackImage();
+			}));
+			//BitmapImage bitmapImage = new BitmapImage();
+			//bitmapImage.BeginInit();
+			//bitmapImage.UriSource = new Uri(imgPath);
+			//bitmapImage.EndInit();
+			//imagePath = imgPath;
+			//this.ImageMain.Source = bitmapImage;
+			////this.ImageMain.Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
+		}
+
+		public void SetBackImage()
+		{
+			//m_ImagePath = imgPath;
 			BitmapImage bitmapImage = new BitmapImage();
 			bitmapImage.BeginInit();
-			bitmapImage.UriSource = new Uri(imgPath);
+			bitmapImage.UriSource = new Uri(m_ImagePath);
 			bitmapImage.EndInit();
-			imagePath = imgPath;
 			this.ImageMain.Source = bitmapImage;
-			Console.WriteLine(imgPath);
 			//this.ImageMain.Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
 		}
 
