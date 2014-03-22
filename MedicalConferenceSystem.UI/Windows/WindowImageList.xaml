@@ -14,7 +14,7 @@
         Background="{x:Null}"
         WindowStyle="None"
         Width="800"
-        Height="600" WindowState="Maximized">
+        Height="600" WindowState="Normal">
     <Window.RenderTransform>
         <ScaleTransform x:Name="STMainWindow" />
     </Window.RenderTransform>
@@ -95,9 +95,13 @@
                           Margin="0"
                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
                           PanningMode="HorizontalOnly"
-                          CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                          CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                          TouchDown="ScrollViewerCenter_TouchDown"
+                          TouchUp="ScrollViewerCenter_TouchUp">
                 <StackPanel x:Name="StackPanelUC"
                             Orientation="Horizontal">
+                    <local:UCImageList Margin="0" />
+                    <local:UCImageList Margin="0" />
                     <local:UCImageList Margin="0" />
                     <local:UCImageList Margin="0" />
                     <local:UCImageList Margin="0" />

@@ -20,15 +20,13 @@ namespace MedicalConferenceSystem.UI
 	public partial class UCFullImage : UserControl
 	{
 		#region 变量
-		List<int> listDeviceID = new List<int>();
-		bool isMuiltTouch = false;
 		bool isAttached = false;
 		public int numUC;
-		public string imagePath;
+		public string m_ImagePath;
 		TranslateZoomRotateBehavior translateZoomRotateBehavior;
 		TouchPoint touchPointOld;
-		bool isMultipeTouch = false;
 		Matrix matrixInit;
+		private double originX = 1;
 		#endregion
 
 		#region 委托事件
@@ -75,14 +73,21 @@ namespace MedicalConferenceSystem.UI
 		#region 业务
 		public void SetBackImage(string imgPath)
 		{
+			m_ImagePath = imgPath;
+			Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+			{
+				SetBackImage();
+			}));
+		}
+
+		public void SetBackImage()
+		{
 			BitmapImage bitmapImage = new BitmapImage();
 			bitmapImage.BeginInit();
-			bitmapImage.UriSource = new Uri(imgPath);
+			bitmapImage.UriSource = new Uri(m_ImagePath);
 			bitmapImage.EndInit();
-			imagePath = imgPath;
 			this.ImageMain.Source = bitmapImage;
-			Console.WriteLine(imgPath);
-			//this.ImageMain.Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
+			//this.ImageMain.Source = new BitmapImage(new Uri(m_ImagePath, UriKind.Absolute));
 		}
 
 		public void ReleaseBackImage()
@@ -105,44 +110,24 @@ namespace MedicalConferenceSystem.UI
 		{
 			e.Mode = ManipulationModes.All;
 			e.ManipulationContainer = LayoutRoot;
+			e.IsSingleTouchEnabled = false;
 		}
 
 		private void ImageMain_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
 		{
-			if (isMultipeTouch)
+			FrameworkElement element = (FrameworkElement)e.Source;
+			Matrix matrix = ((MatrixTransform)element.RenderTransform).Matrix;
+			ManipulationDelta deltaManipulation = e.DeltaManipulation;
+			Point center = new Point(element.ActualWidth / 2, element.ActualHeight / 2);
+			center = matrix.Transform(center);
+			originX = originX * deltaManipulation.Scale.X;
+			if (originX >= 1)
 			{
-				FrameworkElement element = (FrameworkElement)e.Source;
-				Matrix matrix = ((MatrixTransform)element.RenderTransform).Matrix;
-				ManipulationDelta deltaManipulation = e.DeltaManipulation;
-				Point center = new Point(element.ActualWidth / 2, element.ActualHeight / 2);
-				center = matrix.Transform(center);
 				matrix.ScaleAt(deltaManipulation.Scale.X, deltaManipulation.Scale.Y, center.X, center.Y);
-				//matrix.RotateAt(e.DeltaManipulation.Rotation, center.X, center.Y);
-				matrix.Translate(e.DeltaManipulation.Translation.X, e.DeltaManipulation.Translation.Y);
-				((MatrixTransform)element.RenderTransform).Matrix = matrix;
 			}
-		}
-
-		private void ImageMain_TouchDown(object sender, TouchEventArgs e)
-		{
-			if (!listDeviceID.Contains(e.TouchDevice.Id))
-			{
-				listDeviceID.Add(e.TouchDevice.Id);
-			}
-
-			if (listDeviceID.Count >= 2)//多点缩放
-			{
-				isMultipeTouch = true;
-			}
-			else
-			{
-				isMultipeTouch = false;
-			}
-		}
-
-		private void ImageMain_TouchUp(object sender, TouchEventArgs e)
-		{
-			listDeviceID.Remove(e.TouchDevice.Id);
+			//matrix.RotateAt(e.DeltaManipulation.Rotation, center.X, center.Y);
+			matrix.Translate(e.DeltaManipulation.Translation.X, e.DeltaManipulation.Translation.Y);
+			((MatrixTransform)element.RenderTransform).Matrix = matrix;
 		}
 		#endregion
 	}

@@ -18,18 +18,32 @@ namespace MedicalConferenceSystem.UI
 	/// </summary>
 	public partial class WindowImageList : Window
 	{
+		#region 变量
 		double ucWidth;
 		double ucHeight;
 		bool isClosed = false;
 		double aniTime = 0.3;
+		TouchPoint touchPointOld;
+		#endregion
 
+		#region 委托事件
+
+		#endregion
+
+		#region 属性
+
+		#endregion
+
+		#region 构造函数
 		public WindowImageList()
 		{
 			this.InitializeComponent();
-			
+
 			// 在此点之下插入创建对象所需的代码。
 		}
+		#endregion
 
+		#region 业务
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			WindowImageFullView windowFull = new WindowImageFullView();
@@ -159,5 +173,22 @@ namespace MedicalConferenceSystem.UI
 		{
 			this.Close();
 		}
+
+		private void ScrollViewerCenter_TouchDown(object sender, TouchEventArgs e)
+		{
+			touchPointOld = e.GetTouchPoint(BorderCenter);
+		}
+
+		private void ScrollViewerCenter_TouchUp(object sender, TouchEventArgs e)
+		{
+			TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
+			double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
+			if (offsetX == 0)
+			{
+				WindowImageFullView windowFull = new WindowImageFullView();
+				windowFull.ShowDialog();
+			}
+		}
+		#endregion
 	}
 }

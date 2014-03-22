@@ -11,7 +11,7 @@
         WindowStartupLocation="CenterScreen"
         Background="{x:Null}"
         ResizeMode="NoResize"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown_1" Foreground="#FF363735" WindowStyle="None" WindowState="Maximized">
+        MouseLeftButtonDown="Window_MouseLeftButtonDown_1" Foreground="#FF363735" WindowStyle="None" WindowState="Normal">
     <Grid x:Name="GridRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="0" />

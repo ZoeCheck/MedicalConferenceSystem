@@ -272,7 +272,7 @@ namespace MedicalConferenceSystem.UI
 				if (currentIndex > 0 && currentIndex < pageCount - 1)
 				{
 					LoadImage(currentIndex + 1);
-					LoadImage(currentIndex - 1);
+					//LoadImage(currentIndex - 1);
 				}
 
 				if (moveType == MoveType.Left)
@@ -291,8 +291,8 @@ namespace MedicalConferenceSystem.UI
 		}
 
 		private void DoButtonAni()
-		{ 
-			
+		{
+
 		}
 
 		#region OldAniamtion
@@ -348,18 +348,12 @@ namespace MedicalConferenceSystem.UI
 
 		private void btnPreview_Click(object sender, RoutedEventArgs e)
 		{
-			//if (currentIndex > 0)
-			//{
-			//    BeginShowAnimation(--currentIndex);
-			//}
+			BeginMove(MoveType.Left);//左移动画
 		}
 
 		private void btnNext_Click(object sender, RoutedEventArgs e)
 		{
-			//if (currentIndex < pageCount - 1)
-			//{
-			//    BeginHideAnimation(currentIndex++);
-			//}
+			BeginMove(MoveType.Right);//右移动画
 		}
 		#endregion
 		#endregion
