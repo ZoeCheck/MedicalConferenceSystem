@@ -44,8 +44,6 @@ namespace MedicalConferenceSystem.UI
 		#endregion
 
 		#region 属性
-
-		#endregion
 		private TranslateTransform CanvasMainTR
 		{
 			get
@@ -57,6 +55,8 @@ namespace MedicalConferenceSystem.UI
 				this.CanvasMain.RenderTransform = value;
 			}
 		}
+		#endregion
+		
 		#region 构造函数
 		public WindowImageFullView()
 		{
