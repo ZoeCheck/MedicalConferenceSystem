@@ -206,6 +206,7 @@ namespace MedicalConferenceSystem.UI
 				TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
 				double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
 
+				((UCFullImage)CanvasMain.Children[currentIndex]).ResetImage();
 
 				if (offsetX < -10)//左移
 				{
