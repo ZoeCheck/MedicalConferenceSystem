@@ -88,7 +88,6 @@ namespace MedicalConferenceSystem.UI
 			bitmapImage.BeginInit();
 			bitmapImage.UriSource = new Uri(m_ImagePath);
 			bitmapImage.EndInit();
-			imagePath = imgPath;
 			this.ImageMain.Source = bitmapImage;
 			//this.ImageMain.Source = new BitmapImage(new Uri(m_ImagePath, UriKind.Absolute));
 		}
