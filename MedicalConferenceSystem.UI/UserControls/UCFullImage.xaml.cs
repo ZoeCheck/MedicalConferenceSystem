@@ -20,11 +20,14 @@ namespace MedicalConferenceSystem.UI
 	public partial class UCFullImage : UserControl
 	{
 		#region 变量
+		List<int> listDeviceID = new List<int>();
+		bool isMuiltTouch = false;
 		bool isAttached = false;
 		public int numUC;
 		public string m_ImagePath;
 		TranslateZoomRotateBehavior translateZoomRotateBehavior;
 		TouchPoint touchPointOld;
+		bool isMultipeTouch = false;
 		Matrix matrixInit;
 		private double originX = 1;
 		#endregion
@@ -65,18 +68,27 @@ namespace MedicalConferenceSystem.UI
 		public void SetBackImage(string imgPath)
 		{
 			m_ImagePath = imgPath;
-			Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+			this.Dispatcher.BeginInvoke(new Action(() =>
 			{
 				SetBackImage();
 			}));
+			//BitmapImage bitmapImage = new BitmapImage();
+			//bitmapImage.BeginInit();
+			//bitmapImage.UriSource = new Uri(imgPath);
+			//bitmapImage.EndInit();
+			//imagePath = imgPath;
+			//this.ImageMain.Source = bitmapImage;
+			////this.ImageMain.Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute));
 		}
 
 		public void SetBackImage()
 		{
+			//m_ImagePath = imgPath;
 			BitmapImage bitmapImage = new BitmapImage();
 			bitmapImage.BeginInit();
 			bitmapImage.UriSource = new Uri(m_ImagePath);
 			bitmapImage.EndInit();
+			imagePath = imgPath;
 			this.ImageMain.Source = bitmapImage;
 			//this.ImageMain.Source = new BitmapImage(new Uri(m_ImagePath, UriKind.Absolute));
 		}
