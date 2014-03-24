@@ -3,15 +3,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedicalConferenceSystem.UI"
+        xmlns:MedicalConferenceSystem_UI_UserControls="clr-namespace:MedicalConferenceSystem.UI.UserControls"
         mc:Ignorable="d"
         x:Class="MedicalConferenceSystem.UI.MainWindow"
         Title="MedicalConferenceSystemDemo"
-        Height="600"
-        Width="800"
+        Height="800"
+        Width="600"
         WindowStartupLocation="CenterScreen"
         Background="{x:Null}"
         ResizeMode="NoResize"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown_1" Foreground="#FF363735" WindowStyle="None" WindowState="Normal">
+        MouseLeftButtonDown="Window_MouseLeftButtonDown_1"
+        Foreground="#FF363735"
+        WindowStyle="None"
+        WindowState="Maximized"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing"
+        AllowsTransparency="True">
+    <Window.RenderTransform>
+        <ScaleTransform x:Name="STMainWindow" />
+    </Window.RenderTransform>
     <Grid x:Name="GridRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="0" />
@@ -43,16 +53,13 @@
                    Stretch="Fill" />
         </Border>
         <Grid x:Name="GridSearch"
-              Margin="0,1,0,0"
-              Height="38"
-              VerticalAlignment="Top"
-              d:LayoutOverrides="VerticalMargin"
-              Grid.Row="2">
+              Margin="0"
+              Grid.Row="2" Background="{DynamicResource BrushWin8}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="50" />
             </Grid.ColumnDefinitions>
-            <TextBox Margin="0"
+            <TextBox Margin="0,1"
                      Text="请输入(作者/医院/壁报标题)中的任意关键字搜索"
                      VerticalContentAlignment="Center"
                      Foreground="#FF363735"
@@ -63,9 +70,9 @@
                      TouchDown="tbSearch_TouchDown" />
             <Button Content="Button"
                     Grid.Column="1"
-                    Margin="0"
-                    Style="{DynamicResource ButtonStyleSearch}"
-                    Name="btnSearch"
+                    Margin="0,1"
+                    Style="{DynamicResource ButtonStyleFullSearch}"
+                    x:Name="btnSearch"
                     Click="btnSearch_Click" />
         </Grid>
         <DockPanel Margin="0"
@@ -79,7 +86,8 @@
                           Style="{DynamicResource SimpleScrollViewer}"
                           PanningMode="VerticalOnly">
                 <ScrollViewer.LayoutTransform>
-                    <ScaleTransform ScaleY="0" x:Name="scaleTS"/>
+                    <ScaleTransform ScaleY="0"
+                                    x:Name="scaleTS" />
                 </ScrollViewer.LayoutTransform>
                 <StackPanel>
                     <local:UCListDetail d:LayoutOverrides="Height" />
@@ -90,69 +98,66 @@
                     Margin="0"
                     d:LayoutOverrides="Height">
                 <Border.Background>
-                    <LinearGradientBrush EndPoint="0.5,1"
-                                         StartPoint="0.5,0">
-                        <GradientStop Color="#FFA8CFFB"
-                                      Offset="0" />
-                        <GradientStop Color="#FF6B92EF"
-                                      Offset="1" />
-                    </LinearGradientBrush>
+                	<LinearGradientBrush EndPoint="0.985,0.977" MappingMode="RelativeToBoundingBox" StartPoint="0.032,0.04">
+                		<GradientStop Color="#FF180053" Offset="0"/>
+                		<GradientStop Color="#FF180053" Offset="1"/>
+                		<GradientStop Color="#FF220866" Offset="0.08"/>
+                		<GradientStop Color="#FF220D54" Offset="0.88"/>
+                		<GradientStop Color="#FF2C1564" Offset="0.502"/>
+                	</LinearGradientBrush>
                 </Border.Background>
 
-                <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto"
-                              Style="{DynamicResource SimpleScrollViewer}">
+                <ScrollViewer x:Name="ScrollViewerListCenter" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              Style="{DynamicResource SimpleScrollViewer}" PanningMode="VerticalOnly" IsManipulationEnabled="True" PanningDeceleration="0.01"
+                              TouchDown="ScrollViewer_TouchDown"
+                              TouchUp="ScrollViewer_TouchUp">
                     <Border>
-                		<Grid x:Name="GridList" MinHeight="400">
-                			<Grid.ColumnDefinitions>
-                				<ColumnDefinition Width="0.5*"/>
-                				<ColumnDefinition Width="0.5*"/>
-                			</Grid.ColumnDefinitions>
-                			<Grid.RowDefinitions>
-                				<RowDefinition Height="0.3*"/>
-                				<RowDefinition Height="0.3*"/>
-                				<RowDefinition Height="0.3*"/>
-                			</Grid.RowDefinitions>
-                			<Button x:Name="b1" Content="收缩搜索结果"
-                				Margin="0,0,30,0"
-                				Click="Button_Click_2" HorizontalAlignment="Right" Width="152" Height="64" VerticalAlignment="Center" Foreground="#FF212121" />
-                			<Path Data="M136,98 L552,106" Fill="#FFF4F4F5" Height="1" Margin="200,0" Stretch="Fill" Stroke="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.ColumnSpan="2" StrokeDashArray="1 2"/>
-                			<Path Data="M136,98 L552,106" Fill="#FFF4F4F5" Height="1" Margin="200,0" Stretch="Fill" Stroke="White" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.ColumnSpan="2" StrokeDashArray="1 2" Grid.Row="1"/>
-                			<Path Data="M376,34 L376,322" Fill="#FFF4F4F5" HorizontalAlignment="Right" Margin="0,50" Grid.RowSpan="3" Stretch="Fill" Stroke="White" Width="1" d:LayoutOverrides="GridBox" StrokeDashArray="1 2"/>
-                			<Button x:Name="b4" Content="进入图片列表"
-                				Margin="30,0,0,0"
-                                    HorizontalAlignment="Left" Width="152" Height="64" Grid.Column="1" VerticalAlignment="Center" Foreground="#FF212121"
-                                    Click="b4_Click" />
-                			<Button x:Name="b2" Content="糖尿病与肥胖"
-                				Margin="0,0,30,0"
-                				Click="Button_Click_2" HorizontalAlignment="Right" Width="152" Height="64" Grid.Row="1" VerticalAlignment="Center" Foreground="#FF212121" />
-                			<Button x:Name="b5" Content="糖尿病与传统医学"
-                				Margin="30,0,0,0"
-                				Click="Button_Click_2" HorizontalAlignment="Left" Width="152" Height="64" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Foreground="#FF212121" />
-                			<Button x:Name="b3" Content="糖尿病基础研究"
-                				Margin="0,0,30,0"
-                				Click="Button_Click_2" HorizontalAlignment="Right" Width="152" Height="64" Grid.Row="2" VerticalAlignment="Center" Foreground="#FF212121" />
-                			<Button x:Name="b6" Content="糖尿病预防与流行病学"
-                				Margin="30,0,0,0"
-                				Click="Button_Click_2" HorizontalAlignment="Left" Width="152" Height="64" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Foreground="#FF212121" />
-                		</Grid>
-                	</Border>
+                        <Grid x:Name="GridList">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*" />
+                                <ColumnDefinition Width="0.5*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Path Data="M136,98 L552,106"
+                                  Fill="#FFF4F4F5"
+                                  Height="1"
+                                  Margin="200,0,200,310.007"
+                                  Stretch="Fill"
+                                  Stroke="White"
+                                  VerticalAlignment="Bottom"
+                                  HorizontalAlignment="Center"
+                                  Grid.ColumnSpan="2"
+                                  StrokeDashArray="1 2" Visibility="Collapsed" d:LayoutOverrides="GridBox" />
+                            <Path Data="M136,98 L552,106"
+                                  Fill="#FFF4F4F5"
+                                  Height="1"
+                                  Margin="200,0,200,180.17"
+                                  Stretch="Fill"
+                                  Stroke="White"
+                                  VerticalAlignment="Bottom"
+                                  HorizontalAlignment="Center"
+                                  Grid.ColumnSpan="2"
+                                  StrokeDashArray="1 2" Visibility="Collapsed" d:LayoutOverrides="GridBox" />
+                            <Path Data="M376,34 L376,322"
+                                  Fill="#FFF4F4F5"
+                                  HorizontalAlignment="Right"
+                                  Margin="0,50,0,50.001"
+                                  Stretch="Fill"
+                                  Stroke="White"
+                                  Width="1"
+                                  StrokeDashArray="1 2" Visibility="Collapsed" />
+                            <StackPanel x:Name="StackPanelLeft" Margin="0,0,10,0" Orientation="Vertical" d:LayoutOverrides="Height" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <StackPanel x:Name="StackPanelRight" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Orientation="Vertical" Width="150" d:LayoutOverrides="Height" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
                 </ScrollViewer>
             </Border>
         </DockPanel>
         <StackPanel x:Name="StackPanelBottom"
                     Grid.Row="4"
-                    d:LayoutOverrides="Width">
-            <StackPanel.Background>
-                <LinearGradientBrush EndPoint="0.5,1"
-                                     StartPoint="0.5,0">
-                    <GradientStop Color="#FF5780E4"
-                                  Offset="0" />
-                    <GradientStop Color="#FFB6C8F3"
-                                  Offset="0.08" />
-                    <GradientStop Color="#FF4471DE"
-                                  Offset="1" />
-                </LinearGradientBrush>
-            </StackPanel.Background>
+                    d:LayoutOverrides="Width" Background="{DynamicResource BrushWin8}">
             <Grid Height="40"
                   Margin="0">
 

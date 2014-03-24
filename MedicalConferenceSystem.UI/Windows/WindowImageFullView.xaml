@@ -7,14 +7,14 @@
 		x:Class="MedicalConferenceSystem.UI.WindowImageFullView"
 		x:Name="Window"
 		Title="WindowImageFullView"
-		Width="800"
-		Height="600"
+		Width="600"
+		Height="800"
 		WindowStartupLocation="CenterScreen"
 		ResizeMode="NoResize"
 		WindowStyle="None"
 		Background="{x:Null}"
 		Loaded="Window_Loaded"
-		Closing="Window_Closing" WindowState="Normal">
+		Closing="Window_Closing" WindowState="Maximized">
 	<Window.Resources>
 		<Style TargetType="{x:Type ListBox}"
 			   x:Key="PhotoListBoxStyle">
@@ -66,7 +66,7 @@
 		<Grid x:Name="GridBottom"
 			  Grid.Row="2">
 			<Border BorderThickness="0"
-					Background="#FF494949"
+					Background="{DynamicResource BrushWin8}"
 					Opacity="0.8" />
 			<StackPanel HorizontalAlignment="Right"
 						Margin="0,0,2,0"
@@ -87,8 +87,8 @@
 				<Button Content="Button"
 						Width="40"
 						Style="{DynamicResource ButtonStyleReturn}"
-						Click="Button_Click"
-						Height="30" />
+						Height="30"
+                        TouchUp="Button_TouchUp" />
 				<Button Content="Button"
 						Width="40"
 						Style="{DynamicResource ButtonStylePreviewImage}"

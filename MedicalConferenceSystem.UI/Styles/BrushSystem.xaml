@@ -3,5 +3,15 @@
 	<SolidColorBrush x:Key="BrushImageBorder" Color="#FFD2D2D2"/>
 	<SolidColorBrush x:Key="BrushButtonLeft" Color="#FF979797"/>
 	<SolidColorBrush x:Key="BrushBackgroundMain" Color="#FFA1A1A1"/>
+	<LinearGradientBrush x:Key="BrushWin8" EndPoint="0.5,1"
+		StartPoint="0.5,0">
+		<GradientStop Color="#FF2C1564"
+			Offset="0" />
+		<GradientStop Color="#FF340F8B"
+			Offset="0.221" />
+		<GradientStop Color="#FF230E56"
+			Offset="1" />
+		<GradientStop Color="#FF4B318B" Offset="0.02"/>
+	</LinearGradientBrush>
     
 </ResourceDictionary>

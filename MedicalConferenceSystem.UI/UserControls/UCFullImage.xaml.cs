@@ -47,15 +47,6 @@ namespace MedicalConferenceSystem.UI
 				BeginMoveEvent(moveType);
 			}
 		}
-
-		public event Action<bool> NotifyScaleStateEvent;
-		public void OnNotifyScaleState(bool isScaling)
-		{
-			if (NotifyScaleStateEvent != null)
-			{
-				NotifyScaleStateEvent(isScaling);
-			}
-		}
 		#endregion
 
 		#region 属性

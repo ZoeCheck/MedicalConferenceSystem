@@ -36,7 +36,6 @@ namespace MedicalConferenceSystem.UI
 		List<int> listDeviceID = new List<int>();
 		List<string> listImagePath = new List<string>();
 		private Storyboard sbMove = new Storyboard();
-		bool isScaling = false;
 		#endregion
 
 		#region 委托事件
@@ -67,11 +66,6 @@ namespace MedicalConferenceSystem.UI
 		#endregion
 
 		#region 业务
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			this.Close();
-		}
-
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
 			CanvasMainTR = new TranslateTransform();
@@ -88,7 +82,6 @@ namespace MedicalConferenceSystem.UI
 				UCFullImage ucFull = new UCFullImage();
 				ucFull.Width = ucWidth;
 				ucFull.Height = ucHeight;
-				ucFull.NotifyScaleStateEvent += new Action<bool>(ucFull_NotifyScaleStateEvent);
 				//ucFull.SetBackImage(path);
 				CanvasMain.Children.Add(ucFull);
 				Canvas.SetLeft(ucFull, xLocation);
@@ -105,11 +98,6 @@ namespace MedicalConferenceSystem.UI
 			//InitAnimation();
 
 			BeginLoadWindowAnimation();
-		}
-
-		void ucFull_NotifyScaleStateEvent(bool obj)
-		{
-			isScaling = obj;
 		}
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -213,12 +201,11 @@ namespace MedicalConferenceSystem.UI
 
 		private void ScrollViewrCenter_TouchUp(object sender, TouchEventArgs e)
 		{
-			if (!isMultipeTouch && !isScaling)//非多点触控并且未进行缩放时
+			if (!isMultipeTouch)//单点时进行平移
 			{
 				TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
 				double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
 
-				((UCFullImage)CanvasMain.Children[currentIndex]).ResetImage();//重置缩放
 
 				if (offsetX < -10)//左移
 				{
@@ -356,6 +343,11 @@ namespace MedicalConferenceSystem.UI
 			BeginMove(MoveType.Right);//右移动画
 		}
 		#endregion
+
+		private void Button_TouchUp(object sender, TouchEventArgs e)
+		{
+			this.Close();
+		}
 		#endregion
 	}
 }

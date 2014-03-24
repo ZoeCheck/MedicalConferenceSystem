@@ -13,10 +13,10 @@
         ResizeMode="NoResize"
         Background="{x:Null}"
         WindowStyle="None"
-        Width="800"
-        Height="600" WindowState="Normal">
+        Width="600"
+        Height="800" WindowState="Maximized">    
     <Window.RenderTransform>
-        <ScaleTransform x:Name="STMainWindow" />
+        <TranslateTransform x:Name="STMainWindow" />
     </Window.RenderTransform>
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
@@ -59,10 +59,19 @@
                        Grid.Column="1"
                        Foreground="{DynamicResource BrushImageBorder}" />
         </Grid>
+        <Border x:Name="BorderCenter"
+                BorderBrush="Black"
+                BorderThickness="0"
+                Margin="0"
+                Grid.Row="1">
+        	<Canvas x:Name="CanvasMain"
+                    TouchDown="ScrollViewerCenter_TouchDown"
+                    TouchUp="ScrollViewerCenter_TouchUp" />
+        </Border>
         <Grid x:Name="GridBottom"
               Grid.Row="2">
             <Border BorderThickness="0"
-                    Background="#FF494949"
+                    Background="{DynamicResource BrushWin8}"
                     Opacity="0.8" />
             <TextBlock HorizontalAlignment="Right"
                        Margin="0,0,2.75,0"
@@ -76,8 +85,8 @@
                         d:LayoutOverrides="Width">
                 <Button Content="Button"
                         Width="40"
-                        Click="Button_Click_3"
-                        Style="{DynamicResource ButtonStyleReturn}" />
+                        Style="{DynamicResource ButtonStyleReturn}"
+                        TouchUp="Button_TouchUp" />
                 <Button Content="Button"
                         Width="40"
                         Style="{DynamicResource ButtonStylePage}" />
@@ -86,27 +95,5 @@
                         Style="{DynamicResource ButtonStyleCopy}" />
             </StackPanel>
         </Grid>
-        <Border x:Name="BorderCenter"
-                BorderBrush="Black"
-                BorderThickness="0"
-                Margin="0"
-                Grid.Row="1">
-            <ScrollViewer x:Name="ScrollViewerCenter"
-                          Margin="0"
-                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                          PanningMode="HorizontalOnly"
-                          CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                          TouchDown="ScrollViewerCenter_TouchDown"
-                          TouchUp="ScrollViewerCenter_TouchUp">
-                <StackPanel x:Name="StackPanelUC"
-                            Orientation="Horizontal">
-                    <local:UCImageList Margin="0" />
-                    <local:UCImageList Margin="0" />
-                    <local:UCImageList Margin="0" />
-                    <local:UCImageList Margin="0" />
-                    <local:UCImageList Margin="0" />
-                </StackPanel>
-            </ScrollViewer>
-        </Border>
     </Grid>
 </Window>

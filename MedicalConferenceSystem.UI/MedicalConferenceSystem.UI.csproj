@@ -66,6 +66,9 @@
     <Compile Include="UserControls\UCImageList.xaml.cs">
       <DependentUpon>UCImageList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UCType.xaml.cs">
+      <DependentUpon>UCType.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Slider.cs" />
     <Compile Include="Windows\WindowImageFullView.xaml.cs">
       <DependentUpon>WindowImageFullView.xaml</DependentUpon>
@@ -123,6 +126,10 @@
     <Page Include="UserControls\UCListDetail.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\UCType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -182,6 +189,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="TypeImages\1-1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypeImages\1-2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypeImages\1-3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypeImages\1-4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypeImages\1-5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypeImages\1-6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Z_ChangeLog.txt" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

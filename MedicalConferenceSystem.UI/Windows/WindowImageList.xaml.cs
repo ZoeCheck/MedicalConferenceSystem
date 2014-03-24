@@ -22,8 +22,13 @@ namespace MedicalConferenceSystem.UI
 		double ucWidth;
 		double ucHeight;
 		bool isClosed = false;
-		double aniTime = 0.3;
 		TouchPoint touchPointOld;
+		int pageCount;
+		List<int> listDeviceID = new List<int>();
+		bool isMultipeTouch = false;
+		int currentIndex;
+		private Storyboard sbMove = new Storyboard();
+		double aniTime = 0.3;
 		#endregion
 
 		#region 委托事件
@@ -31,7 +36,17 @@ namespace MedicalConferenceSystem.UI
 		#endregion
 
 		#region 属性
-
+		private TranslateTransform CanvasMainTR
+		{
+			get
+			{
+				return this.CanvasMain.RenderTransform as TranslateTransform;
+			}
+			set
+			{
+				this.CanvasMain.RenderTransform = value;
+			}
+		}
 		#endregion
 
 		#region 构造函数
@@ -82,51 +97,29 @@ namespace MedicalConferenceSystem.UI
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
-			ucWidth = this.ScrollViewerCenter.ActualWidth;
-			ucHeight = this.ScrollViewerCenter.ActualHeight;
+			CanvasMainTR = new TranslateTransform();
 
-			foreach (UCImageList item in StackPanelUC.Children)
+			ucWidth = this.BorderCenter.ActualWidth; ;
+			ucHeight = this.BorderCenter.ActualHeight;
+
+			double xLocation = 0;
+
+			for (int i = 0; i < 4; i++)
 			{
-				item.Width = ucWidth;
-				item.Height = ucHeight;
+				UCImageList ucIma = new UCImageList();
+				ucIma.Width = ucWidth;
+				ucIma.Height = ucHeight;
+				CanvasMain.Children.Add(ucIma);
+				Canvas.SetLeft(ucIma, xLocation);
+				Canvas.SetTop(ucIma, 0);
+				xLocation += ucWidth;
 			}
 
-			this.Opacity = 0;
+			pageCount = CanvasMain.Children.Count;
 
-			STMainWindow.CenterX = this.ActualWidth / 2;
-			STMainWindow.CenterY = this.ActualHeight / 2;
-			STMainWindow.ScaleX = 0;
-			STMainWindow.ScaleY = 0;
+			CanvasMain.Width = ucWidth * pageCount;
 
-			NameScope.SetNameScope(this, new NameScope());
-			this.RegisterName("scale", STMainWindow);
-
-			Storyboard sb = new Storyboard();
-
-			DoubleAnimation daX = new DoubleAnimation();
-			daX.To = 1;
-			daX.Duration = TimeSpan.FromSeconds(aniTime);
-
-			DoubleAnimation daY = new DoubleAnimation();
-			daY.To = 1;
-			daY.Duration = TimeSpan.FromSeconds(aniTime);
-
-			DoubleAnimation daOp = new DoubleAnimation();
-			daOp.To = 1;
-			daOp.Duration = TimeSpan.FromSeconds(aniTime);
-
-			Storyboard.SetTargetName(daX, "scale");
-			Storyboard.SetTargetProperty(daX, new PropertyPath(ScaleTransform.ScaleXProperty));
-			Storyboard.SetTargetName(daY, "scale");
-			Storyboard.SetTargetProperty(daY, new PropertyPath(ScaleTransform.ScaleYProperty));
-			Storyboard.SetTarget(daOp, this);
-			Storyboard.SetTargetProperty(daOp, new PropertyPath(UIElement.OpacityProperty));
-
-			sb.Children.Add(daX);
-			sb.Children.Add(daY);
-			sb.Children.Add(daOp);
-
-			sb.Begin(this);
+			BeginLoadWindowAnimation();
 		}
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -135,59 +128,238 @@ namespace MedicalConferenceSystem.UI
 			{
 				e.Cancel = true;
 
-				Storyboard sB = new Storyboard();
-				sB.Completed += (s, ee) =>
-				{
-					this.Close();
-				};
-				DoubleAnimation daX = new DoubleAnimation();
-				daX.To = 0;
-				daX.Duration = TimeSpan.FromSeconds(aniTime);
-
-				DoubleAnimation daY = new DoubleAnimation();
-				daY.To = 0;
-				daY.Duration = TimeSpan.FromSeconds(aniTime);
-
-				DoubleAnimation daOp = new DoubleAnimation();
-				daOp.To = 0;
-				daOp.Duration = TimeSpan.FromSeconds(aniTime);
-
-				Storyboard.SetTargetName(daX, "scale");
-				Storyboard.SetTargetProperty(daX, new PropertyPath(ScaleTransform.ScaleXProperty));
-				Storyboard.SetTargetName(daY, "scale");
-				Storyboard.SetTargetProperty(daY, new PropertyPath(ScaleTransform.ScaleYProperty));
-				Storyboard.SetTarget(daOp, this);
-				Storyboard.SetTargetProperty(daOp, new PropertyPath(UIElement.OpacityProperty));
-
-				sB.Children.Add(daX);
-				sB.Children.Add(daY);
-				sB.Children.Add(daOp);
-
-				sB.Begin(this);
+				BeginClodeWindowAnimation();
 
 				isClosed = true;
 			}
 		}
 
-		private void Button_Click_3(object sender, RoutedEventArgs e)
+		#region 窗体渐大渐小动画
+		///// <summary>
+		///// 加载渐大动画
+		///// </summary>
+		//private void BeginLoadWindowAnimation()
+		//{
+		//    this.Opacity = 0;
+
+
+		//    STMainWindow.ScaleX = 0;
+		//    STMainWindow.ScaleY = 0;
+
+		//    NameScope.SetNameScope(this, new NameScope());
+		//    this.RegisterName("scale", STMainWindow);
+
+		//    Storyboard sb = new Storyboard();
+
+		//    DoubleAnimation daX = new DoubleAnimation();
+		//    daX.To = 1;
+		//    daX.Duration = TimeSpan.FromSeconds(aniTime);
+
+		//    DoubleAnimation daY = new DoubleAnimation();
+		//    daY.To = 1;
+		//    daY.Duration = TimeSpan.FromSeconds(aniTime);
+
+		//    DoubleAnimation daOp = new DoubleAnimation();
+		//    daOp.To = 1;
+		//    daOp.Duration = TimeSpan.FromSeconds(aniTime);
+
+		//    Storyboard.SetTargetName(daX, "scale");
+		//    Storyboard.SetTargetProperty(daX, new PropertyPath(ScaleTransform.ScaleXProperty));
+		//    Storyboard.SetTargetName(daY, "scale");
+		//    Storyboard.SetTargetProperty(daY, new PropertyPath(ScaleTransform.ScaleYProperty));
+		//    Storyboard.SetTarget(daOp, this);
+		//    Storyboard.SetTargetProperty(daOp, new PropertyPath(UIElement.OpacityProperty));
+
+		//    sb.Children.Add(daX);
+		//    sb.Children.Add(daY);
+		//    sb.Children.Add(daOp);
+
+		//    sb.Begin(this);
+		//}
+
+		///// <summary>
+		///// 关闭窗体渐小动画
+		///// </summary>
+		//private void BeginClodeWindowAnimation()
+		//{
+		//    Storyboard sB = new Storyboard();
+		//    sB.Completed += (s, ee) =>
+		//    {
+		//        this.Close();
+		//    };
+
+		//    DoubleAnimation daX = new DoubleAnimation();
+		//    daX.To = 0;
+		//    daX.Duration = TimeSpan.FromSeconds(aniTime);
+
+		//    DoubleAnimation daY = new DoubleAnimation();
+		//    daY.To = 0;
+		//    daY.Duration = TimeSpan.FromSeconds(aniTime);
+
+		//    DoubleAnimation daOp = new DoubleAnimation();
+		//    daOp.To = 0;
+		//    daOp.Duration = TimeSpan.FromSeconds(aniTime);
+
+		//    Storyboard.SetTargetName(daX, "scale");
+		//    Storyboard.SetTargetProperty(daX, new PropertyPath(ScaleTransform.ScaleXProperty));
+		//    Storyboard.SetTargetName(daY, "scale");
+		//    Storyboard.SetTargetProperty(daY, new PropertyPath(ScaleTransform.ScaleYProperty));
+		//    Storyboard.SetTarget(daOp, this);
+		//    Storyboard.SetTargetProperty(daOp, new PropertyPath(UIElement.OpacityProperty));
+
+		//    sB.Children.Add(daX);
+		//    sB.Children.Add(daY);
+		//    sB.Children.Add(daOp);
+
+		//    sB.Begin(this);
+		//} 
+		#endregion
+
+		/// <summary>
+		/// 从右往左渐入动画
+		/// </summary>
+		private void BeginLoadWindowAnimation()
 		{
-			this.Close();
+			//设置初始位置
+			STMainWindow.X = ucWidth;
+			this.Opacity = 0;
+
+			NameScope.SetNameScope(this, new NameScope());
+			this.RegisterName("scale", STMainWindow);
+
+			Storyboard sb = new Storyboard();
+
+			DoubleAnimation daX = new DoubleAnimation();
+			daX.To = 0;
+			daX.Duration = TimeSpan.FromSeconds(aniTime);
+
+			DoubleAnimation daOp = new DoubleAnimation();
+			daOp.To = 1;
+			daOp.Duration = TimeSpan.FromSeconds(aniTime);
+
+			Storyboard.SetTargetName(daX, "scale");
+			Storyboard.SetTargetProperty(daX, new PropertyPath(TranslateTransform.XProperty));
+
+			Storyboard.SetTargetProperty(daOp, new PropertyPath(UIElement.OpacityProperty));
+
+			sb.Children.Add(daX);
+			sb.Children.Add(daOp);
+
+			sb.Begin(this);
+		}
+
+		/// <summary>
+		/// 从左往右渐出动画
+		/// </summary>
+		private void BeginClodeWindowAnimation()
+		{
+			Storyboard sB = new Storyboard();
+			sB.Completed += (s, ee) =>
+			{
+				this.Close();
+			};
+			DoubleAnimation daX = new DoubleAnimation();
+			daX.To = ucWidth;
+			daX.Duration = TimeSpan.FromSeconds(aniTime);
+
+			Storyboard.SetTargetName(daX, "scale");
+			Storyboard.SetTargetProperty(daX, new PropertyPath(TranslateTransform.XProperty));
+
+			sB.Children.Add(daX);
+			sB.Begin(this);
 		}
 
 		private void ScrollViewerCenter_TouchDown(object sender, TouchEventArgs e)
 		{
 			touchPointOld = e.GetTouchPoint(BorderCenter);
+
+			if (!listDeviceID.Contains(e.TouchDevice.Id))
+			{
+				listDeviceID.Add(e.TouchDevice.Id);
+			}
+
+			if (listDeviceID.Count >= 2)//多点缩放
+			{
+				isMultipeTouch = true;
+			}
+			else
+			{
+				isMultipeTouch = false;
+			}
 		}
 
 		private void ScrollViewerCenter_TouchUp(object sender, TouchEventArgs e)
 		{
 			TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
 			double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
-			if (offsetX == 0)
+
+			if (offsetX < -10)//左移
+			{
+				BeginMove(MoveType.Left);//左移动画
+			}
+			else if (offsetX > 10)//右移
+			{
+				BeginMove(MoveType.Right);//右移动画
+			}
+			else if (offsetX == 0)//单点弹窗
 			{
 				WindowImageFullView windowFull = new WindowImageFullView();
 				windowFull.ShowDialog();
 			}
+
+			listDeviceID.Remove(e.TouchDevice.Id);
+		}
+
+		private void BeginMove(MoveType moveType)
+		{
+			if (moveType == MoveType.Left && currentIndex < pageCount - 1)
+			{
+				++currentIndex;
+			}
+			else if (moveType == MoveType.Right && currentIndex > 0)
+			{
+				--currentIndex;
+			}
+
+			DoMoveAnimation(moveType);
+		}
+
+		private void DoMoveAnimation(MoveType moveType)
+		{
+			//开始平移动画
+			DoubleAnimation daMove = new DoubleAnimation(-currentIndex * ucWidth, TimeSpan.FromMilliseconds(500));
+			daMove.AccelerationRatio = 0.3;
+			daMove.DecelerationRatio = 0.3;
+			//CanvasMainTR.BeginAnimation(TranslateTransform.XProperty, daMove);
+
+			this.RegisterName("tr", CanvasMainTR);
+
+			Storyboard.SetTargetName(daMove, "tr");
+			Storyboard.SetTargetProperty(daMove, new PropertyPath(TranslateTransform.XProperty));
+
+			sbMove.Completed += (o, s) =>
+			{
+				if (currentIndex > 0 && currentIndex < pageCount - 1)
+				{
+				}
+
+				if (moveType == MoveType.Left)
+				{
+				}
+				else
+				{
+				}
+			};
+
+			sbMove.Children.Clear();
+			sbMove.Children.Add(daMove);
+			sbMove.Begin(this);
+		}
+
+		private void Button_TouchUp(object sender, TouchEventArgs e)
+		{
+			this.Close();
+
 		}
 		#endregion
 	}
