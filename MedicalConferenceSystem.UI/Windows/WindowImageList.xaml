@@ -14,7 +14,7 @@
         Background="{x:Null}"
         WindowStyle="None"
         Width="600"
-        Height="800">    
+        Height="800" WindowState="Maximized">    
     <Window.RenderTransform>
         <TranslateTransform x:Name="STMainWindow" />
     </Window.RenderTransform>
