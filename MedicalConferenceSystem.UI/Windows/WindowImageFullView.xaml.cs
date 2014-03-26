@@ -36,6 +36,7 @@ namespace MedicalConferenceSystem.UI
 		List<int> listDeviceID = new List<int>();
 		List<string> listImagePath = new List<string>();
 		private Storyboard sbMove = new Storyboard();
+		bool isEditing = false;
 		#endregion
 
 		#region 委托事件
@@ -55,7 +56,7 @@ namespace MedicalConferenceSystem.UI
 			}
 		}
 		#endregion
-		
+
 		#region 构造函数
 		public WindowImageFullView()
 		{
@@ -80,6 +81,7 @@ namespace MedicalConferenceSystem.UI
 			{
 				listImagePath.Add(path);
 				UCFullImage ucFull = new UCFullImage();
+				ucFull.BeginMoveEvent += ucFull_BeginMoveEvent;
 				ucFull.Width = ucWidth;
 				ucFull.Height = ucHeight;
 				//ucFull.SetBackImage(path);
@@ -98,6 +100,11 @@ namespace MedicalConferenceSystem.UI
 			//InitAnimation();
 
 			BeginLoadWindowAnimation();
+		}
+
+		void ucFull_BeginMoveEvent(bool obj)
+		{
+			isEditing = obj;
 		}
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -201,7 +208,7 @@ namespace MedicalConferenceSystem.UI
 
 		private void ScrollViewrCenter_TouchUp(object sender, TouchEventArgs e)
 		{
-			if (!isMultipeTouch)//单点时进行平移
+			if (!isMultipeTouch && !isEditing)//单点时进行平移并且不处于编辑状态
 			{
 				TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
 				double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
@@ -277,7 +284,7 @@ namespace MedicalConferenceSystem.UI
 			sbMove.Children.Add(daMove);
 			sbMove.Begin(this);
 		}
-		
+
 		#region OldAniamtion
 		private void InitAnimation()
 		{
