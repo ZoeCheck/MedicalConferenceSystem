@@ -21,15 +21,13 @@ namespace MedicalConferenceSystem.UI
 	{
 		#region 变量
 		List<int> listDeviceID = new List<int>();
-		bool isMuiltTouch = false;
-		bool isAttached = false;
 		public int numUC;
 		public string m_ImagePath;
-		TranslateZoomRotateBehavior translateZoomRotateBehavior;
-		TouchPoint touchPointOld;
-		bool isMultipeTouch = false;
 		Matrix matrixInit;
 		private double originX = 1;
+		private double originY = 1;
+		TouchPoint touchPointOld;
+		bool isEditing = false;
 		#endregion
 
 		#region 委托事件
@@ -50,10 +48,15 @@ namespace MedicalConferenceSystem.UI
 				BeginMoveEvent(moveType);
 			}
 		}
-		#endregion
 
-		#region 属性
-
+		public event Action<bool> BeginEditEvent;
+		public void OnBeginEditEvent(bool isEditing)
+		{
+			if (BeginEditEvent != null)
+			{
+				BeginEditEvent(isEditing);
+			}
+		}
 		#endregion
 
 		#region 构造函数
@@ -83,6 +86,10 @@ namespace MedicalConferenceSystem.UI
 
 		public void SetBackImage()
 		{
+			if (this.ImageMain.Source != null)
+			{
+				return;
+			}
 			//m_ImagePath = imgPath;
 			BitmapImage bitmapImage = new BitmapImage();
 			bitmapImage.BeginInit();
@@ -99,6 +106,8 @@ namespace MedicalConferenceSystem.UI
 
 		public void ResetImage()
 		{
+			originX = 1;
+			isEditing = false;
 			ImageMain.RenderTransform = new MatrixTransform();
 		}
 
@@ -112,7 +121,6 @@ namespace MedicalConferenceSystem.UI
 		{
 			e.Mode = ManipulationModes.All;
 			e.ManipulationContainer = LayoutRoot;
-			e.IsSingleTouchEnabled = false;
 		}
 
 		private void ImageMain_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
@@ -120,16 +128,72 @@ namespace MedicalConferenceSystem.UI
 			FrameworkElement element = (FrameworkElement)e.Source;
 			Matrix matrix = ((MatrixTransform)element.RenderTransform).Matrix;
 			ManipulationDelta deltaManipulation = e.DeltaManipulation;
-			Point center = new Point(element.ActualWidth / 2, element.ActualHeight / 2);
-			center = matrix.Transform(center);
+			Point center = e.ManipulationOrigin;
 			originX = originX * deltaManipulation.Scale.X;
-			if (originX >= 1)
+			originY = originY * deltaManipulation.Scale.Y;
+			//Console.WriteLine("matrix:{0}", matrix.OffsetX);
+
+			if (originX <= 1 && !isEditing)//初始状态
 			{
-				matrix.ScaleAt(deltaManipulation.Scale.X, deltaManipulation.Scale.Y, center.X, center.Y);
+				OnBeginEditEvent(false);
 			}
-			//matrix.RotateAt(e.DeltaManipulation.Rotation, center.X, center.Y);
-			matrix.Translate(e.DeltaManipulation.Translation.X, e.DeltaManipulation.Translation.Y);
-			((MatrixTransform)element.RenderTransform).Matrix = matrix;
+			else//编辑状态
+			{
+				isEditing = true;
+				OnBeginEditEvent(true);
+				if (originX > 1)
+				{
+					matrix.ScaleAt(deltaManipulation.Scale.X, deltaManipulation.Scale.Y, center.X, center.Y);//缩放
+					((MatrixTransform)element.RenderTransform).Matrix = matrix;
+				}
+
+				//平移，判断有没有超出边界
+				double offX = ImageMain.ActualWidth * (originX - 1);//可以左右移动的最大值
+				double offY = ImageMain.ActualHeight * (originY - 1);//可以上下移动的最大值
+
+				matrix.Translate(e.DeltaManipulation.Translation.X, e.DeltaManipulation.Translation.Y);
+				////X轴平移
+				//matrix.Translate(e.DeltaManipulation.Translation.X, 0);
+				//if (matrix.OffsetX >= -offX && matrix.OffsetX <= 0)
+				//{
+				//    ((MatrixTransform)element.RenderTransform).Matrix = matrix;
+				//}
+				//Console.WriteLine("matrix.OffsetX:{0},-offX{1}", matrix.OffsetX, -offX);
+				////Y轴平移
+				//matrix.Translate(0, e.DeltaManipulation.Translation.Y);
+				//if (matrix.OffsetY >= -offY && matrix.OffsetY <= 0)
+				//{
+				//    ((MatrixTransform)element.RenderTransform).Matrix = matrix;
+				//}
+				((MatrixTransform)element.RenderTransform).Matrix = matrix;
+
+				//翻页
+				//if (matrix.OffsetX < -ImageMain.ActualWidth / 2)
+				//{
+				//    OnBeginMoveEvent(MoveType.Left);
+				//}
+				//else if (matrix.OffsetX > ImageMain.ActualWidth / 2)
+				//{
+				//    OnBeginMoveEvent(MoveType.Right);
+				//}
+				//matrix.RotateAt(e.DeltaManipulation.Rotation, center.X, center.Y);
+			}
+		}
+
+		private void UserControl_TouchDown(object sender, TouchEventArgs e)
+		{
+			touchPointOld = e.GetTouchPoint(this);
+		}
+
+		private void UserControl_TouchUp(object sender, TouchEventArgs e)
+		{
+			TouchPoint touchPointNew = e.GetTouchPoint(this);
+
+			if (touchPointNew.Position == touchPointOld.Position)
+			{
+				ResetImage();
+				OnBeginEditEvent(false);
+			}
 		}
 		#endregion
 	}

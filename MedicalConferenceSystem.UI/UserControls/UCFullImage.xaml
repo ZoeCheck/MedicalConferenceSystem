@@ -9,14 +9,15 @@
              x:Name="UserControl"
              d:DesignWidth="640"
              d:DesignHeight="480"
-             Background="#002A1E58"
-             Loaded="UserControl_Loaded">
+             Loaded="UserControl_Loaded"
+             TouchDown="UserControl_TouchDown"
+             TouchUp="UserControl_TouchUp">
     <Grid x:Name="LayoutRoot">
         <Image x:Name="ImageMain"
                Margin="0"
                HorizontalAlignment="Center"
-               VerticalAlignment="Center"
                ManipulationStarting="ImageMain_ManipulationStarting"
-               ManipulationDelta="ImageMain_ManipulationDelta" />
+               ManipulationDelta="ImageMain_ManipulationDelta"
+               Stretch="UniformToFill" />
     </Grid>
 </UserControl>

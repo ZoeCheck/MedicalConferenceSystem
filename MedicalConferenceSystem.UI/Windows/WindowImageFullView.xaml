@@ -15,121 +15,123 @@
 		Background="{x:Null}"
 		Loaded="Window_Loaded"
 		Closing="Window_Closing" WindowState="Maximized">
-	<Window.Resources>
-		<Style TargetType="{x:Type ListBox}"
-			   x:Key="PhotoListBoxStyle">
-			<Setter Property="Foreground"
-					Value="White" />
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="{x:Type ListBox}">
-						<WrapPanel Margin="0"
-								   IsItemsHost="True"
-								   Orientation="Horizontal"
-								   ItemHeight="{Binding ElementName=ZoomSlider, Path='Value'}"
-								   ItemWidth="{Binding ElementName=ZoomSlider, Path='Value'}"
-								   VerticalAlignment="Top"
-								   HorizontalAlignment="Stretch" />
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-	</Window.Resources>
-	<Window.RenderTransform>
-		<TranslateTransform x:Name="STMainWindow" />
-	</Window.RenderTransform>
+    <Window.Resources>
+        <Style TargetType="{x:Type ListBox}"
+               x:Key="PhotoListBoxStyle">
+            <Setter Property="Foreground"
+                    Value="White" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <WrapPanel Margin="0"
+                                   IsItemsHost="True"
+                                   Orientation="Horizontal"
+                                   ItemHeight="{Binding ElementName=ZoomSlider, Path='Value'}"
+                                   ItemWidth="{Binding ElementName=ZoomSlider, Path='Value'}"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Stretch" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Window.RenderTransform>
+        <TranslateTransform x:Name="STMainWindow" />
+    </Window.RenderTransform>
 
-	<Grid x:Name="LayoutRoot"
-		  Margin="0">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="0" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="32" />
-		</Grid.RowDefinitions>
-		<Grid x:Name="GridTop"
-			  Margin="0,19,0,0">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="43.776" />
-				<ColumnDefinition />
-				<ColumnDefinition Width="72" />
-			</Grid.ColumnDefinitions>
-		</Grid>
-		<Border x:Name="BorderCenter"
-				BorderBrush="Black"
-				BorderThickness="0"
-				Margin="0"
-				Grid.Row="1">
-			<Canvas x:Name="CanvasMain" RenderTransformOrigin="0.5,0.5"
-					TouchDown="ScrollViewrCenter_TouchDown"
-					TouchUp="ScrollViewrCenter_TouchUp" />
-		</Border>
-		<Grid x:Name="GridBottom"
-			  Grid.Row="2">
-			<Border BorderThickness="0"
-					Background="{DynamicResource BrushWin8}"
-					Opacity="0.8" />
-			<StackPanel HorizontalAlignment="Right"
-						Margin="0,0,2,0"
-						Orientation="Horizontal">
-				<Button Content="Button"
-						Width="40"
-						Height="30"
-						Style="{DynamicResource ButtonStyleFullView}" />
-				<Button Content="Button"
-						Width="40"
-						Height="30"
-						Style="{DynamicResource ButtonStyleFullSearch}"
-						Margin="1,0,0,0" />
-			</StackPanel>
-			<StackPanel Orientation="Horizontal"
-						d:LayoutOverrides="Width"
-						HorizontalAlignment="Left">
-				<Button Content="Button"
-						Width="40"
-						Style="{DynamicResource ButtonStyleReturn}"
-						Height="30"
+    <Grid x:Name="LayoutRoot"
+          Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="32" />
+        </Grid.RowDefinitions>
+        <Grid x:Name="GridTop"
+              Margin="0,19,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="43.776" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="72" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <Border x:Name="BorderCenter"
+                BorderBrush="Black"
+                BorderThickness="0"
+                Margin="0"
+                Grid.Row="1">
+            <Canvas x:Name="CanvasMain"
+                    RenderTransformOrigin="0.5,0.5"
+                    TouchDown="ScrollViewrCenter_TouchDown"
+                    TouchUp="ScrollViewrCenter_TouchUp"
+                    Background="#00000000" />
+        </Border>
+        <Grid x:Name="GridBottom"
+              Grid.Row="2">
+            <Border BorderThickness="0"
+                    Background="{DynamicResource BrushWin8}"
+                    Opacity="0.8" />
+            <StackPanel HorizontalAlignment="Right"
+                        Margin="0,0,2,0"
+                        Orientation="Horizontal">
+                <Button Content="Button"
+                        Width="40"
+                        Height="30"
+                        Style="{DynamicResource ButtonStyleFullView}" />
+                <Button Content="Button"
+                        Width="40"
+                        Height="30"
+                        Style="{DynamicResource ButtonStyleFullSearch}"
+                        Margin="1,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        d:LayoutOverrides="Width"
+                        HorizontalAlignment="Left">
+                <Button Content="Button"
+                        Width="40"
+                        Style="{DynamicResource ButtonStyleReturn}"
+                        Height="30"
                         TouchUp="Button_TouchUp" />
-				<Button Content="Button"
-						Width="40"
-						Style="{DynamicResource ButtonStylePreviewImage}"
-						Height="30"
-						Name="btnPreview"
-						Click="btnPreview_Click" />
-				<TextBlock TextWrapping="Wrap"
-						   Text="16/21"
-						   HorizontalAlignment="Center"
-						   VerticalAlignment="Center"
-						   Foreground="{DynamicResource BrushImageBorder}"
-						   Margin="2,0,0,0" />
-				<TextBlock TextWrapping="Wrap"
-						   Text="糖尿病与"
-						   HorizontalAlignment="Center"
-						   VerticalAlignment="Center"
-						   Foreground="White"
-						   Margin="5,0,0,0" />
-				<Button Content="Button"
-						Width="40"
-						Style="{DynamicResource ButtonStyleNextImage}"
-						Margin="2,0,0,0"
-						Height="30"
-						Name="btnNext"
-						Click="btnNext_Click" />
-				<TextBlock TextWrapping="Wrap"
-						   HorizontalAlignment="Center"
-						   VerticalAlignment="Center"
-						   Foreground="{DynamicResource BrushImageBorder}"
-						   Margin="2,0,0,0"><Run Text="跳转到" /></TextBlock>
-				<ComboBox Width="20"
-						  Margin="5,0,0,0"
-						  HorizontalAlignment="Center"
-						  VerticalAlignment="Center"
-						  Height="18"
-						  Style="{DynamicResource SimpleComboBox}">
-					<ComboBoxItem Content="1" />
-					<ComboBoxItem Content="2" />
-					<ComboBoxItem Content="3" />
-				</ComboBox>
-			</StackPanel>
-		</Grid>
-	</Grid>
+                <Button Content="Button"
+                        Width="40"
+                        Style="{DynamicResource ButtonStylePreviewImage}"
+                        Height="30"
+                        Name="btnPreview"
+                        Click="btnPreview_Click" />
+                <TextBlock TextWrapping="Wrap"
+                           Text="16/21"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="{DynamicResource BrushImageBorder}"
+                           Margin="2,0,0,0" />
+                <TextBlock TextWrapping="Wrap"
+                           Text="糖尿病与"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="White"
+                           Margin="5,0,0,0" />
+                <Button Content="Button"
+                        Width="40"
+                        Style="{DynamicResource ButtonStyleNextImage}"
+                        Margin="2,0,0,0"
+                        Height="30"
+                        Name="btnNext"
+                        Click="btnNext_Click" />
+                <TextBlock TextWrapping="Wrap"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="{DynamicResource BrushImageBorder}"
+                           Margin="2,0,0,0"><Run Text="跳转到" /></TextBlock>
+                <ComboBox Width="20"
+                          Margin="5,0,0,0"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Height="18"
+                          Style="{DynamicResource SimpleComboBox}">
+                    <ComboBoxItem Content="1" />
+                    <ComboBoxItem Content="2" />
+                    <ComboBoxItem Content="3" />
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+    </Grid>
 </Window>
