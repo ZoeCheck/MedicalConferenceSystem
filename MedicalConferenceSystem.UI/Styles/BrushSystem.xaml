@@ -10,8 +10,9 @@
 		<GradientStop Color="#FF340F8B"
 			Offset="0.221" />
 		<GradientStop Color="#FF230E56"
-			Offset="1" />
+			Offset="0.94" />
 		<GradientStop Color="#FF4B318B" Offset="0.02"/>
+		<GradientStop Color="#FF5C3FA5" Offset="1"/>
 	</LinearGradientBrush>
     
 </ResourceDictionary>

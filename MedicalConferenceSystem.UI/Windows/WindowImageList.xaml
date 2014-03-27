@@ -14,7 +14,7 @@
         Background="{x:Null}"
         WindowStyle="None"
         Width="600"
-        Height="800">    
+        Height="800" WindowState="Maximized">    
     <Window.RenderTransform>
         <TranslateTransform x:Name="STMainWindow" />
     </Window.RenderTransform>
@@ -22,7 +22,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="0" />
         </Grid.RowDefinitions>
         <Grid x:Name="GridTop">
             <Grid.ColumnDefinitions>
@@ -42,7 +42,7 @@
             <StackPanel Orientation="Horizontal"
                         Grid.Column="2"
                         Margin="0"
-                        d:LayoutOverrides="Width">
+                        d:LayoutOverrides="Width" Visibility="Hidden">
                 <Button Content="Button"
                         Width="35"
                         Click="Button_Click"
@@ -94,6 +94,18 @@
                         Width="40"
                         Style="{DynamicResource ButtonStyleCopy}" />
             </StackPanel>
+        </Grid>
+        <Grid HorizontalAlignment="Right" Margin="0" Grid.Row="1" Width="50">
+        	<Border BorderBrush="Black" BorderThickness="0" Background="Black" Opacity="0.4"/>
+        	<StackPanel>
+        		<Button Content="Button" Height="30" Margin="0,5,0,0" Width="40" Style="{DynamicResource ButtonStyleReturn}"
+                        TouchUp="Button_TouchUp_1" />
+        		<Button Content="Button" Height="30" Margin="0,5,0,0" Width="35" Style="{DynamicResource ButtonStylePlay}"
+                        TouchUp="Button_TouchUp_2" />
+        		<Button Content="Button" Height="30" Margin="0,5,0,0" Width="35" Style="{DynamicResource ButtonStyleSquares}"/>
+        		<Button Content="Button" Height="30" Margin="5,5,5,0" Width="40" Style="{DynamicResource ButtonStylePage}"/>
+        		<Button Content="Button" Height="30" Margin="5,5,5,0" Width="40" Style="{DynamicResource ButtonStyleCopy}"/>
+        	</StackPanel>
         </Grid>
     </Grid>
 </Window>

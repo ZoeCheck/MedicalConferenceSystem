@@ -362,5 +362,16 @@ namespace MedicalConferenceSystem.UI
 
 		}
 		#endregion
+
+		private void Button_TouchUp_1(object sender, TouchEventArgs e)
+		{
+			this.Close();
+		}
+
+		private void Button_TouchUp_2(object sender, TouchEventArgs e)
+		{
+			WindowImageFullView windowFull = new WindowImageFullView();
+			windowFull.ShowDialog();
+		}
 	}
 }

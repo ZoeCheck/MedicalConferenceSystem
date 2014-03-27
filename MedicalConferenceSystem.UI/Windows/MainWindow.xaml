@@ -17,7 +17,8 @@
         WindowStyle="None"
         Loaded="Window_Loaded"
         Closing="Window_Closing"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        WindowState="Maximized">
     <Window.RenderTransform>
         <ScaleTransform x:Name="STMainWindow" />
     </Window.RenderTransform>
@@ -27,7 +28,7 @@
             <RowDefinition Height="88" />
             <RowDefinition Height="40" />
             <RowDefinition />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="0" />
         </Grid.RowDefinitions>
         <Border x:Name="BorderTop"
                 BorderThickness="0"
@@ -53,7 +54,8 @@
         </Border>
         <Grid x:Name="GridSearch"
               Margin="0"
-              Grid.Row="2" Background="{DynamicResource BrushWin8}">
+              Grid.Row="2"
+              Background="{DynamicResource BrushWin8}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="50" />
@@ -89,25 +91,36 @@
                                     x:Name="scaleTS" />
                 </ScrollViewer.LayoutTransform>
                 <StackPanel>
-                    <local:UCListDetail d:LayoutOverrides="Height" />
-                    <local:UCListDetail d:LayoutOverrides="Height" />
+                    <local:UCListDetail Height="120" />
+                    <local:UCListDetail Height="120" />
                 </StackPanel>
             </ScrollViewer>
             <Border x:Name="BorderList"
                     Margin="0"
                     d:LayoutOverrides="Height">
                 <Border.Background>
-                	<LinearGradientBrush EndPoint="0.985,0.977" MappingMode="RelativeToBoundingBox" StartPoint="0.032,0.04">
-                		<GradientStop Color="#FF180053" Offset="0"/>
-                		<GradientStop Color="#FF180053" Offset="1"/>
-                		<GradientStop Color="#FF220866" Offset="0.08"/>
-                		<GradientStop Color="#FF220D54" Offset="0.88"/>
-                		<GradientStop Color="#FF2C1564" Offset="0.502"/>
-                	</LinearGradientBrush>
+                    <LinearGradientBrush EndPoint="0.985,0.977"
+                                         MappingMode="RelativeToBoundingBox"
+                                         StartPoint="0.032,0.04">
+                        <GradientStop Color="#FF180053"
+                                      Offset="0" />
+                        <GradientStop Color="#FF180053"
+                                      Offset="1" />
+                        <GradientStop Color="#FF220866"
+                                      Offset="0.08" />
+                        <GradientStop Color="#FF220D54"
+                                      Offset="0.88" />
+                        <GradientStop Color="#FF2C1564"
+                                      Offset="0.502" />
+                    </LinearGradientBrush>
                 </Border.Background>
 
-                <ScrollViewer x:Name="ScrollViewerListCenter" ScrollViewer.VerticalScrollBarVisibility="Auto"
-                              Style="{DynamicResource SimpleScrollViewer}" PanningMode="VerticalOnly" IsManipulationEnabled="True" PanningDeceleration="0.01"
+                <ScrollViewer x:Name="ScrollViewerListCenter"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              Style="{DynamicResource SimpleScrollViewer}"
+                              PanningMode="VerticalOnly"
+                              IsManipulationEnabled="True"
+                              PanningDeceleration="0.01"
                               TouchDown="ScrollViewer_TouchDown"
                               TouchUp="ScrollViewer_TouchUp">
                     <Border>
@@ -128,7 +141,9 @@
                                   VerticalAlignment="Bottom"
                                   HorizontalAlignment="Center"
                                   Grid.ColumnSpan="2"
-                                  StrokeDashArray="1 2" Visibility="Collapsed" d:LayoutOverrides="GridBox" />
+                                  StrokeDashArray="1 2"
+                                  Visibility="Collapsed"
+                                  d:LayoutOverrides="GridBox" />
                             <Path Data="M136,98 L552,106"
                                   Fill="#FFF4F4F5"
                                   Height="1"
@@ -138,7 +153,9 @@
                                   VerticalAlignment="Bottom"
                                   HorizontalAlignment="Center"
                                   Grid.ColumnSpan="2"
-                                  StrokeDashArray="1 2" Visibility="Collapsed" d:LayoutOverrides="GridBox" />
+                                  StrokeDashArray="1 2"
+                                  Visibility="Collapsed"
+                                  d:LayoutOverrides="GridBox" />
                             <Path Data="M376,34 L376,322"
                                   Fill="#FFF4F4F5"
                                   HorizontalAlignment="Right"
@@ -146,9 +163,47 @@
                                   Stretch="Fill"
                                   Stroke="White"
                                   Width="1"
-                                  StrokeDashArray="1 2" Visibility="Collapsed" />
-                            <StackPanel x:Name="StackPanelLeft" Margin="0,0,10,0" Orientation="Vertical" d:LayoutOverrides="Height" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                            <StackPanel x:Name="StackPanelRight" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0" Orientation="Vertical" Width="150" d:LayoutOverrides="Height" VerticalAlignment="Center"/>
+                                  StrokeDashArray="1 2"
+                                  Visibility="Collapsed" />
+                            <StackPanel x:Name="StackPanelLeft"
+                                        Margin="0,0,10,0"
+                                        Orientation="Vertical"
+                                        d:LayoutOverrides="Height"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Center" />
+                            <StackPanel x:Name="StackPanelRight"
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        Margin="10,0,0,0"
+                                        Orientation="Vertical"
+                                        d:LayoutOverrides="Height"
+                                        VerticalAlignment="Center" />
+                            <Grid Grid.Column="1"
+                                  HorizontalAlignment="Right"
+                                  Width="50">
+                                <Border BorderBrush="Black"
+                                        BorderThickness="1"
+                                        Background="Black"
+                                        Opacity="0.2" />
+                                <StackPanel x:Name="StackPanleToolButton">
+                                    <Button Content="Button"
+                                            Height="30"
+                                            Margin="0,5,0,0"
+                                            Width="40"
+                                            Style="{DynamicResource ButtonStyleReturn}"
+                                            Click="Button_Click_3" />
+                                    <RadioButton Content="RadioButton"
+                                                 Height="35"
+                                                 Margin="0,5,0,0"
+                                                 Width="35"
+                                                 Style="{DynamicResource RadioButtonStyleView}" />
+                                    <RadioButton Content="RadioButton"
+                                                 Height="35"
+                                                 Margin="0,5,0,0"
+                                                 Width="35"
+                                                 Style="{DynamicResource RadioButtonStyleList}" />
+                                </StackPanel>
+                            </Grid>
                         </Grid>
                     </Border>
                 </ScrollViewer>
@@ -156,7 +211,8 @@
         </DockPanel>
         <StackPanel x:Name="StackPanelBottom"
                     Grid.Row="4"
-                    d:LayoutOverrides="Width" Background="{DynamicResource BrushWin8}">
+                    d:LayoutOverrides="Width"
+                    Background="{DynamicResource BrushWin8}">
             <Grid Height="40"
                   Margin="0">
 

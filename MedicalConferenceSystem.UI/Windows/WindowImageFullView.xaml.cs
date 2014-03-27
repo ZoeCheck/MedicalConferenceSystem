@@ -220,8 +220,8 @@ namespace MedicalConferenceSystem.UI
 
 		private void ScrollViewrCenter_TouchUp(object sender, TouchEventArgs e)
 		{
-			if (e.TouchDevice.Captured == null)//CanvasMain事件
-			{
+			//if (e.TouchDevice.Captured == null)//CanvasMain事件
+			//{
 				TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
 				double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
 
@@ -235,26 +235,26 @@ namespace MedicalConferenceSystem.UI
 				{
 					BeginMove(MoveType.Right);//右移动画
 				}
-			}
-			else
-			{
-				if (!isMultipeTouch && !isEditing)//单点时进行平移并且不处于编辑状态
-				{
-					TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
-					double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
+			//}
+			//else
+			//{
+			//    if (!isMultipeTouch && !isEditing)//单点时进行平移并且不处于编辑状态
+			//    {
+			//        TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
+			//        double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
 
-					//((UCFullImage)CanvasMain.Children[currentIndex]).ResetImage();
+			//        //((UCFullImage)CanvasMain.Children[currentIndex]).ResetImage();
 
-					if (offsetX < -10)//左移
-					{
-						BeginMove(MoveType.Left);//左移动画
-					}
-					else if (offsetX > 10)//右移
-					{
-						BeginMove(MoveType.Right);//右移动画
-					}
-				}
-			}
+			//        if (offsetX < -10)//左移
+			//        {
+			//            BeginMove(MoveType.Left);//左移动画
+			//        }
+			//        else if (offsetX > 10)//右移
+			//        {
+			//            BeginMove(MoveType.Right);//右移动画
+			//        }
+			//    }
+			//}
 
 			listDeviceID.Remove(e.TouchDevice.Id);
 
@@ -386,5 +386,20 @@ namespace MedicalConferenceSystem.UI
 			this.Close();
 		}
 		#endregion
+
+		private void Button_TouchUp_1(object sender, TouchEventArgs e)
+		{
+			this.Close();
+		}
+
+		private void Button_TouchUp_2(object sender, TouchEventArgs e)
+		{
+			BeginMove(MoveType.Left);//左移动画
+		}
+
+		private void Button_TouchUp_3(object sender, TouchEventArgs e)
+		{
+			BeginMove(MoveType.Right);//右移动画
+		}
 	}
 }

@@ -214,25 +214,29 @@ namespace MedicalConferenceSystem.UI
 		void sb_Completed(object sender, EventArgs e)
 		{
 			int index = 0;
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 9; i++)
 			{
 				UCType ucType = new UCType();
-				ucType.Width = 150;
-				ucType.Height = 160;
+				//ucType.Width = 150;
+				//ucType.Height = 160;
+				ucType.Width = (this.ActualWidth - 140) / 2;
+				ucType.Height = (this.ActualHeight - this.ActualHeight * 0.5) / 10;
 				ucType.Margin = new Thickness(0, 10, 0, 10);
-				ucType.SetImage(listImagePath[index++]);
+				//ucType.SetImage(listImagePath[index++]);
 				ucType.SetInfoUp("类别 " + index + " 糖尿病预防与流行病学");
 				ucType.SetInfoDown("摘要" + index);
 				StackPanelLeft.Children.Add(ucType);
 			}
 
-			for (int j = 0; j < 3; j++)
+			for (int j = 0; j < 9; j++)
 			{
 				UCType ucType = new UCType();
-				ucType.Width = 150;
-				ucType.Height = 160;
+				//ucType.Width = 150;
+				//ucType.Height = 160;
+				ucType.Width = (this.ActualWidth - 140) / 2;
+				ucType.Height = (this.ActualHeight - this.ActualHeight * 0.5) / 10;
 				ucType.Margin = new Thickness(0, 10, 0, 10);
-				ucType.SetImage(listImagePath[index++]);
+				//ucType.SetImage(listImagePath[index++]);
 				ucType.SetInfoUp("类别 " + index + " 糖尿病基础研究");
 				ucType.SetInfoDown("摘要" + index);
 				StackPanelRight.Children.Add(ucType);
@@ -305,12 +309,17 @@ namespace MedicalConferenceSystem.UI
 			TouchPoint touchPointNew = e.GetTouchPoint(ScrollViewerListCenter);
 			double offsetY = touchPointNew.Bounds.Top - touchPointOld.Bounds.Top;//判断X轴位移
 
-			if (offsetY == 0)//单点
+			if (Math.Abs(offsetY) <= 6)//单点
 			{
 				WindowImageList windowIm = new WindowImageList();
 				windowIm.ShowDialog();
 			}
 		}
 		#endregion
+
+		private void Button_Click_3(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+		}
 	}
 }

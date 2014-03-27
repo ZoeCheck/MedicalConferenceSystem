@@ -9,10 +9,10 @@
 	d:DesignWidth="640" d:DesignHeight="112" Height="112" Background="#FFE3EBF3">
 	<Border BorderThickness="1,0,1,0.5" BorderBrush="#FF5A5865">
 		<StackPanel>
-			<TextBlock HorizontalAlignment="Left" Margin="0" TextWrapping="Wrap" Text="P0-061" FontSize="14"/>
-			<TextBlock HorizontalAlignment="Left" Margin="0,5,0,0" TextWrapping="Wrap" Text="2型糖尿病患者血清肪细胞脂肪酸结合蛋白与阻塞性睡眠呼吸暂停综合征的相关研究" FontSize="14"/>
-			<TextBlock HorizontalAlignment="Left" Margin="0,5,0,0" TextWrapping="Wrap" Text="郑静" FontSize="14"/>
-			<Grid Margin="0,5,0,0">
+			<TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="P0-061" FontSize="14"/>
+			<TextBlock HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" Text="2型糖尿病患者血清肪细胞脂肪酸结合蛋白与阻塞性睡眠呼吸暂停综合征的相关研究" FontSize="14"/>
+			<TextBlock HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" Text="郑静" FontSize="14"/>
+			<Grid Margin="0,5,10,0">
 				<Border BorderBrush="Black" BorderThickness="0" HorizontalAlignment="Right" Width="90.167" Margin="0" Background="#99161616">
 					<TextBlock Margin="5,5.57,7,7" TextWrapping="Wrap" Text="5号机 第一页" Foreground="White"/>
 				</Border>
