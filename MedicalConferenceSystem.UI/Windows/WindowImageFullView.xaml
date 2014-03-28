@@ -135,15 +135,15 @@
         </Grid>
         <Grid HorizontalAlignment="Right" Margin="0" Grid.Row="1" Width="50">
         	<Border BorderBrush="Black" BorderThickness="0" Background="Black" Opacity="0.4"/>
-        	<StackPanel>
-        		<Button Content="Button" Height="30" Margin="0,5,0,0" Width="40" Style="{DynamicResource ButtonStyleReturn}"
+        	<StackPanel VerticalAlignment="Center">
+        		<Button Content="Button" Height="30" Margin="0,10,0,0" Width="40" Style="{DynamicResource ButtonStyleReturn}"
                         TouchUp="Button_TouchUp_1" />
-        		<Button Content="Button" Height="30" Margin="0,5,0,0" Width="40" Style="{DynamicResource ButtonStylePreviewImage}"
+        		<Button Content="Button" Height="30" Margin="0,10,0,0" Width="40" Style="{DynamicResource ButtonStylePreviewImage}"
                         TouchUp="Button_TouchUp_2" />
-        		<Button Content="Button" Height="30" Margin="0,5,0,0" Width="40" Style="{DynamicResource ButtonStyleNextImage}"
+        		<Button Content="Button" Height="30" Margin="0,10,0,0" Width="40" Style="{DynamicResource ButtonStyleNextImage}"
                         TouchUp="Button_TouchUp_3" />
-        		<Button Content="Button" Height="30" Margin="0,5,0,0" Width="40" Style="{DynamicResource ButtonStyleFullView}"/>
-        		<Button Content="Button" Height="30" Margin="0,5,0,0" Width="40" Style="{DynamicResource ButtonStyleFullSearch}"/>
+        		<Button Content="Button" Height="30" Margin="0,10,0,0" Width="40" Style="{DynamicResource ButtonStyleFullView}"/>
+        		<Button Content="Button" Height="30" Margin="0,10,0,0" Width="40" Style="{DynamicResource ButtonStyleFullSearch}"/>
         	</StackPanel>
         </Grid>
     </Grid>

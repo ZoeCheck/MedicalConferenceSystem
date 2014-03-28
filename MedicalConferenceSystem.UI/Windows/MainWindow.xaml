@@ -12,7 +12,6 @@
         WindowStartupLocation="CenterScreen"
         Background="{x:Null}"
         ResizeMode="NoResize"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown_1"
         Foreground="#FF363735"
         WindowStyle="None"
         Loaded="Window_Loaded"
@@ -77,46 +76,47 @@
                     Click="btnSearch_Click" />
         </Grid>
         <DockPanel Margin="0"
-                   Grid.Row="3">
+                   Grid.Row="3" Background="#FFFFFBFB">
             <ScrollViewer x:Name="ScrollViewerList"
-                          Height="110"
+                          Height="200"
                           VerticalAlignment="Top"
                           DockPanel.Dock="Top"
                           RenderTransformOrigin="0.5,0.5"
                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                           Style="{DynamicResource SimpleScrollViewer}"
-                          PanningMode="VerticalOnly">
+                          PanningMode="VerticalOnly" Margin="1,0">
                 <ScrollViewer.LayoutTransform>
                     <ScaleTransform ScaleY="0"
                                     x:Name="scaleTS" />
                 </ScrollViewer.LayoutTransform>
                 <StackPanel>
-                    <local:UCListDetail Height="120" />
-                    <local:UCListDetail Height="120" />
+                    <local:UCListDetail Height="90" />
+                    <local:UCListDetail Height="90" />
+                    <local:UCListDetail Height="90" />
                 </StackPanel>
             </ScrollViewer>
             <Border x:Name="BorderList"
                     Margin="0"
                     d:LayoutOverrides="Height">
                 <Border.Background>
-                    <LinearGradientBrush EndPoint="0.985,0.977"
+                    <LinearGradientBrush EndPoint="0.53,1.012"
                                          MappingMode="RelativeToBoundingBox"
-                                         StartPoint="0.032,0.04">
-                        <GradientStop Color="#FF180053"
-                                      Offset="0" />
+                                         StartPoint="0.524,-0.063">
+                        <GradientStop Color="#FFB3B2B4" />
                         <GradientStop Color="#FF180053"
                                       Offset="1" />
                         <GradientStop Color="#FF220866"
-                                      Offset="0.08" />
+                                      Offset="0.189" />
                         <GradientStop Color="#FF220D54"
                                       Offset="0.88" />
                         <GradientStop Color="#FF2C1564"
                                       Offset="0.502" />
+                        <GradientStop Color="#FF190155" Offset="0.072"/>
                     </LinearGradientBrush>
                 </Border.Background>
 
                 <ScrollViewer x:Name="ScrollViewerListCenter"
-                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ScrollViewer.VerticalScrollBarVisibility="Hidden"
                               Style="{DynamicResource SimpleScrollViewer}"
                               PanningMode="VerticalOnly"
                               IsManipulationEnabled="True"
@@ -166,18 +166,18 @@
                                   StrokeDashArray="1 2"
                                   Visibility="Collapsed" />
                             <StackPanel x:Name="StackPanelLeft"
-                                        Margin="0,0,10,0"
+                                        Margin="0,30,10,0"
                                         Orientation="Vertical"
                                         d:LayoutOverrides="Height"
                                         HorizontalAlignment="Right"
-                                        VerticalAlignment="Center" />
+                                        VerticalAlignment="Top" />
                             <StackPanel x:Name="StackPanelRight"
                                         Grid.Column="1"
                                         HorizontalAlignment="Left"
-                                        Margin="10,0,0,0"
+                                        Margin="10,30,0,0"
                                         Orientation="Vertical"
                                         d:LayoutOverrides="Height"
-                                        VerticalAlignment="Center" />
+                                        VerticalAlignment="Top" />
                             <Grid Grid.Column="1"
                                   HorizontalAlignment="Right"
                                   Width="50">
@@ -185,21 +185,23 @@
                                         BorderThickness="1"
                                         Background="Black"
                                         Opacity="0.2" />
-                                <StackPanel x:Name="StackPanleToolButton">
+                                <StackPanel x:Name="StackPanleToolButton" VerticalAlignment="Center">
                                     <Button Content="Button"
                                             Height="30"
-                                            Margin="0,5,0,0"
+                                            Margin="0,10,0,0"
                                             Width="40"
                                             Style="{DynamicResource ButtonStyleReturn}"
                                             Click="Button_Click_3" />
+                                    <Button Content="Button" Height="30" Margin="0,10,0,0" Width="40" Style="{DynamicResource ButtonStyleHide}"
+                                            Click="Button_Click_4" />
                                     <RadioButton Content="RadioButton"
                                                  Height="35"
-                                                 Margin="0,5,0,0"
+                                                 Margin="0,10,0,0"
                                                  Width="35"
                                                  Style="{DynamicResource RadioButtonStyleView}" />
                                     <RadioButton Content="RadioButton"
                                                  Height="35"
-                                                 Margin="0,5,0,0"
+                                                 Margin="0,10,0,0"
                                                  Width="35"
                                                  Style="{DynamicResource RadioButtonStyleList}" />
                                 </StackPanel>

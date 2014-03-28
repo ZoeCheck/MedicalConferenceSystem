@@ -227,6 +227,11 @@ namespace MedicalConferenceSystem.UI
 
 				//((UCFullImage)CanvasMain.Children[currentIndex]).ResetImage();
 
+				if (currentIndex > 0 && currentIndex < pageCount - 1)
+				{
+					LoadImage(currentIndex + 1);
+				}
+
 				if (offsetX < -10)//左移
 				{
 					BeginMove(MoveType.Left);//左移动画
@@ -298,8 +303,8 @@ namespace MedicalConferenceSystem.UI
 			{
 				if (currentIndex > 0 && currentIndex < pageCount - 1)
 				{
-					Console.WriteLine("X");
-					LoadImage(currentIndex + 1);
+					//Console.WriteLine("X");
+					//LoadImage(currentIndex + 1);
 					//LoadImage(currentIndex - 1);
 				}
 

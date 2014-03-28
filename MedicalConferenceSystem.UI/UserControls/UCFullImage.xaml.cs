@@ -90,13 +90,12 @@ namespace MedicalConferenceSystem.UI
 			{
 				return;
 			}
-			//m_ImagePath = imgPath;
-			BitmapImage bitmapImage = new BitmapImage();
-			bitmapImage.BeginInit();
-			bitmapImage.UriSource = new Uri(m_ImagePath);
-			bitmapImage.EndInit();
-			this.ImageMain.Source = bitmapImage;
-			//this.ImageMain.Source = new BitmapImage(new Uri(m_ImagePath, UriKind.Absolute));
+			//BitmapImage bitmapImage = new BitmapImage();
+			//bitmapImage.BeginInit();
+			//bitmapImage.UriSource = new Uri(m_ImagePath);
+			//bitmapImage.EndInit();
+			//this.ImageMain.Source = bitmapImage;
+			this.ImageMain.Source = new BitmapImage(new Uri(m_ImagePath, UriKind.Absolute));
 		}
 
 		public void ReleaseBackImage()

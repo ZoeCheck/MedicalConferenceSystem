@@ -13,11 +13,11 @@
              TouchDown="UserControl_TouchDown"
              TouchUp="UserControl_TouchUp">
     <Grid x:Name="LayoutRoot">
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="正在加载图片..." VerticalAlignment="Center" Foreground="#FFFFFBFB"/>
         <Image x:Name="ImageMain"
                Margin="0"
                HorizontalAlignment="Center"
                ManipulationStarting="ImageMain_ManipulationStarting"
-               ManipulationDelta="ImageMain_ManipulationDelta"
-               Stretch="UniformToFill" />
+               ManipulationDelta="ImageMain_ManipulationDelta" Stretch="UniformToFill" />
     </Grid>
 </UserControl>
