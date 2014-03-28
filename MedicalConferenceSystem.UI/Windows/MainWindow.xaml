@@ -76,44 +76,33 @@
                     Click="btnSearch_Click" />
         </Grid>
         <DockPanel Margin="0"
-                   Grid.Row="3" Background="#FFFFFBFB">
+                   Grid.Row="3" Background="{DynamicResource BrushMainWindow}">
             <ScrollViewer x:Name="ScrollViewerList"
-                          Height="200"
+                          Height="250"
                           VerticalAlignment="Top"
                           DockPanel.Dock="Top"
                           RenderTransformOrigin="0.5,0.5"
                           ScrollViewer.VerticalScrollBarVisibility="Auto"
                           Style="{DynamicResource SimpleScrollViewer}"
-                          PanningMode="VerticalOnly" Margin="1,0">
+                          PanningMode="VerticalOnly" Margin="2,0" PanningDeceleration="0.01">
                 <ScrollViewer.LayoutTransform>
                     <ScaleTransform ScaleY="0"
                                     x:Name="scaleTS" />
                 </ScrollViewer.LayoutTransform>
                 <StackPanel>
-                    <local:UCListDetail Height="90" />
-                    <local:UCListDetail Height="90" />
-                    <local:UCListDetail Height="90" />
+                    <local:UCListDetail Height="80" />
+                    <local:UCListDetail Height="80" />
+                    <local:UCListDetail Height="80" />
+                    <local:UCListDetail Height="80" />
+                    <local:UCListDetail Height="80" />
+                    <local:UCListDetail Height="80" />
+                    <local:UCListDetail Height="80" />
+                    <local:UCListDetail Height="80" />
                 </StackPanel>
             </ScrollViewer>
             <Border x:Name="BorderList"
                     Margin="0"
-                    d:LayoutOverrides="Height">
-                <Border.Background>
-                    <LinearGradientBrush EndPoint="0.53,1.012"
-                                         MappingMode="RelativeToBoundingBox"
-                                         StartPoint="0.524,-0.063">
-                        <GradientStop Color="#FFB3B2B4" />
-                        <GradientStop Color="#FF180053"
-                                      Offset="1" />
-                        <GradientStop Color="#FF220866"
-                                      Offset="0.189" />
-                        <GradientStop Color="#FF220D54"
-                                      Offset="0.88" />
-                        <GradientStop Color="#FF2C1564"
-                                      Offset="0.502" />
-                        <GradientStop Color="#FF190155" Offset="0.072"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+                    d:LayoutOverrides="Height" Background="{DynamicResource BrushMainWindow}">
 
                 <ScrollViewer x:Name="ScrollViewerListCenter"
                               ScrollViewer.VerticalScrollBarVisibility="Hidden"
@@ -195,14 +184,14 @@
                                     <Button Content="Button" Height="30" Margin="0,10,0,0" Width="40" Style="{DynamicResource ButtonStyleHide}"
                                             Click="Button_Click_4" />
                                     <RadioButton Content="RadioButton"
-                                                 Height="35"
+                                                 Height="30"
                                                  Margin="0,10,0,0"
-                                                 Width="35"
+                                                 Width="40"
                                                  Style="{DynamicResource RadioButtonStyleView}" />
                                     <RadioButton Content="RadioButton"
-                                                 Height="35"
-                                                 Margin="0,10,0,0"
-                                                 Width="35"
+                                                 Height="30"
+                                                 Margin="5,10,5,0"
+                                                 Width="40"
                                                  Style="{DynamicResource RadioButtonStyleList}" />
                                 </StackPanel>
                             </Grid>
