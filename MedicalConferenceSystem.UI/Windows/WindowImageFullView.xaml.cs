@@ -24,7 +24,7 @@ namespace MedicalConferenceSystem.UI
 		#region 变量
 		double ucWidth;
 		double ucHeight;
-		double aniTime = 0.3;
+		double aniTime = 0.5;
 		int currentIndex;
 		int pageCount;
 		bool isClosed = false;
@@ -203,7 +203,7 @@ namespace MedicalConferenceSystem.UI
 			};
 			DoubleAnimation daX = new DoubleAnimation();
 			daX.To = ucWidth;
-			daX.Duration = TimeSpan.FromSeconds(aniTime);
+			daX.Duration = TimeSpan.FromSeconds(0.3);
 
 			Storyboard.SetTargetName(daX, "scale");
 			Storyboard.SetTargetProperty(daX, new PropertyPath(TranslateTransform.XProperty));
