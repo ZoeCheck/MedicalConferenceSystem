@@ -147,7 +147,7 @@ namespace MedicalConferenceSystem.UI
 
 		private void LoadUCImage(int pageIndex)
 		{
-			if (pageIndex > -1 && pageIndex < pageCount - 1)
+			if (pageIndex > -1 && pageIndex <= pageCount)
 			{
 				((UCImageList)CanvasMain.Children[pageIndex]).SetBackImage(ListImageMain[pageIndex]);
 			}
@@ -155,7 +155,7 @@ namespace MedicalConferenceSystem.UI
 
 		private void RemoveUCImage(int pageIndex)
 		{
-			if (pageIndex > -1 && pageIndex < pageCount - 1)
+			if (pageIndex > -1 && pageIndex < pageCount)
 			{
 				((UCImageList)CanvasMain.Children[pageIndex]).ReleaseBackImage();
 			}
@@ -350,9 +350,16 @@ namespace MedicalConferenceSystem.UI
 			}
 			else if (offsetX == 0)//单点弹窗
 			{
-				string path = ((System.Windows.Controls.Image)((e.TouchDevice).Captured)).Source.ToString();
-				path = path.Substring(8);
-				path = path.Replace('/','\\');
+				string path = "";
+				try
+				{
+					path = ((System.Windows.Controls.Image)((e.TouchDevice).Captured)).Source.ToString();
+					path = path.Substring(8);
+					path = path.Replace('/', '\\');
+				}
+				catch
+				{
+				}
 				WindowImageFullView windowFull = new WindowImageFullView(path);
 				windowFull.ShowDialog();
 			}

@@ -144,7 +144,7 @@ namespace MedicalConferenceSystem.UI
 
 		private void LoadImage(int index)
 		{
-			if (index > -1 && index < pageCount - 1)
+			if (index > -1 && index < pageCount)
 			{
 				((UCFullImage)CanvasMain.Children[index]).SetBackImage(listImagePath[index]);
 			}
@@ -152,7 +152,7 @@ namespace MedicalConferenceSystem.UI
 
 		private void RemoveImage(int index)
 		{
-			if (index > -1 && index < pageCount - 1)
+			if (index > -1 && index < pageCount)
 			{
 				((UCFullImage)CanvasMain.Children[index]).ReleaseBackImage();
 			}
