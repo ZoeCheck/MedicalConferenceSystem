@@ -36,6 +36,7 @@ namespace MedicalConferenceSystem.UI
 		List<int> listDeviceID = new List<int>();
 		List<string> listImagePath = new List<string>();
 		bool isEditing = false;
+		string loadImagePath;
 		#endregion
 
 		#region 委托事件
@@ -62,6 +63,12 @@ namespace MedicalConferenceSystem.UI
 			this.InitializeComponent();
 
 			// 在此点之下插入创建对象所需的代码。
+		}
+
+		public WindowImageFullView(string imagePath)
+			: this()
+		{
+			loadImagePath = imagePath;
 		}
 		#endregion
 
@@ -95,9 +102,15 @@ namespace MedicalConferenceSystem.UI
 
 			CanvasMain.Width = ucWidth * pageCount;
 
+			int index = listImagePath.IndexOf(loadImagePath);
+			currentIndex = index == -1 ? 0 : index;
+
 			LoadImage(currentIndex);
+			LoadImage(currentIndex - 1);
 			LoadImage(currentIndex + 1);
 			//InitAnimation();
+
+			CanvasMainTR.X = -currentIndex * ucWidth;
 
 			BeginLoadWindowAnimation();
 		}
@@ -131,7 +144,7 @@ namespace MedicalConferenceSystem.UI
 
 		private void LoadImage(int index)
 		{
-			if (index > -1)
+			if (index > -1 && index < pageCount - 1)
 			{
 				((UCFullImage)CanvasMain.Children[index]).SetBackImage(listImagePath[index]);
 			}
@@ -139,7 +152,7 @@ namespace MedicalConferenceSystem.UI
 
 		private void RemoveImage(int index)
 		{
-			if (index > -1)
+			if (index > -1 && index < pageCount - 1)
 			{
 				((UCFullImage)CanvasMain.Children[index]).ReleaseBackImage();
 			}
@@ -222,24 +235,27 @@ namespace MedicalConferenceSystem.UI
 		{
 			//if (e.TouchDevice.Captured == null)//CanvasMain事件
 			//{
-				TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
-				double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
+			TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
+			double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
 
-				//((UCFullImage)CanvasMain.Children[currentIndex]).ResetImage();
+			//((UCFullImage)CanvasMain.Children[currentIndex]).ResetImage();
 
-				if (currentIndex > 0 && currentIndex < pageCount - 1)
-				{
-					LoadImage(currentIndex + 1);
-				}
+			if (currentIndex > 0 && currentIndex < pageCount - 1)
+			{
+				LoadImage(currentIndex + 1);
+				LoadImage(currentIndex - 1);
+				RemoveImage(currentIndex + 2);
+				RemoveImage(currentIndex - 2);
+			}
 
-				if (offsetX < -10)//左移
-				{
-					BeginMove(MoveType.Left);//左移动画
-				}
-				else if (offsetX > 10)//右移
-				{
-					BeginMove(MoveType.Right);//右移动画
-				}
+			if (offsetX < -10)//左移
+			{
+				BeginMove(MoveType.Left);//左移动画
+			}
+			else if (offsetX > 10)//右移
+			{
+				BeginMove(MoveType.Right);//右移动画
+			}
 			//}
 			//else
 			//{
@@ -390,7 +406,6 @@ namespace MedicalConferenceSystem.UI
 		{
 			this.Close();
 		}
-		#endregion
 
 		private void Button_TouchUp_1(object sender, TouchEventArgs e)
 		{
@@ -406,5 +421,6 @@ namespace MedicalConferenceSystem.UI
 		{
 			BeginMove(MoveType.Right);//右移动画
 		}
+		#endregion
 	}
 }

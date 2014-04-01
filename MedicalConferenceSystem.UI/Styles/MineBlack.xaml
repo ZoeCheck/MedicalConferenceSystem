@@ -453,7 +453,7 @@
                                    Height="Auto"
                                    RadiusX="6"
                                    RadiusY="6"
-                                   Fill="#7F000000"
+                                   Fill="#66000000"
                                    Stroke="Gray" StrokeThickness="0" />
                     </Grid>
                     <ControlTemplate.Triggers>
