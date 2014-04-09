@@ -931,7 +931,7 @@
 									<TranslateTransform/>
 								</TransformGroup>
 							</Grid.RenderTransform>
-							<Path Data="M10.783022,8.3937199 L18.699688,4.5600532" Fill="{x:Null}" Height="4.83" Margin="16.081,2.404,13.007,0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Width="Auto" RenderTransformOrigin="0.5,0.5" StrokeThickness="2">
+							<Path Data="M10.783022,8.3937199 L18.699688,4.5600532" Fill="{x:Null}" Height="4.83" Margin="13.831,0.904,15.257,0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Width="Auto" RenderTransformOrigin="0.5,0.5" StrokeThickness="2">
 								<Path.RenderTransform>
 									<TransformGroup>
 										<ScaleTransform/>
@@ -941,7 +941,7 @@
 									</TransformGroup>
 								</Path.RenderTransform>
 							</Path>
-							<Path Data="M10.583656,9.0152177 L18.229489,13.286044" Fill="{x:Null}" HorizontalAlignment="Stretch" Height="5.252" Margin="16.79,6.38,12.563,0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" VerticalAlignment="Top" Width="Auto" RenderTransformOrigin="0.5,0.5" StrokeThickness="2">
+							<Path Data="M10.583656,9.0152177 L18.229489,13.286044" Fill="{x:Null}" HorizontalAlignment="Stretch" Height="5.252" Margin="14.54,4.88,14.813,0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" VerticalAlignment="Top" Width="Auto" RenderTransformOrigin="0.5,0.5" StrokeThickness="2">
 								<Path.RenderTransform>
 									<TransformGroup>
 										<ScaleTransform/>
@@ -951,7 +951,13 @@
 									</TransformGroup>
 								</Path.RenderTransform>
 							</Path>
-							<Path Data="M7.541,0.5 L7.541,9.917 0.5,9.917" Fill="{x:Null}" Margin="12.855,2.169,15.984,3.355" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" StrokeThickness="2"/>
+							<Path Data="M20.5625,7 L20.75,21.875" Fill="{x:Null}" HorizontalAlignment="Stretch" Margin="17.781,0.656,18.219,0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" StrokeThickness="2" Width="Auto" Height="12.844" VerticalAlignment="Top"/>
+							<Path Data="M15,24.5625 L28.625,24.6875" Fill="{x:Null}" Height="2" Margin="14.442,0,11.872,7.812" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" StrokeThickness="2" VerticalAlignment="Bottom"/>
+							<Path Data="M15,24.5625 L28.625,24.6875" Fill="{x:Null}" Height="2" Margin="14.442,0,12,3.688" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" StrokeThickness="2" VerticalAlignment="Bottom"/>
+							<Path Data="M15,24.5625 L28.625,24.6875" Fill="{x:Null}" Height="2" Margin="14.442,0,11.872,11.75" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" StrokeThickness="2" VerticalAlignment="Bottom"/>
+							<Path Data="M15,24.5625 L28.625,24.6875" Fill="{x:Null}" Height="2" Margin="11.316,0,0,11.688" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" StrokeThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="4"/>
+							<Path Data="M15,24.5625 L28.625,24.6875" Fill="{x:Null}" Height="2" Margin="11.254,0,0,7.813" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" StrokeThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="4"/>
+							<Path Data="M15,24.5625 L28.625,24.6875" Fill="{x:Null}" Height="2" Margin="11.254,0,0,3.751" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" StrokeThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="4"/>
 						</Grid>
 					</Border>
 					<ControlTemplate.Triggers>

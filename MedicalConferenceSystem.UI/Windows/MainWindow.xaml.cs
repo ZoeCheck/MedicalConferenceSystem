@@ -103,10 +103,11 @@ namespace MedicalConferenceSystem.UI
 
 		private void ShowListAni()
 		{
-			DoubleAnimation daMove = new DoubleAnimation(1, TimeSpan.FromMilliseconds(200));
+			DoubleAnimation daMove = new DoubleAnimation(250, TimeSpan.FromMilliseconds(200));
 			daMove.AccelerationRatio = 0.3;
 			daMove.DecelerationRatio = 0.3;
-			scaleTS.BeginAnimation(ScaleTransform.ScaleYProperty, daMove);
+			ScrollViewerList.BeginAnimation(ScrollViewer.HeightProperty, daMove);
+			//scaleTS.BeginAnimation(ScaleTransform.ScaleYProperty, daMove);
 		}
 
 		private void HideListAni()
@@ -114,7 +115,8 @@ namespace MedicalConferenceSystem.UI
 			DoubleAnimation daMove = new DoubleAnimation(0, TimeSpan.FromMilliseconds(200));
 			daMove.AccelerationRatio = 0.3;
 			daMove.DecelerationRatio = 0.3;
-			scaleTS.BeginAnimation(ScaleTransform.ScaleYProperty, daMove);
+			ScrollViewerList.BeginAnimation(ScrollViewer.HeightProperty, daMove);
+			//scaleTS.BeginAnimation(ScaleTransform.ScaleYProperty, daMove);
 		}
 
 		private void btnSearch_Click(object sender, RoutedEventArgs e)
