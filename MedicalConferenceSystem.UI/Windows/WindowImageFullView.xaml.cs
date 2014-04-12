@@ -233,13 +233,6 @@ namespace MedicalConferenceSystem.UI
 
 		private void ScrollViewrCenter_TouchUp(object sender, TouchEventArgs e)
 		{
-			//if (e.TouchDevice.Captured == null)//CanvasMain事件
-			//{
-			TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
-			double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
-
-			//((UCFullImage)CanvasMain.Children[currentIndex]).ResetImage();
-
 			if (currentIndex > 0 && currentIndex < pageCount - 1)
 			{
 				LoadImage(currentIndex + 1);
@@ -248,34 +241,41 @@ namespace MedicalConferenceSystem.UI
 				RemoveImage(currentIndex - 2);
 			}
 
-			if (offsetX < -10)//左移
+			if (e.TouchDevice.Captured == null)//CanvasMain事件
 			{
-				BeginMove(MoveType.Left);//左移动画
+				TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
+				double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
+
+				//((UCFullImage)CanvasMain.Children[currentIndex]).ResetImage();
+
+				if (offsetX < -10)//左移
+				{
+					BeginMove(MoveType.Left);//左移动画
+				}
+				else if (offsetX > 10)//右移
+				{
+					BeginMove(MoveType.Right);//右移动画
+				}
 			}
-			else if (offsetX > 10)//右移
+			else
 			{
-				BeginMove(MoveType.Right);//右移动画
+				if (!isMultipeTouch && !isEditing)//单点时进行平移并且不处于编辑状态
+				{
+					TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
+					double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
+
+					//((UCFullImage)CanvasMain.Children[currentIndex]).ResetImage();
+
+					if (offsetX < -10)//左移
+					{
+						BeginMove(MoveType.Left);//左移动画
+					}
+					else if (offsetX > 10)//右移
+					{
+						BeginMove(MoveType.Right);//右移动画
+					}
+				}
 			}
-			//}
-			//else
-			//{
-			//    if (!isMultipeTouch && !isEditing)//单点时进行平移并且不处于编辑状态
-			//    {
-			//        TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
-			//        double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
-
-			//        //((UCFullImage)CanvasMain.Children[currentIndex]).ResetImage();
-
-			//        if (offsetX < -10)//左移
-			//        {
-			//            BeginMove(MoveType.Left);//左移动画
-			//        }
-			//        else if (offsetX > 10)//右移
-			//        {
-			//            BeginMove(MoveType.Right);//右移动画
-			//        }
-			//    }
-			//}
 
 			listDeviceID.Remove(e.TouchDevice.Id);
 
