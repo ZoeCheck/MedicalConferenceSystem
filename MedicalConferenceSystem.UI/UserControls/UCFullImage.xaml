@@ -1,23 +1,29 @@
 ﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-             mc:Ignorable="d"
-             x:Class="MedicalConferenceSystem.UI.UCFullImage"
-             x:Name="UserControl"
-             d:DesignWidth="640"
-             d:DesignHeight="480"
-             Loaded="UserControl_Loaded"
-             TouchDown="UserControl_TouchDown"
-             TouchUp="UserControl_TouchUp">
-    <Grid x:Name="LayoutRoot">
-        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="正在加载图片..." VerticalAlignment="Center" Foreground="#FFFFFBFB"/>
-        <Image x:Name="ImageMain"
-               Margin="0"
-               HorizontalAlignment="Center"
-               ManipulationStarting="ImageMain_ManipulationStarting"
-               ManipulationDelta="ImageMain_ManipulationDelta" Stretch="UniformToFill" />
-    </Grid>
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+			 xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+			 mc:Ignorable="d"
+			 x:Class="MedicalConferenceSystem.UI.UCFullImage"
+			 x:Name="UserControl"
+			 d:DesignWidth="640"
+			 d:DesignHeight="480"
+			 Loaded="UserControl_Loaded"
+			 TouchDown="UserControl_TouchDown"
+			 TouchUp="UserControl_TouchUp"
+			 Background="White">
+	<Grid x:Name="LayoutRoot">
+		<TextBlock HorizontalAlignment="Center"
+				   TextWrapping="Wrap"
+				   Text="正在加载图片..."
+				   VerticalAlignment="Center"
+				   Foreground="#FFFFFBFB" />
+		<Image x:Name="ImageMain"
+			   Margin="0"
+			   ManipulationStarting="ImageMain_ManipulationStarting"
+			   ManipulationDelta="ImageMain_ManipulationDelta"
+			   Stretch="UniformToFill"
+			   HorizontalAlignment="Center" />
+	</Grid>
 </UserControl>
