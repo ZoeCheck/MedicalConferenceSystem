@@ -24,7 +24,7 @@ namespace MedicalConferenceSystem.UI
 		#region 变量
 		double ucWidth;
 		double ucHeight;
-		double aniTime = 0.3;
+		double aniTime = 0.5;
 		int currentIndex;
 		int pageCount;
 		bool isClosed = false;
@@ -36,6 +36,7 @@ namespace MedicalConferenceSystem.UI
 		List<int> listDeviceID = new List<int>();
 		List<string> listImagePath = new List<string>();
 		bool isEditing = false;
+		string loadImagePath;
 		#endregion
 
 		#region 委托事件
@@ -62,6 +63,12 @@ namespace MedicalConferenceSystem.UI
 			this.InitializeComponent();
 
 			// 在此点之下插入创建对象所需的代码。
+		}
+
+		public WindowImageFullView(string imagePath)
+			: this()
+		{
+			loadImagePath = imagePath;
 		}
 		#endregion
 
@@ -95,9 +102,15 @@ namespace MedicalConferenceSystem.UI
 
 			CanvasMain.Width = ucWidth * pageCount;
 
+			int index = listImagePath.IndexOf(loadImagePath);
+			currentIndex = index == -1 ? 0 : index;
+
 			LoadImage(currentIndex);
+			LoadImage(currentIndex - 1);
 			LoadImage(currentIndex + 1);
 			//InitAnimation();
+
+			CanvasMainTR.X = -currentIndex * ucWidth;
 
 			BeginLoadWindowAnimation();
 		}
@@ -131,7 +144,7 @@ namespace MedicalConferenceSystem.UI
 
 		private void LoadImage(int index)
 		{
-			if (index > -1)
+			if (index > -1 && index < pageCount)
 			{
 				((UCFullImage)CanvasMain.Children[index]).SetBackImage(listImagePath[index]);
 			}
@@ -139,7 +152,7 @@ namespace MedicalConferenceSystem.UI
 
 		private void RemoveImage(int index)
 		{
-			if (index > -1)
+			if (index > -1 && index < pageCount)
 			{
 				((UCFullImage)CanvasMain.Children[index]).ReleaseBackImage();
 			}
@@ -190,7 +203,7 @@ namespace MedicalConferenceSystem.UI
 			};
 			DoubleAnimation daX = new DoubleAnimation();
 			daX.To = ucWidth;
-			daX.Duration = TimeSpan.FromSeconds(aniTime);
+			daX.Duration = TimeSpan.FromSeconds(0.3);
 
 			Storyboard.SetTargetName(daX, "scale");
 			Storyboard.SetTargetProperty(daX, new PropertyPath(TranslateTransform.XProperty));
@@ -220,6 +233,14 @@ namespace MedicalConferenceSystem.UI
 
 		private void ScrollViewrCenter_TouchUp(object sender, TouchEventArgs e)
 		{
+			if (currentIndex > 0 && currentIndex < pageCount - 1)
+			{
+				LoadImage(currentIndex + 1);
+				LoadImage(currentIndex - 1);
+				RemoveImage(currentIndex + 2);
+				RemoveImage(currentIndex - 2);
+			}
+
 			if (e.TouchDevice.Captured == null)//CanvasMain事件
 			{
 				TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
@@ -298,8 +319,8 @@ namespace MedicalConferenceSystem.UI
 			{
 				if (currentIndex > 0 && currentIndex < pageCount - 1)
 				{
-					Console.WriteLine("X");
-					LoadImage(currentIndex + 1);
+					//Console.WriteLine("X");
+					//LoadImage(currentIndex + 1);
 					//LoadImage(currentIndex - 1);
 				}
 
@@ -384,6 +405,21 @@ namespace MedicalConferenceSystem.UI
 		private void Button_TouchUp(object sender, TouchEventArgs e)
 		{
 			this.Close();
+		}
+
+		private void Button_TouchUp_1(object sender, TouchEventArgs e)
+		{
+			this.Close();
+		}
+
+		private void Button_TouchUp_2(object sender, TouchEventArgs e)
+		{
+			BeginMove(MoveType.Left);//左移动画
+		}
+
+		private void Button_TouchUp_3(object sender, TouchEventArgs e)
+		{
+			BeginMove(MoveType.Right);//右移动画
 		}
 		#endregion
 	}

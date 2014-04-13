@@ -51,11 +51,6 @@ namespace MedicalConferenceSystem.UI
 			windowIm.ShowDialog();
 		}
 
-		private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			this.DragMove();
-		}
-
 		private void Expander_Collapsed(object sender, RoutedEventArgs e)
 		{
 			WindowImageList windowIm = new WindowImageList();
@@ -88,11 +83,6 @@ namespace MedicalConferenceSystem.UI
 			this.Close();
 		}
 
-		private void Window_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
-		{
-			this.DragMove();
-		}
-
 		private void tbSearch_TouchDown(object sender, TouchEventArgs e)
 		{
 			if (tbSearch.Text == "请输入(作者/医院/壁报标题)中的任意关键字搜索")
@@ -113,10 +103,11 @@ namespace MedicalConferenceSystem.UI
 
 		private void ShowListAni()
 		{
-			DoubleAnimation daMove = new DoubleAnimation(1, TimeSpan.FromMilliseconds(200));
+			DoubleAnimation daMove = new DoubleAnimation(250, TimeSpan.FromMilliseconds(200));
 			daMove.AccelerationRatio = 0.3;
 			daMove.DecelerationRatio = 0.3;
-			scaleTS.BeginAnimation(ScaleTransform.ScaleYProperty, daMove);
+			ScrollViewerList.BeginAnimation(ScrollViewer.HeightProperty, daMove);
+			//scaleTS.BeginAnimation(ScaleTransform.ScaleYProperty, daMove);
 		}
 
 		private void HideListAni()
@@ -124,7 +115,8 @@ namespace MedicalConferenceSystem.UI
 			DoubleAnimation daMove = new DoubleAnimation(0, TimeSpan.FromMilliseconds(200));
 			daMove.AccelerationRatio = 0.3;
 			daMove.DecelerationRatio = 0.3;
-			scaleTS.BeginAnimation(ScaleTransform.ScaleYProperty, daMove);
+			ScrollViewerList.BeginAnimation(ScrollViewer.HeightProperty, daMove);
+			//scaleTS.BeginAnimation(ScaleTransform.ScaleYProperty, daMove);
 		}
 
 		private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -214,25 +206,29 @@ namespace MedicalConferenceSystem.UI
 		void sb_Completed(object sender, EventArgs e)
 		{
 			int index = 0;
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 9; i++)
 			{
 				UCType ucType = new UCType();
-				ucType.Width = 150;
-				ucType.Height = 160;
+				//ucType.Width = 150;
+				//ucType.Height = 160;
+				ucType.Width = (this.ActualWidth - 140) / 2;
+				ucType.Height = (this.ActualHeight - this.ActualHeight * 0.5) / 10;
 				ucType.Margin = new Thickness(0, 10, 0, 10);
-				ucType.SetImage(listImagePath[index++]);
+				//ucType.SetImage(listImagePath[index++]);
 				ucType.SetInfoUp("类别 " + index + " 糖尿病预防与流行病学");
 				ucType.SetInfoDown("摘要" + index);
 				StackPanelLeft.Children.Add(ucType);
 			}
 
-			for (int j = 0; j < 3; j++)
+			for (int j = 0; j < 9; j++)
 			{
 				UCType ucType = new UCType();
-				ucType.Width = 150;
-				ucType.Height = 160;
+				//ucType.Width = 150;
+				//ucType.Height = 160;
+				ucType.Width = (this.ActualWidth - 140) / 2;
+				ucType.Height = (this.ActualHeight - this.ActualHeight * 0.5) / 10;
 				ucType.Margin = new Thickness(0, 10, 0, 10);
-				ucType.SetImage(listImagePath[index++]);
+				//ucType.SetImage(listImagePath[index++]);
 				ucType.SetInfoUp("类别 " + index + " 糖尿病基础研究");
 				ucType.SetInfoDown("摘要" + index);
 				StackPanelRight.Children.Add(ucType);
@@ -305,12 +301,22 @@ namespace MedicalConferenceSystem.UI
 			TouchPoint touchPointNew = e.GetTouchPoint(ScrollViewerListCenter);
 			double offsetY = touchPointNew.Bounds.Top - touchPointOld.Bounds.Top;//判断X轴位移
 
-			if (offsetY == 0)//单点
+			if (Math.Abs(offsetY) <= 6)//单点
 			{
 				WindowImageList windowIm = new WindowImageList();
 				windowIm.ShowDialog();
 			}
 		}
 		#endregion
+
+		private void Button_Click_3(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+		}
+
+		private void Button_Click_4(object sender, RoutedEventArgs e)
+		{
+			HideListAni();
+		}
 	}
 }
