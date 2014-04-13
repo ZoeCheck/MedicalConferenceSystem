@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Expression.Interactivity.Input;
+using System.Linq;
 
 namespace MedicalConferenceSystem.UI
 {
@@ -20,7 +21,6 @@ namespace MedicalConferenceSystem.UI
 	public partial class UCFullImage : UserControl
 	{
 		#region 变量
-		List<int> listDeviceID = new List<int>();
 		public int numUC;
 		public string m_ImagePath;
 		Matrix matrixInit;
@@ -90,13 +90,12 @@ namespace MedicalConferenceSystem.UI
 			{
 				return;
 			}
-			//m_ImagePath = imgPath;
-			BitmapImage bitmapImage = new BitmapImage();
-			bitmapImage.BeginInit();
-			bitmapImage.UriSource = new Uri(m_ImagePath);
-			bitmapImage.EndInit();
-			this.ImageMain.Source = bitmapImage;
-			//this.ImageMain.Source = new BitmapImage(new Uri(m_ImagePath, UriKind.Absolute));
+			//BitmapImage bitmapImage = new BitmapImage();
+			//bitmapImage.BeginInit();
+			//bitmapImage.UriSource = new Uri(m_ImagePath);
+			//bitmapImage.EndInit();
+			//this.ImageMain.Source = bitmapImage;
+			this.ImageMain.Source = new BitmapImage(new Uri(m_ImagePath, UriKind.Absolute));
 		}
 
 		public void ReleaseBackImage()
@@ -107,6 +106,7 @@ namespace MedicalConferenceSystem.UI
 		public void ResetImage()
 		{
 			originX = 1;
+			originY = 1;
 			isEditing = false;
 			ImageMain.RenderTransform = new MatrixTransform();
 		}
@@ -131,7 +131,6 @@ namespace MedicalConferenceSystem.UI
 			Point center = e.ManipulationOrigin;
 			originX = originX * deltaManipulation.Scale.X;
 			originY = originY * deltaManipulation.Scale.Y;
-			//Console.WriteLine("matrix:{0}", matrix.OffsetX);
 
 			if (originX <= 1 && !isEditing)//初始状态
 			{
@@ -141,42 +140,36 @@ namespace MedicalConferenceSystem.UI
 			{
 				isEditing = true;
 				OnBeginEditEvent(true);
-				if (originX > 1)
+				if (originX > 1 && e.Manipulators.Count() > 1)
 				{
 					matrix.ScaleAt(deltaManipulation.Scale.X, deltaManipulation.Scale.Y, center.X, center.Y);//缩放
 					((MatrixTransform)element.RenderTransform).Matrix = matrix;
 				}
 
-				//平移，判断有没有超出边界
-				double offX = ImageMain.ActualWidth * (originX - 1);//可以左右移动的最大值
-				double offY = ImageMain.ActualHeight * (originY - 1);//可以上下移动的最大值
-
 				matrix.Translate(e.DeltaManipulation.Translation.X, e.DeltaManipulation.Translation.Y);
-				////X轴平移
-				//matrix.Translate(e.DeltaManipulation.Translation.X, 0);
-				//if (matrix.OffsetX >= -offX && matrix.OffsetX <= 0)
-				//{
-				//    ((MatrixTransform)element.RenderTransform).Matrix = matrix;
-				//}
-				//Console.WriteLine("matrix.OffsetX:{0},-offX{1}", matrix.OffsetX, -offX);
-				////Y轴平移
-				//matrix.Translate(0, e.DeltaManipulation.Translation.Y);
-				//if (matrix.OffsetY >= -offY && matrix.OffsetY <= 0)
-				//{
-				//    ((MatrixTransform)element.RenderTransform).Matrix = matrix;
-				//}
 				((MatrixTransform)element.RenderTransform).Matrix = matrix;
 
-				//翻页
-				//if (matrix.OffsetX < -ImageMain.ActualWidth / 2)
+				//Matrix matrixX = matrix;//复制X轴矩阵副本
+				//Matrix matrixY;//定义Y轴矩阵副本
+				////X轴平移
+				//matrixX.Translate(e.DeltaManipulation.Translation.X, 0);//X轴平移
+				//if (matrixX.OffsetX >= -offX && matrixX.OffsetX <= 0)//在范围内
 				//{
-				//    OnBeginMoveEvent(MoveType.Left);
+				//    ((MatrixTransform)element.RenderTransform).Matrix = matrixX;//替换矩阵
+				//    matrixY = matrixX;
 				//}
-				//else if (matrix.OffsetX > ImageMain.ActualWidth / 2)
+				//else//在范围外
 				//{
-				//    OnBeginMoveEvent(MoveType.Right);
+				//    matrixY = matrix;
 				//}
-				//matrix.RotateAt(e.DeltaManipulation.Rotation, center.X, center.Y);
+
+				////Y轴平移
+				//matrixY.Translate(0, e.DeltaManipulation.Translation.Y);//Y轴平移
+				//if (matrixY.OffsetY >= -offY && matrixY.OffsetY <= 0)//在范围内
+				//{
+				//    ((MatrixTransform)element.RenderTransform).Matrix = matrixY;//替换矩阵
+				//}
+
 			}
 		}
 
@@ -189,11 +182,34 @@ namespace MedicalConferenceSystem.UI
 		{
 			TouchPoint touchPointNew = e.GetTouchPoint(this);
 
-			if (touchPointNew.Position == touchPointOld.Position)
+			if (touchPointNew.Position == touchPointOld.Position || originX <= 1)
 			{
 				ResetImage();
 				OnBeginEditEvent(false);
 			}
+
+			//判断有没有超出边界
+			double offX = this.ActualWidth * (originX - 1);//可以左右移动的最大值
+			double offY = this.ActualHeight * (originY - 1);//可以上下移动的最大值
+			Matrix matrixNew = ((MatrixTransform)ImageMain.RenderTransform).Matrix;
+			if (matrixNew.OffsetX < -offX)//右边界溢出，即 < -offX
+			{
+				matrixNew.OffsetX = -offX;
+			}
+			if (matrixNew.OffsetX > 0)//左边界溢出，即>0
+			{
+				matrixNew.OffsetX = 0;
+			}
+			if (matrixNew.OffsetY < -offY)//下边界溢出，即 < -offY
+			{
+				matrixNew.OffsetY = -offY;
+			}
+			if (matrixNew.OffsetY > 0)//上边界溢出，即>0
+			{
+				matrixNew.OffsetY = 0;
+			}
+
+			((MatrixTransform)this.ImageMain.RenderTransform).Matrix = matrixNew;
 		}
 		#endregion
 	}

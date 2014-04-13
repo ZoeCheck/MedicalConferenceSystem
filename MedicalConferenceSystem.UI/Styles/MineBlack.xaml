@@ -451,10 +451,10 @@
                                    VerticalAlignment="Stretch"
                                    Width="Auto"
                                    Height="Auto"
-                                   RadiusX="2"
-                                   RadiusY="2"
-                                   Fill="{DynamicResource NormalBrush}"
-                                   Stroke="Gray" />
+                                   RadiusX="6"
+                                   RadiusY="6"
+                                   Fill="#66000000"
+                                   Stroke="Gray" StrokeThickness="0" />
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused"
@@ -508,12 +508,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ScrollBar}">
                     <Grid x:Name="GridRoot"
-                          Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"
                           Background="{TemplateBinding Background}">
                         <Grid.RowDefinitions>
-                            <RowDefinition MaxHeight="18" />
+                            <RowDefinition MaxHeight="18" Height="0*" />
                             <RowDefinition Height="0.00001*" />
-                            <RowDefinition MaxHeight="18" />
+                            <RowDefinition MaxHeight="18" Height="0*" />
                         </Grid.RowDefinitions>
 
                         <RepeatButton x:Name="DecreaseRepeat"
@@ -636,7 +635,7 @@
                                    Minimum="0"
                                    Maximum="{TemplateBinding ScrollableWidth}" />
                         <ScrollBar Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
-                                   Grid.Column="1"
+                                   Grid.Column="0"
                                    Grid.Row="0"
                                    x:Name="PART_VerticalScrollBar"
                                    Style="{DynamicResource SimpleScrollBar}"
@@ -644,7 +643,7 @@
                                    Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
                                    ViewportSize="{TemplateBinding ViewportHeight}"
                                    Minimum="0"
-                                   Maximum="{TemplateBinding ScrollableHeight}" />
+                                   Maximum="{TemplateBinding ScrollableHeight}" HorizontalAlignment="Right" Background="{x:Null}" Width="10" MinWidth="10" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

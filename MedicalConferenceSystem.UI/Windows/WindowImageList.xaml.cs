@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
+using System.IO;
 
 namespace MedicalConferenceSystem.UI
 {
@@ -29,6 +30,8 @@ namespace MedicalConferenceSystem.UI
 		int currentIndex;
 		private Storyboard sbMove = new Storyboard();
 		double aniTime = 0.3;
+		List<string> listImagePath;
+		List<List<string>> ListImageMain = new List<List<string>>();
 		#endregion
 
 		#region 委托事件
@@ -103,8 +106,28 @@ namespace MedicalConferenceSystem.UI
 			ucHeight = this.BorderCenter.ActualHeight;
 
 			double xLocation = 0;
+			int count = 0;
+			string filePath = AppDomain.CurrentDomain.BaseDirectory + @"Images";
+			foreach (string path in Directory.GetFileSystemEntries(filePath))
+			{
+				if (count == 0)
+				{
+					listImagePath = new List<string>();
+				}
+				listImagePath.Add(path);
+				count++;
+				if (count >= 4)
+				{
+					count = 0;
+					ListImageMain.Add(listImagePath);
+				}
+			}
 
-			for (int i = 0; i < 4; i++)
+			pageCount = ListImageMain.Count;
+
+			CanvasMain.Width = ucWidth * pageCount;
+
+			for (int i = 0; i < pageCount; i++)
 			{
 				UCImageList ucIma = new UCImageList();
 				ucIma.Width = ucWidth;
@@ -113,13 +136,29 @@ namespace MedicalConferenceSystem.UI
 				Canvas.SetLeft(ucIma, xLocation);
 				Canvas.SetTop(ucIma, 0);
 				xLocation += ucWidth;
+				//ucIma.SetBackImage(ListImageMain[i]);
 			}
 
-			pageCount = CanvasMain.Children.Count;
-
-			CanvasMain.Width = ucWidth * pageCount;
+			LoadUCImage(0);
+			LoadUCImage(1);
 
 			BeginLoadWindowAnimation();
+		}
+
+		private void LoadUCImage(int pageIndex)
+		{
+			if (pageIndex > -1 && pageIndex <= pageCount)
+			{
+				((UCImageList)CanvasMain.Children[pageIndex]).SetBackImage(ListImageMain[pageIndex]);
+			}
+		}
+
+		private void RemoveUCImage(int pageIndex)
+		{
+			if (pageIndex > -1 && pageIndex < pageCount)
+			{
+				((UCImageList)CanvasMain.Children[pageIndex]).ReleaseBackImage();
+			}
 		}
 
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -293,6 +332,14 @@ namespace MedicalConferenceSystem.UI
 			TouchPoint touchPointNew = e.GetTouchPoint(BorderCenter);
 			double offsetX = touchPointNew.Bounds.Left - touchPointOld.Bounds.Left;//判断X轴位移
 
+			if (currentIndex > 0 && currentIndex < pageCount - 1)
+			{
+				LoadUCImage(currentIndex + 1);
+				LoadUCImage(currentIndex - 1);
+				RemoveUCImage(currentIndex + 2);
+				RemoveUCImage(currentIndex - 2);
+			}
+
 			if (offsetX < -10)//左移
 			{
 				BeginMove(MoveType.Left);//左移动画
@@ -303,7 +350,17 @@ namespace MedicalConferenceSystem.UI
 			}
 			else if (offsetX == 0)//单点弹窗
 			{
-				WindowImageFullView windowFull = new WindowImageFullView();
+				string path = "";
+				try
+				{
+					path = ((System.Windows.Controls.Image)((e.TouchDevice).Captured)).Source.ToString();
+					path = path.Substring(8);
+					path = path.Replace('/', '\\');
+				}
+				catch
+				{
+				}
+				WindowImageFullView windowFull = new WindowImageFullView(path);
 				windowFull.ShowDialog();
 			}
 
@@ -360,6 +417,17 @@ namespace MedicalConferenceSystem.UI
 		{
 			this.Close();
 
+		}
+
+		private void Button_TouchUp_1(object sender, TouchEventArgs e)
+		{
+			this.Close();
+		}
+
+		private void Button_TouchUp_2(object sender, TouchEventArgs e)
+		{
+			WindowImageFullView windowFull = new WindowImageFullView();
+			windowFull.ShowDialog();
 		}
 		#endregion
 	}

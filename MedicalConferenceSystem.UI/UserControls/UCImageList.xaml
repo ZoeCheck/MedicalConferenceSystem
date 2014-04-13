@@ -12,28 +12,29 @@
 
 		<Grid x:Name="LayoutRoot">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
+				<ColumnDefinition Width="0.5*"/>
+				<ColumnDefinition Width="0.5*"/>
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
+				<RowDefinition Height="0.5*"/>
+				<RowDefinition Height="0.5*"/>
 			</Grid.RowDefinitions>
-			<Path Data="M15,151.33333 L135,151.33333" Fill="#FFF4F4F5" Height="1" Margin="0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" VerticalAlignment="Bottom" Grid.ColumnSpan="3"/>
-			<Path Data="M15,151.33333 L135,151.33333" Fill="#FFF4F4F5" Height="1" Margin="0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" VerticalAlignment="Bottom" Grid.ColumnSpan="3" Grid.Row="1"/>
-			<Path Data="M204.66667,47 L204.66667,143.66667" Fill="#FFF4F4F5" HorizontalAlignment="Right" Margin="0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" Width="1" Grid.RowSpan="3"/>
-			<Path Data="M204.66667,47 L204.66667,143.66667" Fill="#FFF4F4F5" HorizontalAlignment="Right" Margin="0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" Width="1" Grid.RowSpan="3" Grid.Column="1"/>
-			<Image Margin="0" Source="../Images/1e2a05c87fed9e21271abdaa71295dc6.jpg" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-			<Image Grid.Column="1" Margin="0" Source="../Images/2614a7a9353cba45421a6b2b3f23131b.jpg" Stretch="Fill"/>
-			<Image Grid.Column="2" Margin="0" Source="../Images/2f3c2d6eaba84b054204e81041cbf394.jpg" Stretch="Fill"/>
-			<Image Margin="0" Grid.Row="1" Source="../Images/310b8f999ee06c32d467478d45eb5770.jpg" Stretch="Fill"/>
-			<Image Grid.Column="2" Margin="0" Grid.Row="1" Source="../Images/4ba9979b57e1993c1540ecfb2b827524.jpg" Stretch="Fill"/>
-			<Image Margin="0" Grid.Row="2" Source="../Images/60bd5160129cd6ad0deb73bdf3196c56.jpg" Stretch="Fill"/>
-			<Image Grid.Column="1" Margin="0" Grid.Row="2" Source="../Images/663ffb5ef221489f855068eefc36d32a.jpg" Stretch="Fill"/>
-			<Image Grid.Column="2" Margin="0" Grid.Row="2" Source="../Images/6cd33ca1256cb396e7b8aa53e86972f3.jpg" Stretch="Fill"/>
-			<Image Grid.Column="1" Margin="0" Grid.Row="1" Source="../Images/fc135b886f29345027e609044e9b0cbf.jpg" Stretch="Fill"/>
+			<Grid x:Name="GridImage" Grid.ColumnSpan="2" Grid.RowSpan="2">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="0.5*"/>
+					<RowDefinition Height="0.5*"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="0.5*"/>
+					<ColumnDefinition Width="0.5*"/>
+				</Grid.ColumnDefinitions>
+				<Image x:Name="Image1" Margin="0" Stretch="UniformToFill" IsManipulationEnabled="True"/>
+				<Image x:Name="Image2" Margin="0" Stretch="UniformToFill" Grid.Column="1" IsManipulationEnabled="True"/>
+				<Image x:Name="Image3" Margin="0" Stretch="UniformToFill" Grid.Row="1" IsManipulationEnabled="True"/>
+				<Image x:Name="Image4" Margin="0" Stretch="UniformToFill" Grid.Column="1" Grid.Row="1" IsManipulationEnabled="True"/>
+			</Grid>
+			<Path Data="M15,151.33333 L135,151.33333" Fill="#FFF4F4F5" Height="1" Margin="0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+			<Path Data="M204.66667,47 L204.66667,143.66667" Fill="#FFF4F4F5" HorizontalAlignment="Right" Margin="0" Stretch="Fill" Stroke="{DynamicResource BrushImageBorder}" Width="1" Grid.RowSpan="2"/>
 		</Grid>
 	</Border>
 </UserControl>

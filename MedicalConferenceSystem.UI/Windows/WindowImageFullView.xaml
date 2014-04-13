@@ -14,7 +14,7 @@
 		WindowStyle="None"
 		Background="{x:Null}"
 		Loaded="Window_Loaded"
-		Closing="Window_Closing" WindowState="Maximized">
+        Closing="Window_Closing" WindowState="Maximized">
     <Window.Resources>
         <Style TargetType="{x:Type ListBox}"
                x:Key="PhotoListBoxStyle">
@@ -44,7 +44,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="32" />
+            <RowDefinition Height="0" />
         </Grid.RowDefinitions>
         <Grid x:Name="GridTop"
               Margin="0,19,0,0">
@@ -81,7 +81,7 @@
                         Width="40"
                         Height="30"
                         Style="{DynamicResource ButtonStyleFullSearch}"
-                        Margin="1,0,0,0" />
+                        Margin="1,1,0,1" />
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         d:LayoutOverrides="Width"
@@ -96,7 +96,7 @@
                         Style="{DynamicResource ButtonStylePreviewImage}"
                         Height="30"
                         Name="btnPreview"
-                        Click="btnPreview_Click" />
+                        Click="btnPreview_Click" Margin="0" />
                 <TextBlock TextWrapping="Wrap"
                            Text="16/21"
                            HorizontalAlignment="Center"
@@ -132,6 +132,19 @@
                     <ComboBoxItem Content="3" />
                 </ComboBox>
             </StackPanel>
+        </Grid>
+        <Grid HorizontalAlignment="Right" Margin="0" Grid.Row="1" Width="50">
+        	<Border BorderBrush="Black" BorderThickness="0" Background="Black" Opacity="0.4"/>
+        	<StackPanel VerticalAlignment="Center">
+        		<Button Content="Button" Height="30" Margin="0,10,0,0" Width="40" Style="{DynamicResource ButtonStyleReturn}"
+                        TouchUp="Button_TouchUp_1" />
+        		<Button Content="Button" Height="30" Margin="0,10,0,0" Width="40" Style="{DynamicResource ButtonStylePreviewImage}"
+                        TouchUp="Button_TouchUp_2" />
+        		<Button Content="Button" Height="30" Margin="0,10,0,0" Width="40" Style="{DynamicResource ButtonStyleNextImage}"
+                        TouchUp="Button_TouchUp_3" />
+        		<Button Content="Button" Height="30" Margin="0,10,0,0" Width="40" Style="{DynamicResource ButtonStyleFullView}"/>
+        		<Button Content="Button" Height="30" Margin="0,10,0,0" Width="40" Style="{DynamicResource ButtonStyleFullSearch}"/>
+        	</StackPanel>
         </Grid>
     </Grid>
 </Window>

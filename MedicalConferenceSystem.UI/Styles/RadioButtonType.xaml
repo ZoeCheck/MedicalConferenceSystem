@@ -19,12 +19,12 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type RadioButton}">
-					<Border x:Name="border" BorderBrush="#FFD4D4D4" BorderThickness="2" CornerRadius="2" Background="#00000000">
+					<Border x:Name="border" BorderBrush="#FFD4D4D4" BorderThickness="2" CornerRadius="2" Background="#00000000" Width="30" Height="25">
 						<Grid>
-							<Rectangle x:Name="rectangle" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="10" Margin="5,5,0,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="10" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
-							<Rectangle x:Name="rectangle1" Fill="#FFD4D4D4" HorizontalAlignment="Right" Height="10" Margin="0,5,4,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="10" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
-							<Rectangle x:Name="rectangle2" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="10" Margin="5,0,0,4" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" Width="10" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
-							<Rectangle x:Name="rectangle3" Fill="#FFD4D4D4" HorizontalAlignment="Right" Height="10" Margin="0,0,4,4" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" Width="10" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment"/>
+							<Rectangle x:Name="rectangle" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="5" Margin="6.74,4.347,0,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="5" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" StrokeThickness="0"/>
+							<Rectangle x:Name="rectangle1" Fill="#FFD4D4D4" HorizontalAlignment="Right" Height="5" Margin="0,4.347,6.157,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="5" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" StrokeThickness="0"/>
+							<Rectangle x:Name="rectangle2" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="5" Margin="6.74,0,0,3.758" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" Width="5" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" StrokeThickness="0"/>
+							<Rectangle x:Name="rectangle3" Fill="#FFD4D4D4" HorizontalAlignment="Right" Height="5" Margin="0,0,6.157,3.758" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" Width="5" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" StrokeThickness="0"/>
 						</Grid>
 					</Border>
 					<ControlTemplate.Triggers>
@@ -55,14 +55,14 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type RadioButton}">
-					<Border x:Name="border" BorderBrush="#FFD4D4D4" BorderThickness="2" CornerRadius="2" Background="#00000000">
+					<Border x:Name="border" BorderBrush="#FFD4D4D4" BorderThickness="2" CornerRadius="2" Background="#00000000" Width="30" Height="25">
 						<Grid>
-							<Rectangle x:Name="rectangle" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="6" Margin="4,4,0,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="6" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" StrokeThickness="0"/>
-							<Path x:Name="path" Data="M13.375,8 L31,8.25" Fill="#FFD4D4D4" Height="2" Margin="12,6,2.375,0" Stretch="Fill" Stroke="#FFD4D4D4" VerticalAlignment="Top" StrokeThickness="2"/>
-							<Rectangle x:Name="rectangle_Copy" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="6" Margin="4,13,0,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="6" d:LayoutOverrides="HorizontalAlignment" StrokeThickness="0"/>
-							<Path x:Name="path1" Data="M13.375,8 L31,8.25" Fill="#FFD4D4D4" Height="2" Margin="12,0,2.375,13.75" Stretch="Fill" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" StrokeThickness="2"/>
-							<Rectangle x:Name="rectangle_Copy1" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="6" Margin="4,21.75,0,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="6" d:LayoutOverrides="HorizontalAlignment" StrokeThickness="0"/>
-							<Path x:Name="path2" Data="M13.375,8 L31,8.25" Fill="#FFD4D4D4" Height="2" Margin="12,0,2.375,5.125" Stretch="Fill" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" StrokeThickness="2"/>
+							<Rectangle x:Name="rectangle" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="4" Margin="4.996,3.002,0,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="4.004" d:LayoutOverrides="HorizontalAlignment, VerticalAlignment" StrokeThickness="0"/>
+							<Path x:Name="path" Data="M13.375,8 L31,8.25" Fill="#FFD4D4D4" Height="2" Margin="10.531,9.25,3.855,9.749" Stretch="Fill" Stroke="#FFD4D4D4" StrokeThickness="2"/>
+							<Rectangle x:Name="rectangle_Copy" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="Auto" Margin="4.996,8.167,0,8.833" Stroke="#FFD4D4D4" VerticalAlignment="Stretch" Width="4.004" d:LayoutOverrides="HorizontalAlignment" StrokeThickness="0"/>
+							<Path x:Name="path1" Data="M13.375,8 L31,8.25" Fill="#FFD4D4D4" Height="2" Margin="10.531,0,3.855,15.022" Stretch="Fill" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" StrokeThickness="2"/>
+							<Rectangle x:Name="rectangle_Copy1" Fill="#FFD4D4D4" HorizontalAlignment="Left" Height="4" Margin="4.996,13.48,0,0" Stroke="#FFD4D4D4" VerticalAlignment="Top" Width="4.004" d:LayoutOverrides="HorizontalAlignment" StrokeThickness="0"/>
+							<Path x:Name="path2" Data="M13.375,8 L31,8.25" Fill="#FFD4D4D4" Height="2" Margin="10.531,0,3.855,4.501" Stretch="Fill" Stroke="#FFD4D4D4" VerticalAlignment="Bottom" StrokeThickness="2"/>
 						</Grid>
 					</Border>
 					<ControlTemplate.Triggers>

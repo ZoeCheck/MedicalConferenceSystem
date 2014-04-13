@@ -10,8 +10,23 @@
 		<GradientStop Color="#FF340F8B"
 			Offset="0.221" />
 		<GradientStop Color="#FF230E56"
-			Offset="1" />
+			Offset="0.94" />
 		<GradientStop Color="#FF4B318B" Offset="0.02"/>
+		<GradientStop Color="#FF5C3FA5" Offset="1"/>
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="BrushMainWindow" EndPoint="0.533,1.012"
+		MappingMode="RelativeToBoundingBox"
+		StartPoint="0.533,-0.054">
+		<GradientStop Color="#FFB3B2B4" />
+		<GradientStop Color="#FF180053"
+			Offset="1" />
+		<GradientStop Color="#FF2B0C7C"
+			Offset="0.107" />
+		<GradientStop Color="#FF2B1364"
+			Offset="0.88" />
+		<GradientStop Color="#FF331C6A"
+			Offset="0.502" />
+		<GradientStop Color="#FF26047A" Offset="0.07"/>
 	</LinearGradientBrush>
     
 </ResourceDictionary>
