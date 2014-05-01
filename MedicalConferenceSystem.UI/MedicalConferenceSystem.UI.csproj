@@ -60,6 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LinearMatrixAnimation.cs" />
     <Compile Include="UserControls\UCFullImage.xaml.cs">
       <DependentUpon>UCFullImage.xaml</DependentUpon>
     </Compile>
