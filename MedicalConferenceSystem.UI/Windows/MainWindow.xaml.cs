@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using MedicalConferenceSystem.UI.UserControls;
 using System.IO;
+using System.Timers;
 
 namespace MedicalConferenceSystem.UI
 {
@@ -27,6 +28,8 @@ namespace MedicalConferenceSystem.UI
 		bool isClosed = false;
 		TouchPoint touchPointOld;
 		List<string> listImagePath = new List<string>();
+		Timer timer;
+		int addIndex = 0;
 		#endregion
 
 		#region 委托事件
@@ -205,43 +208,46 @@ namespace MedicalConferenceSystem.UI
 
 		void sb_Completed(object sender, EventArgs e)
 		{
-			int index = 0;
-			for (int i = 0; i < 9; i++)
-			{
-				UCType ucType = new UCType();
-				//ucType.Width = 150;
-				//ucType.Height = 160;
-				ucType.Width = (this.ActualWidth - 140) / 2;
-				ucType.Height = (this.ActualHeight - this.ActualHeight * 0.5) / 10;
-				ucType.Margin = new Thickness(0, 10, 0, 10);
-				//ucType.SetImage(listImagePath[index++]);
-				ucType.SetInfoUp("类别 " + index + " 糖尿病预防与流行病学");
-				ucType.SetInfoDown("摘要" + index);
-				StackPanelLeft.Children.Add(ucType);
-			}
+			timer = new Timer();
+			timer.Interval = 50;
+			timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+			timer.Start();
+		}
 
-			for (int j = 0; j < 9; j++)
+		void timer_Elapsed(object sender, ElapsedEventArgs e)
+		{
+			if (addIndex < 9)
 			{
-				UCType ucType = new UCType();
-				//ucType.Width = 150;
-				//ucType.Height = 160;
-				ucType.Width = (this.ActualWidth - 140) / 2;
-				ucType.Height = (this.ActualHeight - this.ActualHeight * 0.5) / 10;
-				ucType.Margin = new Thickness(0, 10, 0, 10);
-				//ucType.SetImage(listImagePath[index++]);
-				ucType.SetInfoUp("类别 " + index + " 糖尿病基础研究");
-				ucType.SetInfoDown("摘要" + index);
-				StackPanelRight.Children.Add(ucType);
-			}
+				this.Dispatcher.Invoke(new Action(() =>
+				{
+					UCType ucTypeLeft = new UCType();
+					//ucTypeLeft.Width = 150;
+					//ucType.Height = 160;
+					ucTypeLeft.Width = (this.ActualWidth - 140) / 2;
+					ucTypeLeft.Height = (this.ActualHeight - this.ActualHeight * 0.5) / 10;
+					ucTypeLeft.Margin = new Thickness(0, 10, 0, 10);
+					//ucType.SetImage(listImagePath[index++]);
+					ucTypeLeft.SetInfoUp("类别 " + addIndex + " 糖尿病预防与流行病学");
+					ucTypeLeft.SetInfoDown("摘要" + addIndex);
+					StackPanelLeft.Children.Add(ucTypeLeft);
 
-			foreach (UCType item in StackPanelLeft.Children)
-			{
-				item.BeginLoadAni();
-			}
+					UCType ucTypeRight = new UCType();
+					//ucType.Width = 150;
+					//ucType.Height = 160;
+					ucTypeRight.Width = (this.ActualWidth - 140) / 2;
+					ucTypeRight.Height = (this.ActualHeight - this.ActualHeight * 0.5) / 10;
+					ucTypeRight.Margin = new Thickness(0, 10, 0, 10);
+					//ucType.SetImage(listImagePath[index++]);
+					ucTypeRight.SetInfoUp("类别 " + addIndex + " 糖尿病基础研究");
+					ucTypeRight.SetInfoDown("摘要" + addIndex);
+					StackPanelRight.Children.Add(ucTypeRight);
 
-			foreach (UCType item in StackPanelRight.Children)
+					addIndex++;
+				}));
+			}
+			else
 			{
-				item.BeginLoadAni();
+				timer.Stop();
 			}
 		}
 
@@ -283,8 +289,6 @@ namespace MedicalConferenceSystem.UI
 		}
 		#endregion
 
-
-
 		private void ScrollViewer_TouchDown(object sender, TouchEventArgs e)
 		{
 			touchPointOld = e.GetTouchPoint(ScrollViewerListCenter);
@@ -307,7 +311,6 @@ namespace MedicalConferenceSystem.UI
 				windowIm.ShowDialog();
 			}
 		}
-		#endregion
 
 		private void Button_Click_3(object sender, RoutedEventArgs e)
 		{
@@ -318,5 +321,6 @@ namespace MedicalConferenceSystem.UI
 		{
 			HideListAni();
 		}
+		#endregion
 	}
 }
