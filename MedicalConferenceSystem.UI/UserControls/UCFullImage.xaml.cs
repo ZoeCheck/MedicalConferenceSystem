@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Expression.Interactivity.Input;
 using System.Linq;
+using System.Windows.Media.Animation;
 
 namespace MedicalConferenceSystem.UI
 {
@@ -28,6 +29,7 @@ namespace MedicalConferenceSystem.UI
 		private double originY = 1;
 		TouchPoint touchPointOld;
 		bool isEditing = false;
+		TimeSpan tsResetTime = TimeSpan.FromSeconds(0.2);
 		#endregion
 
 		#region 委托事件
@@ -169,7 +171,6 @@ namespace MedicalConferenceSystem.UI
 				//{
 				//    ((MatrixTransform)element.RenderTransform).Matrix = matrixY;//替换矩阵
 				//}
-
 			}
 		}
 
@@ -191,25 +192,88 @@ namespace MedicalConferenceSystem.UI
 			//判断有没有超出边界
 			double offX = this.ActualWidth * (originX - 1);//可以左右移动的最大值
 			double offY = this.ActualHeight * (originY - 1);//可以上下移动的最大值
-			Matrix matrixNew = ((MatrixTransform)ImageMain.RenderTransform).Matrix;
-			if (matrixNew.OffsetX < -offX)//右边界溢出，即 < -offX
+			Matrix matrixOld = ((MatrixTransform)ImageMain.RenderTransform).Matrix;
+			Matrix toMatrix = new Matrix();
+			toMatrix.M11 = matrixOld.M11;
+			toMatrix.M12 = matrixOld.M12;
+			toMatrix.M21 = matrixOld.M21;
+			toMatrix.M22 = matrixOld.M22;
+			if (matrixOld.OffsetX < -offX && matrixOld.OffsetY >= -offY && matrixOld.OffsetY < 0)//只有右边界溢出，即 < -offX
 			{
-				matrixNew.OffsetX = -offX;
+				//matrixNew.OffsetX = -offX;
+				toMatrix.OffsetX = -offX;
+				toMatrix.OffsetY = matrixOld.OffsetY;
+
+				PlayMatrixTransformAnimation((MatrixTransform)ImageMain.RenderTransform, toMatrix, tsResetTime);
 			}
-			if (matrixNew.OffsetX > 0)//左边界溢出，即>0
+			if (matrixOld.OffsetX > 0 && matrixOld.OffsetY >= -offY && matrixOld.OffsetY < 0)//只有左边界溢出，即>0
 			{
-				matrixNew.OffsetX = 0;
+				//matrixOld.OffsetX = 0;
+				toMatrix.OffsetX = 0;
+				toMatrix.OffsetY = matrixOld.OffsetY;
+
+				PlayMatrixTransformAnimation((MatrixTransform)ImageMain.RenderTransform, toMatrix, tsResetTime);
 			}
-			if (matrixNew.OffsetY < -offY)//下边界溢出，即 < -offY
+			if (matrixOld.OffsetY < -offY && matrixOld.OffsetX >= -offX && matrixOld.OffsetX < 0)//只有下边界溢出，即 < -offY
 			{
-				matrixNew.OffsetY = -offY;
+				//matrixOld.OffsetY = -offY;
+				toMatrix.OffsetX = matrixOld.OffsetX;
+				toMatrix.OffsetY = -offY;
+
+				PlayMatrixTransformAnimation((MatrixTransform)ImageMain.RenderTransform, toMatrix, tsResetTime);
 			}
-			if (matrixNew.OffsetY > 0)//上边界溢出，即>0
+			if (matrixOld.OffsetY > 0 && matrixOld.OffsetX >= -offX && matrixOld.OffsetX < 0)//只有上边界溢出，即>0
 			{
-				matrixNew.OffsetY = 0;
+				//matrixOld.OffsetY = 0;
+				toMatrix.OffsetX = matrixOld.OffsetX;
+				toMatrix.OffsetY = 0;
+
+				PlayMatrixTransformAnimation((MatrixTransform)ImageMain.RenderTransform, toMatrix, tsResetTime);
+			}
+			if (matrixOld.OffsetX < -offX && matrixOld.OffsetY > 0)//右上溢出
+			{
+				toMatrix.OffsetX = -offX;
+				toMatrix.OffsetY = 0;
+				PlayMatrixTransformAnimation((MatrixTransform)ImageMain.RenderTransform, toMatrix, tsResetTime);
+			}
+			if (matrixOld.OffsetX < -offX && matrixOld.OffsetY < -offY)//右下溢出
+			{
+				toMatrix.OffsetX = -offX;
+				toMatrix.OffsetY = -offY;
+				PlayMatrixTransformAnimation((MatrixTransform)ImageMain.RenderTransform, toMatrix, tsResetTime);
+			}
+			if (matrixOld.OffsetX > 0 && matrixOld.OffsetY > 0)//左上溢出
+			{
+				toMatrix.OffsetX = 0;
+				toMatrix.OffsetY = 0;
+				PlayMatrixTransformAnimation((MatrixTransform)ImageMain.RenderTransform, toMatrix, tsResetTime);
+			}
+			if (matrixOld.OffsetX > 0 && matrixOld.OffsetY < -offY)//左下溢出
+			{
+				toMatrix.OffsetX = 0;
+				toMatrix.OffsetY = -offY;
+				PlayMatrixTransformAnimation((MatrixTransform)ImageMain.RenderTransform, toMatrix, tsResetTime);
 			}
 
-			((MatrixTransform)this.ImageMain.RenderTransform).Matrix = matrixNew;
+			//((MatrixTransform)this.ImageMain.RenderTransform).Matrix = matrixOld;
+		}
+
+		public static void PlayMatrixTransformAnimation(MatrixTransform matrixTransform, Matrix newMatrix, TimeSpan timeSpan)
+		{
+			var animation = new LinearMatrixAnimation(matrixTransform.Matrix, newMatrix, new Duration(timeSpan));
+			animation.AccelerationRatio = 0.3;
+			animation.DecelerationRatio = 0.3;
+			animation.FillBehavior = FillBehavior.HoldEnd;
+			animation.Completed += (sender, e) =>
+			{
+				//去除属性的动画绑定  
+				matrixTransform.BeginAnimation(MatrixTransform.MatrixProperty, null);
+				//将期望结果值保留  
+				matrixTransform.Matrix = newMatrix;
+			};
+
+			//启动动画  
+			matrixTransform.BeginAnimation(MatrixTransform.MatrixProperty, animation, HandoffBehavior.SnapshotAndReplace);
 		}
 		#endregion
 	}
