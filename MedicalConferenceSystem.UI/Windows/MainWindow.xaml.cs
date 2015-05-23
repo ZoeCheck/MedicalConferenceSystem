@@ -59,6 +59,7 @@ namespace MedicalConferenceSystem.UI
 			if (tbSearch.Text == "")
 			{
 				tbSearch.Text = "请输入(作者/医院/壁报标题)中的任意关键字搜索";
+                //this is a test git commit code
 			}
 		}
 	}
